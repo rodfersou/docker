@@ -1,0 +1,62 @@
+FROM ubuntu:20.04
+ARG DEBIAN_FRONTEND=noninteractive
+RUN apt-get update \
+    #
+    # BASE
+    #
+    && apt-get install -y                                                                                           \
+               apt-utils 2>&1 | grep -v "debconf: delaying package configuration, since apt-utils is not installed" \
+    && apt-get install -y --no-install-recommends \
+               build-essential \
+               ca-certificates \
+               curl            \
+               fonts-powerline \
+               git             \
+               locales         \
+               ncurses-term    \
+               openssh-server  \
+               rcm             \
+               screen          \
+               sudo            \
+               vim             \
+               wget            \
+               zsh             \
+    && locale-gen en_US.UTF-8  \
+    #
+    # SSH
+    #
+    && mkdir /var/run/sshd \
+    && sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd \
+    #
+    # sudo
+    #
+    && sed -e '/^\%sudo/ s/\ ALL$/\ NOPASSWD:ALL/' -i /etc/sudoers \
+    && echo "Set disable_coredump false" >> /etc/sudo.conf \
+    #
+    # ADD devuser
+    #
+    && adduser --quiet              \
+               --disabled-password  \
+               --shell /usr/bin/zsh \
+               --home /home/devuser \
+               --gecos "User"       \
+               devuser              \
+    && echo "devuser:devuser" | chpasswd \
+    && usermod -aG sudo devuser \
+    #
+    # ZSH
+    #
+    && sudo -u devuser -- sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
+    && sudo -u devuser -- sed -e '/^ZSH_THEME/ s/robbyrussell/agnoster/' -i /home/devuser/.zshrc \
+    #
+    # VIM
+    #
+    && sudo -u devuser -- git clone --depth=1 https://github.com/amix/vimrc.git /home/devuser/.vim_runtime \
+    && sudo -u devuser -- sh /home/devuser/.vim_runtime/install_awesome_vimrc.sh
+USER devuser
+WORKDIR /home/devuser
+COPY dotfiles /home/devuser/.dotfiles
+RUN rcup
+#CMD ["/usr/sbin/sshd", "-D"]
+#CMD ["/usr/bin/zsh"]
+CMD ["/usr/bin/screen", "-RRaAD"]
