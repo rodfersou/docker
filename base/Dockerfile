@@ -1,18 +1,22 @@
 FROM ubuntu:20.04
 ARG DEBIAN_FRONTEND=noninteractive
 COPY dotfiles .dotfiles
-RUN apt-get update \
+RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
+    && apt-get update \
     #
     # BASE
     #
     && apt-get install -y                                                                                           \
                apt-utils 2>&1 | grep -v "debconf: delaying package configuration, since apt-utils is not installed" \
     && apt-get install -y --no-install-recommends \
-    #           build-essential \
+               build-essential \
                ca-certificates \
                curl            \
                git             \
+               httpie          \
+               jq              \
                locales         \
+               mc              \
                ncurses-term    \
                rcm             \
                screen          \
@@ -52,11 +56,11 @@ RUN apt-get update \
     #
     && sudo -u devuser -- git clone --depth=1 https://github.com/amix/vimrc.git /home/devuser/.vim_runtime \
     && sudo -u devuser -- sh /home/devuser/.vim_runtime/install_awesome_vimrc.sh \
-    && su - devuser -c "cd /home/devuser/.vim_runtime/my_plugins && git clone --depth=1 https://github.com/ervandew/supertab.git" \
-    && su - devuser -c "cd /home/devuser/.vim_runtime/my_plugins && git clone --depth=1 https://github.com/ryanoasis/vim-devicons.git" \
-    && su - devuser -c "cd /home/devuser/.vim_runtime/my_plugins && git clone --depth=1 https://github.com/junegunn/vim-easy-align.git" \
-    # && su - devuser -c "cd /home/devuser/.vim_runtime/my_plugins && git clone --depth=1 https://github.com/neoclide/coc.nvim.git" \
-    # && su - devuser -c "cd /home/devuser/.vim_runtime/my_plugins && git clone --depth=1 https://github.com/aklt/plantuml-syntax.git" \
+    && sudo -u devuser -- cd /home/devuser/.vim_runtime/my_plugins && git clone --depth=1 https://github.com/ervandew/supertab.git \
+    && sudo -u devuser -- cd /home/devuser/.vim_runtime/my_plugins && git clone --depth=1 https://github.com/ryanoasis/vim-devicons.git \
+    && sudo -u devuser -- cd /home/devuser/.vim_runtime/my_plugins && git clone --depth=1 https://github.com/junegunn/vim-easy-align.git \
+    # && sudo -u devuser -- cd /home/devuser/.vim_runtime/my_plugins && git clone --depth=1 https://github.com/neoclide/coc.nvim.git \
+    # && sudo -u devuser -- cd /home/devuser/.vim_runtime/my_plugins && git clone --depth=1 https://github.com/aklt/plantuml-syntax.git \
     #
     # Dotfiles
     #

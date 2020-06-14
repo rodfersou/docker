@@ -9,11 +9,9 @@ build:
 
 start:
 	# docker run --rm -it rodfersou:base
-	if [ ! "$(docker ps | grep rodfersou_base)" ]; then           \
-		docker run --name rodfersou_base --rm -it rodfersou:base; \
-	else                                                          \
-		docker attach rodfersou_base;                             \
-	fi
+	[ ! "$(docker ps | grep rodfersou_base)" ]                  \
+	&& docker run --name rodfersou_base --rm -it rodfersou:base \
+	|| docker attach rodfersou_base
 
 stop:
 	-docker stop $$(docker ps -aq)
