@@ -41,7 +41,7 @@ RUN apt-get update \
     && echo "devuser:devuser" | chpasswd \
     && usermod -aG sudo devuser \
     && mv /.dotfiles /home/devuser \
-    && chown devuser:devuser /home/devuser/.dotfiles \
+    && chown -R devuser:devuser /home/devuser/.dotfiles \
     #
     # ZSH
     #
@@ -53,6 +53,11 @@ RUN apt-get update \
     #
     && sudo -u devuser -- git clone --depth=1 https://github.com/amix/vimrc.git /home/devuser/.vim_runtime \
     && sudo -u devuser -- sh /home/devuser/.vim_runtime/install_awesome_vimrc.sh \
+    # && su - devuser -c "cd /home/devuser/.vim_runtime/my_plugins && git clone --depth=1 https://github.com/neoclide/coc.nvim.git" \
+    && su - devuser -c "cd /home/devuser/.vim_runtime/my_plugins && git clone --depth=1 https://github.com/ervandew/supertab.git" \
+    && su - devuser -c "cd /home/devuser/.vim_runtime/my_plugins && git clone --depth=1 https://github.com/aklt/plantuml-syntax.git" \
+    && su - devuser -c "cd /home/devuser/.vim_runtime/my_plugins && git clone --depth=1 https://github.com/ryanoasis/vim-devicons.git" \
+    && su - devuser -c "cd /home/devuser/.vim_runtime/my_plugins && git clone --depth=1 https://github.com/junegunn/vim-easy-align.git" \
     #
     # Dotfiles
     #
