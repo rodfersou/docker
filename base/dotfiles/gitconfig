@@ -1,12 +1,17 @@
 [diff]
   tool = vimdiff
-  ;tool = kdiff3
-  ;tool = meld
 
 [merge]
   tool = vimdiff
-  ;tool = kdiff3
-  ;tool = meld
+
+[mergetool "vimdiff"]
+  cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+
+[difftool]
+  prompt = false
+
+[mergetool]
+  prompt = true
 
 [color]
   diff   = auto

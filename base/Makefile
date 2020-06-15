@@ -8,24 +8,31 @@ build:
 	docker build -t rodfersou:base .
 
 start:
-	# docker run --rm -it rodfersou:base
-	[ ! "$(docker ps | grep rodfersou_base)" ]                  \
-	&& docker run --name rodfersou_base --rm -it rodfersou:base \
-	|| docker attach rodfersou_base
+	docker run --name rodfersou_base          \
+			   --detach-keys="ctrl-d,d"       \
+			   --rm                           \
+			   -it                            \
+			   rodfersou:base                 \
+	|| docker attach --detach-keys="ctrl-d,d" \
+					 rodfersou_base
 
 stop:
-	-docker stop $$(docker ps -aq)
-	# -docker rm $$(docker ps -aq)
-	# -docker rmi $$(docker images -q)
+	-docker container stop rodfersou_base
+	-docker container rm rodfersou_base
 
-stop-and-clean:
+stop-all:
 	-docker stop $$(docker ps -aq)
 	-docker rm $$(docker ps -aq)
-	# -docker rmi $$(docker images -q)
 
 clean:
 	-docker container stop rodfersou_base
 	-docker container rm rodfersou_base
 	-docker image rm rodfersou:base
+
+clean-all:
+	-docker stop $$(docker ps -aq)
+	-docker rm $$(docker ps -aq)
+	-docker rmi $$(docker images -q)
+
 
 .PHONY: all clean
