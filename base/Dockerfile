@@ -83,7 +83,8 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
     #
     # Dotfiles
     #
-    && sudo -u devuser -- rcup
+    && sudo -u devuser -- rcup \
+    && apt-get autoremove -y
 
 USER devuser
 WORKDIR /home/devuser
