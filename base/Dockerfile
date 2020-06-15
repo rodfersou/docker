@@ -55,7 +55,10 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
     #
     # ZSH
     #
-    && sudo -u devuser -- sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
+    && { \
+        echo 'sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'; \
+        echo 'sed -e "/^plugins/ s/git/git wd globalias asdf/" -i .zshrc'; \
+    } | su devuser \
     #
     # VIM
     #
