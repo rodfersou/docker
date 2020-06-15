@@ -1,0 +1,15 @@
+beautifulsoup4
+black
+debug
+flake8
+lxml
+mario
+mypy
+pdftotext
+pipenv
+py-spy
+pylint
+requests
+unidecode
+virtualenv==16.7.9
+yq
