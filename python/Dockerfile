@@ -1,7 +1,8 @@
 FROM rodfersou:base
-USER root
+ARG DEBIAN_FRONTEND=noninteractive
 
-COPY dotfiles .dotfiles
+USER root
+COPY dotfiles /.dotfiles
 RUN apt-get update \
     #
     # BASE
@@ -12,6 +13,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* \
     && cd /home/devuser \
     && mkdir -p /srv/cache/pip \
+    && chown -R devuser:devuser /srv \
     #
     # Dotfiles
     #
@@ -23,16 +25,18 @@ RUN apt-get update \
     #
     # ASDF
     #
-    && asdf plugin-add python \
-    && asdf install python 2.7.17 \
-    && asdf install python 3.7.7 \
-    && asdf install python 3.8.2 \
-    && asdf global python 3.7.7 2.7.17 \
-    && asdf install python anaconda3-2020.02 \
+    && { \
+        echo 'asdf plugin-add python'; \
+        echo 'asdf install python 2.7.17'; \
+        echo 'asdf install python 3.7.7'; \
+        echo 'asdf install python 3.8.2'; \
+        echo 'asdf global python 3.7.7 2.7.17'; \
+        echo 'asdf install python anaconda3-2020.02'; \
+    } | su devuser \
     && cd .asdf/installs/python/anaconda3-2020.02/bin \
-    && http https://raw.githubusercontent.com/pyenv/pyenv/master/pyenv.d/rehash/conda.d/default.list | grep -v "\#" | xargs rm \
+    && sudo -u devuser -- http https://raw.githubusercontent.com/pyenv/pyenv/master/pyenv.d/rehash/conda.d/default.list | grep -v "\#" | xargs rm \
     && cd /home/devuser \
-    && asdf reshim python
+    && sudo -u devuser -- asdf reshim python
 
 USER devuser
 WORKDIR /home/devuser
