@@ -5,7 +5,6 @@ flake8
 lxml
 mario
 mypy
-pdftotext
 pipenv
 py-spy
 pylint
