@@ -55,11 +55,7 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
     #
     # ZSH
     #
-    && { \
-        echo 'sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'; \
-        echo 'sed -e "/^ZSH_THEME/ s/robbyrussell/agnoster/" -i .zshrc'; \
-        echo 'sed -e "/^# DISABLE_AUTO_TITLE/ s/^# //" -i .zshrc'; \
-    } | su devuser \
+    && sudo -u devuser -- sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
     #
     # VIM
     #
