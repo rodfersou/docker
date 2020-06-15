@@ -19,9 +19,9 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
                httpie            \
                jq                \
                locales           \
-               mc                \
                ncurses-term      \
                neovim            \
+               ranger            \
                rcm               \
                screen            \
                silversearcher-ag \
@@ -48,6 +48,7 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
                devuser              \
     && echo "devuser:devuser" | chpasswd \
     && usermod -aG sudo devuser \
+    && chown -R devuser:devuser /srv \
     && cd /home/devuser \
     && mv /.dotfiles . \
     && chown -R devuser:devuser .dotfiles \
@@ -75,10 +76,6 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
         #echo 'git clone --depth=1 https://github.com/aklt/plantuml-syntax.git'; \
     } | su devuser \
     && cd /home/devuser \
-    && { \
-        echo 'mkdir -p .config/nvim'; \
-        echo 'ln -sf /home/devuser/.vimrc .config/nvim/init.vim'; \
-    } | su devuser \
     #
     # Dotfiles
     #

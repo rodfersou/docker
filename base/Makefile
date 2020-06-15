@@ -8,13 +8,17 @@ build:
 	docker build -t rodfersou:base .
 
 start:
-	docker run --name rodfersou_base          \
-			   --detach-keys="ctrl-d,d"       \
-			   --rm                           \
-			   -it                            \
-			   rodfersou:base                 \
-	|| docker attach --detach-keys="ctrl-d,d" \
-					 rodfersou_base
+	docker run                           \
+		--name rodfersou_base            \
+		--detach-keys="ctrl-d,d"         \
+		--rm                             \
+		-e DISPLAY                       \
+		-it                              \
+		-v /tmp/.X11-unix:/tmp/.X11-unix \
+		rodfersou:base                   \
+	|| docker attach                     \
+		--detach-keys="ctrl-d,d"         \
+		rodfersou_base
 
 stop:
 	-docker container stop rodfersou_base
