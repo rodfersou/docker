@@ -76,6 +76,10 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
     } | su devuser \
     && cd /home/devuser \
     #
+    # ASDF
+    #
+    && sudo -u devuser -- git clone --depth=1 --branch v0.7.8 https://github.com/asdf-vm/asdf.git ~/.asdf \
+    #
     # Dotfiles
     #
     && sudo -u devuser -- rcup
