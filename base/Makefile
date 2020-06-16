@@ -2,8 +2,8 @@
 SHELL := /bin/bash
 CURRENT_DIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
-TAG='rodfersou:base'
-NAME='rodfersou_base'
+TAG='rodfersou/ubuntu:20.04'
+NAME='base'
 
 all: build
 

@@ -10,7 +10,7 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
     && apt-get install -y                                                                                           \
                apt-utils 2>&1 | grep -v "debconf: delaying package configuration, since apt-utils is not installed" \
     && apt-get install -y --no-install-recommends \
-               build-essential   \
+               # build-essential   \
                ca-certificates   \
                curl              \
                entr              \
@@ -31,7 +31,6 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
                tmux              \
                tree              \
                zsh               \
-    && rm -rf /var/lib/apt/lists/* \
     && locale-gen en_US.UTF-8  \
     #
     # sudo
@@ -84,7 +83,11 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
     # Dotfiles
     #
     && sudo -u devuser -- rcup \
-    && apt-get autoremove -y
+    #
+    # Cleanup
+    #
+    && apt-get autoremove -y \
+    && rm -rf /var/lib/apt/lists/*
 
 USER devuser
 WORKDIR /home/devuser

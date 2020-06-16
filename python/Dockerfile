@@ -1,6 +1,6 @@
-FROM rodfersou:base
+FROM rodfersou/ubuntu:20.04
 ARG DEBIAN_FRONTEND=noninteractive
-ARG PATH="${PATH}:/asdf/.asdf/shims:/asdf/.asdf/bin"
+ENV PATH="${PATH}:/home/devuser/.asdf/shims:/home/devuser/.asdf/bin"
 
 USER root
 COPY dotfiles /.dotfiles

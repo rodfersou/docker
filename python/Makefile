@@ -2,8 +2,8 @@
 SHELL := /bin/bash
 CURRENT_DIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
-TAG='rodfersou:python'
-NAME='rodfersou_python'
+TAG='rodfersou/python:multiple'
+NAME='python'
 
 all: build
 
