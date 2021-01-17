@@ -31,6 +31,12 @@ stop-all:
 	-docker stop $$(docker ps -aq)
 	-docker rm $$(docker ps -aq)
 
+export:
+	docker save $(TAG) | gzip > $(NAME).tar.gz
+
+import:
+	docker load < $(NAME).tar.gz
+
 clean:
 	-docker container stop $(NAME)
 	-docker container rm $(NAME)

@@ -1,5 +1,6 @@
 FROM ubuntu:20.04
 ARG DEBIAN_FRONTEND=noninteractive
+ENV USER=devuser
 
 COPY dotfiles .dotfiles
 RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
@@ -10,26 +11,22 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
     && apt-get install -y                                                                                           \
                apt-utils 2>&1 | grep -v "debconf: delaying package configuration, since apt-utils is not installed" \
     && apt-get install -y --no-install-recommends \
-               # build-essential   \
+               build-essential   \
                ca-certificates   \
                curl              \
-               entr              \
+               direnv            \
+               encfs             \
                git               \
-               htop              \
-               httpie            \
-               jq                \
                locales           \
                ncurses-term      \
                neovim            \
-               ranger            \
                rcm               \
-               rsync             \
                screen            \
                silversearcher-ag \
+               ssh               \
                sudo              \
-               tidy              \
                tmux              \
-               tree              \
+               xz-utils          \
                zsh               \
     && locale-gen en_US.UTF-8  \
     #
@@ -57,7 +54,7 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
     #
     && { \
         echo 'sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'; \
-        echo 'sed -e "/^plugins/ s/git/git wd globalias asdf/" -i .zshrc'; \
+        echo 'sed -e "/^plugins/ s/git/git wd globalias/" -i .zshrc'; \
     } | su devuser \
     #
     # VIM
@@ -76,9 +73,11 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
     } | su devuser \
     && cd /home/devuser \
     #
-    # ASDF
+    # NIX
     #
-    && sudo -u devuser -- git clone --branch v0.7.8 https://github.com/asdf-vm/asdf.git .asdf \
+    && sudo -u devuser -- sh -c "$(curl -fsSL https://nixos.org/nix/install)" \
+    && mv /nix /nix_base \
+    && ln -sf /nix_base /nix \
     #
     # Dotfiles
     #
@@ -86,6 +85,7 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
     #
     # Cleanup
     #
+    && apt-get remove -y curl \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
 
