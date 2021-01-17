@@ -85,7 +85,6 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
     #
     # Cleanup
     #
-    && apt-get remove -y curl \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
 
