@@ -3,11 +3,12 @@ SHELL := /bin/bash
 CURRENT_DIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
 TAG='rodfersou/ubuntu:20.04'
-NAME='base'
+NAME='rodfersou_ubuntu_20.04'
 
 all: build
 
 build:
+	make clean
 	docker build -t $(TAG) .
 
 start:
@@ -15,23 +16,31 @@ start:
 		--name $(NAME)                   \
 		--detach-keys="ctrl-d,d"         \
 		--rm                             \
+		--device /dev/fuse \
+		--cap-add SYS_ADMIN \
+        --security-opt apparmor:unconfined \
 		-e DISPLAY                       \
 		-it                              \
-		-v /tmp/.X11-unix:/tmp/.X11-unix \
+		-v $$PWD/nix:/nix \
+		-v $$PWD/dotfiles:/home/devuser/.dotfiles \
 		$(TAG)                           \
 	|| docker attach                     \
 		--detach-keys="ctrl-d,d"         \
 		$(NAME)
 
+restart:
+	make stop
+	make start
+
 stop:
 	-docker container stop $(NAME)
-	-docker container rm $(NAME)
 
 stop-all:
 	-docker stop $$(docker ps -aq)
 	-docker rm $$(docker ps -aq)
 
 export:
+	rm $(NAME).tar.gz
 	docker save $(TAG) | gzip > $(NAME).tar.gz
 
 import:
@@ -39,7 +48,6 @@ import:
 
 clean:
 	-docker container stop $(NAME)
-	-docker container rm $(NAME)
 	-docker image rm $(TAG)
 
 clean-all:

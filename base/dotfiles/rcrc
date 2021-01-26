@@ -1,0 +1,2 @@
+DOTFILES_DIRS="$HOME/.dotfiles/base $HOME/.dotfiles/crypt"
+SYMLINK_DIRS="ssh"

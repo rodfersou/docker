@@ -47,8 +47,6 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
     && usermod -aG sudo devuser \
     && chown -R devuser:devuser /srv \
     && cd /home/devuser \
-    && mv /.dotfiles . \
-    && chown -R devuser:devuser .dotfiles \
     #
     # ZSH
     #
@@ -76,11 +74,17 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
     # NIX
     #
     && sudo -u devuser -- sh -c "$(curl -fsSL https://nixos.org/nix/install)" \
-    && mv /nix /nix_base \
-    && ln -sf /nix_base /nix \
+    && sudo -u devuser -- sed "/nix-profile/d" -i .zshrc \
+    && mv /nix /.nix \
+    && chown -R devuser:devuser /.nix \
+    && mkdir /nix \
+    && chown -R devuser:devuser /nix \
     #
     # Dotfiles
     #
+    && mv /.dotfiles . \
+    && chown -R devuser:devuser .dotfiles \
+    && sudo -u devuser -- ln -sf .dotfiles/rcrc .rcrc \
     && sudo -u devuser -- rcup \
     #
     # Cleanup
@@ -88,6 +92,7 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
 
+VOLUME /nix
 USER devuser
 WORKDIR /home/devuser
 CMD ["/usr/bin/screen", "-RRaADU"]
