@@ -1,10 +1,12 @@
 trap 'echo got SIGINT' SIGINT
+
 if [ ! -d $HOME/.dotfiles/crypt ]; then
     mkdir $HOME/.dotfiles/crypt
 fi
 sudo chmod 666 /dev/fuse
+
+clear
 while [ -z "$(ls -A $HOME/.dotfiles/crypt)" ]; do
-    clear
     if [[ "$WINDOW" == '1' ]]; then
         encfs -s $HOME/.dotfiles/.crypt $HOME/.dotfiles/crypt
         clear
@@ -12,7 +14,9 @@ while [ -z "$(ls -A $HOME/.dotfiles/crypt)" ]; do
         sleep 1
     fi
 done
-trap SIGINT
-for file in $(dirname $0)/encfs.d/*; do
+clear
+
+for file in $(dirname $0)/001_-_encfs.d/*; do
     source "$file";
 done
+trap SIGINT

@@ -12,21 +12,22 @@ build:
 	docker build -t $(TAG) .
 
 start:
-	docker run                           \
-		--name $(NAME)                   \
-		--detach-keys="ctrl-d,d"         \
-		--rm                             \
-		--privileged \
-		-e DISPLAY                       \
-		-it                              \
-		-v $$PWD/nix:/nix \
+	docker run                                    \
+		--name $(NAME)                            \
+		--detach-keys="ctrl-d,d"                  \
+		--rm                                      \
+		--privileged                              \
+		-e DISPLAY                                \
+		-it                                       \
+		-v $$PWD/nix:/nix                         \
 		-v $$PWD/dotfiles:/home/devuser/.dotfiles \
-		$(TAG)                           \
-	|| docker attach                     \
-		--detach-keys="ctrl-d,d"         \
+		$(TAG)                                    \
+	|| docker attach                              \
+		--detach-keys="ctrl-d,d"                  \
 		$(NAME)
 
 restart:
+	-sudo rm -rf nix/*
 	make stop
 	make start
 
@@ -38,7 +39,7 @@ stop-all:
 	-docker rm $$(docker ps -aq)
 
 export:
-	rm $(NAME).tar.gz
+	-rm $(NAME).tar.gz
 	docker save $(TAG) | gzip > $(NAME).tar.gz
 
 import:
