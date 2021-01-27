@@ -12,6 +12,7 @@ build:
 	docker build -t $(TAG) .
 
 start:
+	-mkdir nix
 	docker run                                    \
 		--name $(NAME)                            \
 		--detach-keys="ctrl-d,d"                  \
@@ -28,8 +29,8 @@ start:
 		$(NAME)
 
 restart:
-	-sudo rm -rf nix/*
 	make stop
+	-sudo rm -rf nix/*
 	make start
 
 stop:
