@@ -16,9 +16,7 @@ start:
 		--name $(NAME)                   \
 		--detach-keys="ctrl-d,d"         \
 		--rm                             \
-		--device /dev/fuse \
-		--cap-add SYS_ADMIN \
-        --security-opt apparmor:unconfined \
+		--privileged \
 		-e DISPLAY                       \
 		-it                              \
 		-v $$PWD/nix:/nix \

@@ -2,6 +2,7 @@ trap 'echo got SIGINT' SIGINT
 if [ ! -d $HOME/.dotfiles/crypt ]; then
     mkdir $HOME/.dotfiles/crypt
 fi
+sudo chmod 666 /dev/fuse
 while [ -z "$(ls -A $HOME/.dotfiles/crypt)" ]; do
     clear
     if [[ "$WINDOW" == '1' ]]; then
