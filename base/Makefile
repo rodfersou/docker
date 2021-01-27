@@ -16,6 +16,7 @@ start:
 		--name $(NAME)                            \
 		--detach-keys="ctrl-d,d"                  \
 		--rm                                      \
+		--network host                            \
 		--privileged                              \
 		-e DISPLAY                                \
 		-it                                       \
