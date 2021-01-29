@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 ARG DEBIAN_FRONTEND=noninteractive
-ENV USER=devuser
+ENV USER=user
 
 COPY dotfiles .dotfiles
 RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
@@ -33,34 +33,34 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
     # sudo
     #
     && sed -e '/^\%sudo/ s/\ ALL$/\ NOPASSWD:ALL/' -i /etc/sudoers \
-    && echo "Set disable_coredump false" >> /etc/sudo.conf \
+    # && echo "Set disable_coredump false" >> /etc/sudo.conf \
     #
-    # ADD devuser
+    # ADD user
     #
     && adduser --quiet              \
                --disabled-password  \
                --shell /usr/bin/zsh \
-               --home /home/devuser \
+               --home /home/user \
                --gecos "User"       \
-               devuser              \
-    && echo "devuser:devuser" | chpasswd \
-    && usermod -aG sudo devuser \
-    && chown -R devuser:devuser /srv \
-    && cd /home/devuser \
+               user              \
+    && echo "user:user" | chpasswd \
+    && usermod -aG sudo user \
+    && chown -R user:user /srv \
+    && cd /home/user \
     #
     # ZSH
     #
     && { \
         echo 'sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'; \
-        echo 'sed -e "/^plugins/ s/git/git wd globalias/" -i .zshrc'; \
-    } | su devuser \
+        # echo 'sed -e "/^plugins/ s/git/git wd globalias/" -i .zshrc'; \
+    } | su user \
     #
     # VIM
     #
     && { \
         echo 'git clone --depth=1 https://github.com/amix/vimrc.git .vim_runtime'; \
         echo 'sh .vim_runtime/install_awesome_vimrc.sh'; \
-    } | su devuser \
+    } | su user \
     && cd .vim_runtime/my_plugins \
     && { \
         echo 'git clone --depth=1 https://github.com/ervandew/supertab.git'; \
@@ -68,28 +68,32 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
         echo 'git clone --depth=1 https://github.com/junegunn/vim-easy-align.git'; \
         #echo 'git clone --depth=1 https://github.com/neoclide/coc.nvim.git'; \
         #echo 'git clone --depth=1 https://github.com/aklt/plantuml-syntax.git'; \
-    } | su devuser \
-    && cd /home/devuser \
+    } | su user \
+    && cd /home/user \
     #
     # NIX
     #
-    && sudo -u devuser -- sh -c "$(curl -fsSL https://nixos.org/nix/install)" \
-    && sudo -u devuser -- sed "/nix-profile/d" -i .zshrc \
+    && sudo -u user -- sh -c "$(curl -fsSL https://nixos.org/nix/install)" \
+    && sudo -u user --                         \
+            nix-env -i python3-3.8.5           \
+                       python3.8-pipx-0.15.5.1 \
+                       nodejs                  \
+                       yarn
     #
     # Dotfiles
     #
     && mv /.dotfiles . \
-    && chown -R devuser:devuser .dotfiles \
-    && sudo -u devuser -- ln -sf .dotfiles/rcrc .rcrc \
-    && sudo -u devuser -- rcup \
+    && chown -R user:user .dotfiles \
+    && sudo -u user -- ln -sf .dotfiles/rcrc .rcrc \
+    && sudo -u user -- rcup \
     #
     # Cleanup
     #
     && apt-get autoremove -y \
-    && rm -rf /var/lib/apt/lists/* \
-    && nix-collect-garbage -d
+    && rm -rf /var/lib/apt/lists/*
+    # && sudo -u user -- nix-collect-garbage -d
 
 VOLUME /nix
-USER devuser
-WORKDIR /home/devuser
+USER user
+WORKDIR /home/user
 CMD ["/usr/bin/screen", "-RRaADU"]

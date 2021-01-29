@@ -12,25 +12,23 @@ build:
 	docker build -t $(TAG) .
 
 start:
-	-mkdir nix
-	docker run                                    \
-		--name $(NAME)                            \
-		--detach-keys="ctrl-d,d"                  \
-		--rm                                      \
-		--network host                            \
-		--privileged                              \
-		--mount source=nix,target=/nix            \
-		-e DISPLAY                                \
-		-it                                       \
-		-v $$PWD/dotfiles:/home/devuser/.dotfiles \
-		$(TAG)                                    \
-	|| docker attach                              \
-		--detach-keys="ctrl-d,d"                  \
+	docker run                                 \
+		--name $(NAME)                         \
+		--detach-keys="ctrl-d,d"               \
+		--rm                                   \
+		--network host                         \
+		--privileged                           \
+		--mount source=nix,target=/nix         \
+		-e DISPLAY                             \
+		-it                                    \
+		-v $$PWD/dotfiles:/home/user/.dotfiles \
+		$(TAG)                                 \
+	|| docker attach                           \
+		--detach-keys="ctrl-d,d"               \
 		$(NAME)
 
 restart:
 	make stop
-	-sudo rm -rf nix/*
 	make start
 
 stop:
