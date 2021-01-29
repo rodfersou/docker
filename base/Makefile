@@ -2,8 +2,8 @@
 SHELL := /bin/bash
 CURRENT_DIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
-TAG='rodfersou/ubuntu:20.04'
-NAME='rodfersou_ubuntu_20.04'
+TAG='rodfersou/nix:2.3.6'
+NAME='rodfersou_nix_2.3.6'
 
 all: build
 
@@ -12,7 +12,6 @@ build:
 	docker build -t $(TAG) .
 
 start:
-	-mkdir nix
 	docker run                                    \
 		--name $(NAME)                            \
 		--detach-keys="ctrl-d,d"                  \
@@ -21,12 +20,12 @@ start:
 		--privileged                              \
 		-e DISPLAY                                \
 		-it                                       \
-		-v $$PWD/nix:/nix                         \
-		-v $$PWD/dotfiles:/home/devuser/.dotfiles \
 		$(TAG)                                    \
 	|| docker attach                              \
 		--detach-keys="ctrl-d,d"                  \
 		$(NAME)
+		# -v $$PWD/nix:/nix                         \
+		# -v $$PWD/dotfiles:/home/devuser/.dotfiles \
 
 restart:
 	make stop
