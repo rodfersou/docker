@@ -19,7 +19,7 @@ done
 clear
 
 if [[ "$WINDOW" == '1' ]]; then
-    for file in $(dirname $0)/001_-_encfs.d/*; do
+    for file in $(dirname $0)/000_-_encfs.d/*; do
         source "$file";
     done
 fi

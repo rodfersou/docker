@@ -1,8 +1,8 @@
 FROM ubuntu:20.04
 ARG DEBIAN_FRONTEND=noninteractive
 ENV USER=user
-
 COPY dotfiles .dotfiles
+
 RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
     && apt-get update \
     #
@@ -33,7 +33,6 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
     # sudo
     #
     && sed -e '/^\%sudo/ s/\ ALL$/\ NOPASSWD:ALL/' -i /etc/sudoers \
-    # && echo "Set disable_coredump false" >> /etc/sudo.conf \
     #
     # ADD user
     #
@@ -46,54 +45,57 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
     && echo "user:user" | chpasswd \
     && usermod -aG sudo user \
     && chown -R user:user /srv \
-    && cd /home/user \
-    #
-    # ZSH
-    #
-    && { \
-        echo 'sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'; \
-        # echo 'sed -e "/^plugins/ s/git/git wd globalias/" -i .zshrc'; \
-    } | su user \
-    #
-    # VIM
-    #
-    && { \
-        echo 'git clone --depth=1 https://github.com/amix/vimrc.git .vim_runtime'; \
-        echo 'sh .vim_runtime/install_awesome_vimrc.sh'; \
-    } | su user \
-    && cd .vim_runtime/my_plugins \
-    && { \
-        echo 'git clone --depth=1 https://github.com/ervandew/supertab.git'; \
-        echo 'git clone --depth=1 https://github.com/ryanoasis/vim-devicons.git'; \
-        echo 'git clone --depth=1 https://github.com/junegunn/vim-easy-align.git'; \
-        #echo 'git clone --depth=1 https://github.com/neoclide/coc.nvim.git'; \
-        #echo 'git clone --depth=1 https://github.com/aklt/plantuml-syntax.git'; \
-    } | su user \
-    && cd /home/user \
-    #
-    # NIX
-    #
-    && sudo -u user -- sh -c "$(curl -fsSL https://nixos.org/nix/install)" \
-    && sudo -u user --                         \
-            nix-env -i python3-3.8.5           \
-                       python3.8-pipx-0.15.5.1 \
-                       nodejs                  \
-                       yarn
-    #
-    # Dotfiles
-    #
-    && mv /.dotfiles . \
-    && chown -R user:user .dotfiles \
-    && sudo -u user -- ln -sf .dotfiles/rcrc .rcrc \
-    && sudo -u user -- rcup \
     #
     # Cleanup
     #
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
-    # && sudo -u user -- nix-collect-garbage -d
 
-VOLUME /nix
 USER user
 WORKDIR /home/user
+
+RUN cd /home/user \
+    #
+    # ZSH
+    #
+    && sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
+    && echo "prompt_context() {}" >> .zshrc \
+    #
+    # VIM
+    #
+    && git clone --depth=1 https://github.com/amix/vimrc.git .vim_runtime \
+    && sh .vim_runtime/install_awesome_vimrc.sh \
+    #
+    # Dotfiles
+    #
+    && sudo mv /.dotfiles . \
+    && sudo chown -R user:user .dotfiles \
+    && ln -sf .dotfiles/rcrc .rcrc \
+    && rcup \
+    #
+    # NIX
+    #
+    && sh -c "$(curl -fsSL https://nixos.org/nix/install)" \
+    && . /home/user/.nix-profile/etc/profile.d/nix.sh \
+    && nix-env -i -f .dotfiles/packages.nix \
+    #
+    # VIM Plugins
+    #
+    && cd .vim_runtime/my_plugins \
+    # && git clone --depth=1 https://github.com/ervandew/supertab.git \
+    && git clone --depth=1 https://github.com/ryanoasis/vim-devicons.git \
+    && git clone --depth=1 https://github.com/junegunn/vim-easy-align.git \
+    && git clone --depth=1 https://github.com/neoclide/coc.nvim.git \
+    # && git clone --depth=1 https://github.com/aklt/plantuml-syntax.git \
+    #
+    # Pipx
+    #
+    && pipx ensurepath \
+    && echo 'eval "$(register-python-argcomplete pipx)"' >> .zshrc \
+    && pipx install --include-deps                             \
+            git+git://github.com/muhasturk/gitim.git#egg=gitim \
+    && pipx install ipython
+
+VOLUME /nix
+
 CMD ["/usr/bin/screen", "-RRaADU"]
