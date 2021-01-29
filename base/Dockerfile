@@ -75,10 +75,6 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
     #
     && sudo -u devuser -- sh -c "$(curl -fsSL https://nixos.org/nix/install)" \
     && sudo -u devuser -- sed "/nix-profile/d" -i .zshrc \
-    && mv /nix /.nix \
-    && chown -R devuser:devuser /.nix \
-    && mkdir /nix \
-    && chown -R devuser:devuser /nix \
     #
     # Dotfiles
     #
@@ -90,7 +86,8 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
     # Cleanup
     #
     && apt-get autoremove -y \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && nix-collect-garbage -d
 
 VOLUME /nix
 USER devuser

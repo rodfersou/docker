@@ -19,9 +19,9 @@ start:
 		--rm                                      \
 		--network host                            \
 		--privileged                              \
+		--mount source=nix,target=/nix            \
 		-e DISPLAY                                \
 		-it                                       \
-		-v $$PWD/nix:/nix                         \
 		-v $$PWD/dotfiles:/home/devuser/.dotfiles \
 		$(TAG)                                    \
 	|| docker attach                              \
