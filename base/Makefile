@@ -48,11 +48,13 @@ import:
 clean:
 	-docker container stop $(NAME)
 	-docker image rm $(TAG)
+	-docker volume rm nix
 
 clean-all:
 	-docker stop $$(docker ps -aq)
 	-docker rm $$(docker ps -aq)
 	-docker rmi $$(docker images -q)
+	-docker volume rm $$(docker volume ls -q)
 
 
 .PHONY: all clean
