@@ -32,3 +32,5 @@ _K() {
 alias K_='declare -f _cdo'
 alias K='_K'
 alias Kp='K interpreter'
+
+prompt_context() {}

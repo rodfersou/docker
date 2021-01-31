@@ -14,7 +14,6 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
                build-essential   \
                ca-certificates   \
                curl              \
-               direnv            \
                encfs             \
                git               \
                locales           \
@@ -28,6 +27,7 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
                tmux              \
                xz-utils          \
                zsh               \
+    && apt-get build-dep -y python3 \
     && locale-gen en_US.UTF-8 \
     #
     # sudo
@@ -78,6 +78,7 @@ RUN cd /home/docker \
     && sh -c "$(curl -fsSL https://nixos.org/nix/install)" \
     && . /home/docker/.nix-profile/etc/profile.d/nix.sh \
     && nix-env -iA                        \
+               nixpkgs.direnv             \
                nixpkgs.nodejs             \
                nixpkgs.python38           \
                nixpkgs.python38.pkgs.pipx \
