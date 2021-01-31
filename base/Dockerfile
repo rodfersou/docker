@@ -77,9 +77,11 @@ RUN cd /home/user \
     #
     && sh -c "$(curl -fsSL https://nixos.org/nix/install)" \
     && . /home/user/.nix-profile/etc/profile.d/nix.sh \
-    && nix-env -iA              \
-               nixpkgs.python38 \
-               nixpkgs.node     \
+    && nix-env -iA                        \
+               nixpkgs.nodejs             \
+               nixpkgs.python38           \
+               nixpkgs.python38.pkgs.pipx \
+               nixpkgs.yarn               \
     #
     # VIM Plugins
     #
@@ -102,8 +104,5 @@ RUN cd /home/user \
     #
     && nix-collect-garbage -d
 
-
-VOLUME /nix
-VOLUME /srv
 
 CMD ["/usr/bin/screen", "-RRaADU"]

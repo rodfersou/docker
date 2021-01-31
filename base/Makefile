@@ -9,7 +9,7 @@ ifeq ($(shell uname -s),Darwin)
 	DOCKER_RUN=DISPLAY="docker.for.mac.host.internal:0" docker run
 endif
 
-all: build
+all: start
 
 build:
 	make clean
@@ -22,20 +22,21 @@ ifeq (, $(shell command -v socat))
 endif
 	socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$$DISPLAY\" && sleep 1 &
 endif
-	$(DOCKER_RUN)                              \
-		--name $(NAME)                         \
-		--detach-keys="ctrl-d,d"               \
-		--rm                                   \
-		--network host                         \
-		--privileged                           \
-		--mount source=nix,target=/nix         \
-		--mount source=srv,target=/srv         \
-		-e DISPLAY                             \
-		-it                                    \
-		-v $$PWD/dotfiles:/home/user/.dotfiles \
-		$(TAG)                                 \
-	|| docker attach                           \
-		--detach-keys="ctrl-d,d"               \
+	$(DOCKER_RUN)                                                        \
+		--name $(NAME)                                                   \
+		--detach-keys="ctrl-d,d"                                         \
+		--rm                                                             \
+		--network host                                                   \
+		--privileged                                                     \
+		--mount source=nix,target=/nix                                   \
+		-e DISPLAY                                                       \
+		-it                                                              \
+		-v $$(ls /Users &> /dev/null && echo /Users || echo /home):/host \
+		-v $$PWD/srv:/srv                                                \
+		-v $$PWD/dotfiles:/home/user/.dotfiles                           \
+		$(TAG)                                                           \
+	|| docker attach                                                     \
+		--detach-keys="ctrl-d,d"                                         \
 		$(NAME)
 
 restart:
@@ -56,6 +57,7 @@ stop-all:
 export:
 	-rm $(NAME).tar.gz
 	docker save $(TAG) | gzip > $(NAME).tar.gz
+	du -sh $(NAME).tar.gz
 
 import:
 	make clean
@@ -64,7 +66,7 @@ import:
 clean:
 	make stop
 	-docker image rm $(TAG)
-	-docker volume rm nix srv
+	-docker volume rm nix
 
 clean-all:
 	-docker stop $$(docker ps -aq)
