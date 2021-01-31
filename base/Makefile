@@ -29,6 +29,7 @@ endif
 		--network host                         \
 		--privileged                           \
 		--mount source=nix,target=/nix         \
+		--mount source=srv,target=/srv         \
 		-e DISPLAY                             \
 		-it                                    \
 		-v $$PWD/dotfiles:/home/user/.dotfiles \
@@ -61,9 +62,9 @@ import:
 	docker load < $(NAME).tar.gz
 
 clean:
-	-docker container stop $(NAME)
+	make stop
 	-docker image rm $(TAG)
-	-docker volume rm nix
+	-docker volume rm nix srv
 
 clean-all:
 	-docker stop $$(docker ps -aq)

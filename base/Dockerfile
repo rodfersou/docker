@@ -28,7 +28,7 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
                tmux              \
                xz-utils          \
                zsh               \
-    && locale-gen en_US.UTF-8  \
+    && locale-gen en_US.UTF-8 \
     #
     # sudo
     #
@@ -77,7 +77,9 @@ RUN cd /home/user \
     #
     && sh -c "$(curl -fsSL https://nixos.org/nix/install)" \
     && . /home/user/.nix-profile/etc/profile.d/nix.sh \
-    && nix-env -i -f .dotfiles/packages.nix \
+    && nix-env -iA              \
+               nixpkgs.python38 \
+               nixpkgs.node     \
     #
     # VIM Plugins
     #
@@ -94,8 +96,14 @@ RUN cd /home/user \
     && echo 'eval "$(register-python-argcomplete pipx)"' >> .zshrc \
     && pipx install --include-deps                             \
             git+git://github.com/muhasturk/gitim.git#egg=gitim \
-    && pipx install ipython
+    && pipx install ipython \
+    #
+    # Cleanup
+    #
+    && nix-collect-garbage -d
+
 
 VOLUME /nix
+VOLUME /srv
 
 CMD ["/usr/bin/screen", "-RRaADU"]
