@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 ARG DEBIAN_FRONTEND=noninteractive
-ENV USER=user
+ENV USER=docker
 COPY dotfiles .dotfiles
 
 RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
@@ -34,27 +34,27 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
     #
     && sed -e '/^\%sudo/ s/\ ALL$/\ NOPASSWD:ALL/' -i /etc/sudoers \
     #
-    # ADD user
+    # ADD docker user
     #
-    && adduser --quiet              \
-               --disabled-password  \
-               --shell /usr/bin/zsh \
-               --home /home/user \
-               --gecos "User"       \
-               user              \
-    && echo "user:user" | chpasswd \
-    && usermod -aG sudo user \
-    && chown -R user:user /srv \
+    && adduser --quiet                 \
+               --disabled-password     \
+               --shell /usr/bin/zsh    \
+               --home /home/docker     \
+               --gecos "User"          \
+               docker                  \
+    && echo "docker:docker" | chpasswd \
+    && usermod -aG sudo docker         \
+    && chown -R docker:docker /srv     \
     #
     # Cleanup
     #
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
 
-USER user
-WORKDIR /home/user
+USER docker
+WORKDIR /srv
 
-RUN cd /home/user \
+RUN cd /home/docker \
     #
     # ZSH
     #
@@ -69,14 +69,14 @@ RUN cd /home/user \
     # Dotfiles
     #
     && sudo mv /.dotfiles . \
-    && sudo chown -R user:user .dotfiles \
+    && sudo chown -R docker:docker .dotfiles \
     && ln -sf .dotfiles/rcrc .rcrc \
     && rcup \
     #
     # NIX
     #
     && sh -c "$(curl -fsSL https://nixos.org/nix/install)" \
-    && . /home/user/.nix-profile/etc/profile.d/nix.sh \
+    && . /home/docker/.nix-profile/etc/profile.d/nix.sh \
     && nix-env -iA                        \
                nixpkgs.nodejs             \
                nixpkgs.python38           \
@@ -96,13 +96,12 @@ RUN cd /home/user \
     #
     && pipx ensurepath \
     && echo 'eval "$(register-python-argcomplete pipx)"' >> .zshrc \
-    && pipx install --include-deps                             \
-            git+git://github.com/muhasturk/gitim.git#egg=gitim \
+    && pipx install --include-deps                     \
+            git+https://github.com/rodfersou/gitim.git \
     && pipx install ipython \
     #
     # Cleanup
     #
     && nix-collect-garbage -d
-
 
 CMD ["/usr/bin/screen", "-RRaADU"]
