@@ -28,11 +28,11 @@ endif
 		--rm                                     \
 		--network host                           \
 		--privileged                             \
+		--mount source=srv,target=/srv           \
 		--mount source=nix,target=/nix           \
 		-e DISPLAY                               \
 		-it                                      \
 		-v $$HOME:/home/$$USER                   \
-		-v $$PWD/srv:/srv                        \
 		-v $$PWD/dotfiles:/home/docker/.dotfiles \
 		$(TAG)                                   \
 	|| docker attach                             \
@@ -72,7 +72,8 @@ clean-all:
 	-docker stop $$(docker ps -aq)
 	-docker rm $$(docker ps -aq)
 	-docker rmi $$(docker images -q)
-	-docker volume rm $$(docker volume ls -q)
+	-docker volume rm nix
+	# -docker volume rm $$(docker volume ls -q)
 
 
 .PHONY: all clean
