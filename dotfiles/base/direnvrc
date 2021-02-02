@@ -3,7 +3,7 @@ ENV_DIR=$(find_up ".envrc")
 export ENV_DIR=${ENV_DIR%/*}
 
 cd $ENV_DIR
-use_nix
+# use_nix
 # direnv_load sh -c "nix-shell --run \"DIRENV_DUMP_FILE_PATH=\$DIRENV_DUMP_FILE_PATH $direnv dump\""
 # direnv_load sh -c "nix-shell --pure --run \"DIRENV_DUMP_FILE_PATH=\$DIRENV_DUMP_FILE_PATH $direnv dump\""
 cd $CURRENT_DIR

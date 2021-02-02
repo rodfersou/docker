@@ -8,5 +8,6 @@ with import <nixpkgs> {};
   nodejs
   yarn
 
+  less
   direnv
 ]

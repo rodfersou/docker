@@ -11,9 +11,8 @@ bind g hardstatus alwayslastline
 zombie kr
 bind A escape ^Aa
 bind S escape ^Ss
-bind D escape ^Dd
 bind Z escape ^Zz
-escape ^Dd
+escape ^Ss
 setenv SCREEN 1
 
 bind c screen 1
@@ -24,7 +23,7 @@ bind h prev
 bind l next
 
 hardstatus alwayslastline
-hardstatus string "%{gk}[%{g}%H%{g}][%{wk}%-w%{=b kR}|%{=d}%{W}%n%f%{=b kR}|%{= kw}%+w%{G}]"
+hardstatus string "%{gk}[%{g}%H%{g}][%{wk}%-w%{=b kR}|%{=d}%{W}%n%f%{=b kR}|%{= kw}%+w%{G}]%-20=%{= bw}[ %Y-%m-%d %c ]"
 
 screen -t '' 01
 screen -t '' 02

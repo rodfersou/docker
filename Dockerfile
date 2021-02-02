@@ -1,8 +1,20 @@
 FROM ubuntu:20.04
 ARG DEBIAN_FRONTEND=noninteractive
-ENV USER=docker
-COPY dotfiles .dotfiles
 
+ENV USER=docker
+ENV XDG_CACHE_HOME="/cache"
+ENV ASDF_DIR="/cache/asdf"
+ENV ASDF_DATA_DIR="/cache/asdf"
+ENV NPM_CONFIG_CACHE="/cache/npm"
+ENV YARN_CACHE_FOLDER="/cache/yarn"
+ENV PIP_CACHE_DIR="/cache/pip"
+ENV PIPENV_CACHE_DIR="/cache/pipenv"
+ENV PIPX_HOME="/cache/pipx"
+ENV PIPENV_VENV_IN_PROJECT=1
+ENV PIPENV_IGNORE_VIRTUALENVS=1
+ENV PIPENV_VERBOSITY=-1
+
+COPY dotfiles .dotfiles
 RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
     && apt-get update \
     #
@@ -11,7 +23,6 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
     && apt-get install -y                                                                                           \
                apt-utils 2>&1 | grep -v "debconf: delaying package configuration, since apt-utils is not installed" \
     && apt-get install -y --no-install-recommends \
-               build-essential   \
                ca-certificates   \
                curl              \
                encfs             \
@@ -25,9 +36,26 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
                ssh               \
                sudo              \
                tmux              \
-               xz-utils          \
+               wget              \
                zsh               \
-    && apt-get build-dep -y python3 \
+    && apt-get build-dep -o APT::Get::Build-Dep-Automatic=true -y --no-install-recommends \
+               # python2 \
+               python3 \
+    && apt-get install -y --no-install-recommends \
+               build-essential \
+               libbz2-dev      \
+               libffi-dev      \
+               liblzma-dev     \
+               libncurses5-dev \
+               libreadline-dev \
+               libsqlite3-dev  \
+               libssl-dev      \
+               libxml2-dev     \
+               libxmlsec1-dev  \
+               llvm            \
+               tk-dev          \
+               xz-utils        \
+               zlib1g-dev      \
     && locale-gen en_US.UTF-8 \
     #
     # sudo
@@ -45,6 +73,12 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
     && echo "docker:docker" | chpasswd \
     && usermod -aG sudo docker         \
     && chown -R docker:docker /srv     \
+    && mkdir -p /cache/npm             \
+    && mkdir -p /cache/yarn            \
+    && mkdir -p /cache/pip             \
+    && mkdir -p /cache/pipenv          \
+    && mkdir -p /cache/pipx            \
+    && chown -R docker:docker /cache   \
     #
     # Cleanup
     #
@@ -52,13 +86,14 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
     && rm -rf /var/lib/apt/lists/*
 
 USER docker
-WORKDIR /srv
+WORKDIR /home/docker
 
-RUN cd /home/docker \
+RUN cd \
     #
     # ZSH
     #
     && sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
+    && sed -e "/^plugins/ s/git/git wd globalias/" -i .zshrc \
     && echo "prompt_context() {}" >> .zshrc \
     #
     # VIM
@@ -76,13 +111,33 @@ RUN cd /home/docker \
     # NIX
     #
     && sh -c "$(curl -fsSL https://nixos.org/nix/install)" \
+    && sed "/nix-profile/d" -i .zshrc \
     && . /home/docker/.nix-profile/etc/profile.d/nix.sh \
-    && nix-env -iA                        \
-               nixpkgs.direnv             \
-               nixpkgs.nodejs             \
-               nixpkgs.python38           \
-               nixpkgs.python38.pkgs.pipx \
-               nixpkgs.yarn               \
+    # && nix-env -iA                        \
+    #            nixpkgs.nodejs             \
+    #            nixpkgs.python38           \
+    #            nixpkgs.python38.pkgs.pipx \
+    #            nixpkgs.yarn               \
+    #
+    # Pipx
+    #
+    # && pipx ensurepath \
+    # && pipx install --include-deps                     \
+    #         git+https://github.com/rodfersou/gitim.git \
+    # && pipx install ipython \
+    #
+    # ASDF
+    #
+    && git clone https://github.com/asdf-vm/asdf.git /cache/asdf \
+    && cd /cache/asdf \
+    && git checkout "$(git describe --abbrev=0 --tags)" \
+    && export PATH="/cache/asdf/shims:/cache/asdf/bin:$PATH" \
+    && asdf plugin-add python \
+    && asdf install python 3.6.12 \
+    && ln -sf /cache/asdf/installs/python/3.6.12/lib/python3.6/_sysconfigdata_m_linux_x86_64-linux-gnu.py \
+              /cache/asdf/installs/python/3.6.12/lib/python3.6/_sysconfigdata__linux_x86_64-linux-gnu.py  \
+    && asdf global python system \
+    && cd \
     #
     # VIM Plugins
     #
@@ -92,14 +147,7 @@ RUN cd /home/docker \
     && git clone --depth=1 https://github.com/junegunn/vim-easy-align.git \
     && git clone --depth=1 https://github.com/neoclide/coc.nvim.git \
     # && git clone --depth=1 https://github.com/aklt/plantuml-syntax.git \
-    #
-    # Pipx
-    #
-    && pipx ensurepath \
-    && echo 'eval "$(register-python-argcomplete pipx)"' >> .zshrc \
-    && pipx install --include-deps                     \
-            git+https://github.com/rodfersou/gitim.git \
-    && pipx install ipython \
+    && cd \
     #
     # Cleanup
     #

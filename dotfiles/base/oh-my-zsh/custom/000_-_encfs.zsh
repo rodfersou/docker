@@ -18,10 +18,8 @@ while [ -z "$(ls -A $HOME/.dotfiles/crypt)" ]; do
 done
 clear
 
-if [[ "$WINDOW" == '1' ]]; then
-    for file in $(dirname $0)/000_-_encfs.d/*; do
-        source "$file";
-    done
-fi
+for file in $(dirname $0)/000_-_encfs.d/*; do
+    source "$file";
+done
 
 trap SIGINT
