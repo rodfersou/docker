@@ -73,6 +73,7 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
     && echo "docker:docker" | chpasswd \
     && usermod -aG sudo docker         \
     && chown -R docker:docker /srv     \
+    && mkdir -p /cache/mongo/db        \
     && mkdir -p /cache/npm             \
     && mkdir -p /cache/yarn            \
     && mkdir -p /cache/pip             \
