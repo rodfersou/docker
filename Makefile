@@ -83,5 +83,10 @@ clean-all:
 	# -docker volume rm $$(docker volume ls -q)
 	-docker volume rm cache nix
 
+rebuild:
+	make clean-all
+	make build
+	make export
+
 
 .PHONY: all clean
