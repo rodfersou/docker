@@ -9,6 +9,6 @@ with import <nixpkgs> {};
   nodejs
   yarn
 
+  ctags
   less
-  direnv
 ]

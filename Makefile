@@ -20,7 +20,7 @@ ifeq ($(shell uname -s),Darwin)
 ifeq (, $(shell command -v socat))
 	$(error "No socat in $(PATH)")
 endif
-	socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$$DISPLAY\" && sleep 1 &
+	-socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$$DISPLAY\" && sleep 1 &
 endif
 	$(DOCKER_RUN)                                \
 		--name $(NAME)                           \

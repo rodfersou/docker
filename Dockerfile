@@ -137,7 +137,8 @@ RUN cd \
     && asdf install python 3.6.12 \
     && ln -sf /cache/asdf/installs/python/3.6.12/lib/python3.6/_sysconfigdata_m_linux_x86_64-linux-gnu.py \
               /cache/asdf/installs/python/3.6.12/lib/python3.6/_sysconfigdata__linux_x86_64-linux-gnu.py  \
-    && asdf global python system \
+    && asdf plugin-add direnv \
+    && asdf install direnv 2.27.0 \
     && cd \
     #
     # VIM Plugins
