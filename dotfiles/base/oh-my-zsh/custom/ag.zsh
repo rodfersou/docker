@@ -11,7 +11,7 @@ alias -g Rf='-G "\.robot$"'
 
 _ag() {
   dir=`pwd`
-  (cd / && ag -f --nogroup --pager="less -XFR" $@ $dir)
+  (cd / && DIRENV_LOG_FORMAT="" ag -f --nogroup --pager="less -XFR" $@ $dir)
 }
 alias ag_='declare -f _ag'
 alias ag='_ag'
