@@ -21,6 +21,11 @@ ifeq (, $(shell command -v socat))
 	$(error "No socat in $(PATH)")
 endif
 	-socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$$DISPLAY\" && sleep 1 &
+ifeq (, $(shell command -v /opt/X11/bin/Xquartz))
+	$(error "No Xquartz installed")
+endif
+	-defaults write org.macosforge.xquartz.X11 app_to_run /usr/bin/true
+	-open -a XQuartz
 endif
 	$(DOCKER_RUN)                                    \
 		--name $(NAME)                               \
@@ -33,12 +38,13 @@ endif
 		--mount source=nix,target=/nix               \
 		-e DISPLAY                                   \
 		-it                                          \
+		-v /tmp/.X11-unix:/tmp/.X11-unix             \
 		-v /var/run/docker.sock:/var/run/docker.sock \
 		-v $$HOME:/home/$$USER                       \
 		-v $$PWD/dotfiles:/home/docker/.dotfiles     \
 		$(TAG)                                       \
 	|| docker attach                                 \
-		--detach-keys="ctrl-d,d"                     \
+		--detach-keys="ctrl-s,d"                     \
 		$(NAME)
 
 restart:
@@ -49,7 +55,7 @@ stop:
 	-docker container stop $(NAME)
 ifeq ($(CURRENT_OS),Darwin)
 	-killall -9 socat
-	-killall -9 Xquartz
+	-osascript -e 'quit app "XQuartz"'
 endif
 
 stop-all:

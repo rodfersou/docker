@@ -12,4 +12,5 @@ with import <nixpkgs> {};
 
   ctags
   less
+  xclip
 ]
