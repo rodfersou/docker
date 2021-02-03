@@ -22,22 +22,23 @@ ifeq (, $(shell command -v socat))
 endif
 	-socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$$DISPLAY\" && sleep 1 &
 endif
-	$(DOCKER_RUN)                                \
-		--name $(NAME)                           \
-		--detach-keys="ctrl-d,d"                 \
-		--rm                                     \
-		--network host                           \
-		--privileged                             \
-		--mount source=cache,target=/cache       \
-		--mount source=srv,target=/srv           \
-		--mount source=nix,target=/nix           \
-		-e DISPLAY                               \
-		-it                                      \
-		-v $$HOME:/home/$$USER                   \
-		-v $$PWD/dotfiles:/home/docker/.dotfiles \
-		$(TAG)                                   \
-	|| docker attach                             \
-		--detach-keys="ctrl-d,d"                 \
+	$(DOCKER_RUN)                                    \
+		--name $(NAME)                               \
+		--detach-keys="ctrl-d,d"                     \
+		--rm                                         \
+		--network host                               \
+		--privileged                                 \
+		--mount source=cache,target=/cache           \
+		--mount source=srv,target=/srv               \
+		--mount source=nix,target=/nix               \
+		-e DISPLAY                                   \
+		-it                                          \
+		-v /var/run/docker.sock:/var/run/docker.sock \
+		-v $$HOME:/home/$$USER                       \
+		-v $$PWD/dotfiles:/home/docker/.dotfiles     \
+		$(TAG)                                       \
+	|| docker attach                                 \
+		--detach-keys="ctrl-d,d"                     \
 		$(NAME)
 
 restart:
