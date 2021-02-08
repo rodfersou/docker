@@ -22,4 +22,5 @@ pyvenv.cfg
 qa.cfg
 share
 TAGS
+tags
 yarn.lock
