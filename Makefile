@@ -24,12 +24,14 @@ endif
 ifeq (, $(shell command -v /opt/X11/bin/Xquartz))
 	$(error "No Xquartz installed")
 endif
-	-defaults write org.macosforge.xquartz.X11 app_to_run /usr/bin/true
+	# -defaults write org.macosforge.xquartz.X11 app_to_run /usr/bin/true
+ifeq (, $(shell pgrep Xquartz))
 	-open -a XQuartz
+	-(sleep 10 && killall -9 xterm) &
+endif
 endif
 	$(DOCKER_RUN)                                    \
 		--name $(NAME)                               \
-		--detach-keys="ctrl-d,d"                     \
 		--rm                                         \
 		--network host                               \
 		--privileged                                 \
@@ -44,7 +46,6 @@ endif
 		-v $$PWD/dotfiles:/home/docker/.dotfiles     \
 		$(TAG)                                       \
 	|| docker attach                                 \
-		--detach-keys="ctrl-s,d"                     \
 		$(NAME)
 
 restart:
