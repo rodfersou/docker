@@ -16,20 +16,27 @@ build:
 	docker build -t $(TAG) .
 
 start:
+
 ifeq ($(shell uname -s),Darwin)
+
 ifeq (, $(shell command -v socat))
 	$(error "No socat in $(PATH)")
 endif
+ifeq (, $(shell pgrep socat))
 	-socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$$DISPLAY\" && sleep 1 &
+endif
+
 ifeq (, $(shell command -v /opt/X11/bin/Xquartz))
 	$(error "No Xquartz installed")
 endif
-	# -defaults write org.macosforge.xquartz.X11 app_to_run /usr/bin/true
 ifeq (, $(shell pgrep Xquartz))
 	-open -a XQuartz
+	# -defaults write org.macosforge.xquartz.X11 app_to_run /usr/bin/true
 	-(sleep 10 && killall -9 xterm) &
 endif
+
 endif
+
 	$(DOCKER_RUN)                                    \
 		--name $(NAME)                               \
 		--rm                                         \
@@ -54,6 +61,7 @@ restart:
 
 stop:
 	-docker container stop $(NAME)
+
 ifeq ($(CURRENT_OS),Darwin)
 	-killall -9 socat
 	-osascript -e 'quit app "XQuartz"'
