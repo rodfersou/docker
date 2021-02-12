@@ -10,6 +10,7 @@ with import <nixpkgs> {};
   nodejs
   yarn
 
+  jq
   ctags
   less
   xclip

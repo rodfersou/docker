@@ -57,6 +57,7 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
                xz-utils        \
                zlib1g-dev      \
     && locale-gen en_US.UTF-8 \
+    && yes | unminimize \
     #
     # sudo
     #
