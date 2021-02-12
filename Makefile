@@ -45,6 +45,7 @@ endif
 		--mount source=cache,target=/cache           \
 		--mount source=srv,target=/srv               \
 		--mount source=nix,target=/nix               \
+		-p 8888:8888                                 \
 		-e DISPLAY                                   \
 		-it                                          \
 		-v /tmp/.X11-unix:/tmp/.X11-unix             \

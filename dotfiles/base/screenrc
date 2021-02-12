@@ -1,3 +1,4 @@
+sessionname default
 autodetach on
 startup_message off
 shell "zsh"
