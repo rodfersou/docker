@@ -40,7 +40,6 @@ endif
 	$(DOCKER_RUN)                                    \
 		--name $(NAME)                               \
 		--rm                                         \
-		--network host                               \
 		--privileged                                 \
 		--mount source=cache,target=/cache           \
 		--mount source=srv,target=/srv               \
