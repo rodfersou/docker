@@ -1,11 +1,15 @@
 # convenience makefile to boostrap & run buildout
 SHELL := /bin/bash
+CURRENT_OS := $(shell uname -s)
+ifeq ($(CURRENT_OS), Linux)
+	CURRENT_OS := $(shell lsb_release -si)
+endif
 
 TAG='rodfersou/ubuntu:20.04'
 NAME='rodfersou_ubuntu_20.04'
 
 DOCKER_RUN=docker run
-ifeq ($(shell uname -s),Darwin)
+ifeq ($(CURRENT_OS),Darwin)
 	DOCKER_RUN=DISPLAY="docker.for.mac.host.internal:0" docker run
 endif
 
@@ -17,7 +21,7 @@ build:
 
 start:
 
-ifeq ($(shell uname -s),Darwin)
+ifeq ($(CURRENT_OS),Darwin)
 
 ifeq (, $(shell command -v socat))
 	$(error "No socat in $(PATH)")
@@ -35,6 +39,9 @@ ifeq (, $(shell pgrep Xquartz))
 	-(sleep 10 && killall -9 xterm) &
 endif
 
+endif
+ifeq ($(CURRENT_OS),Ubuntu)
+	xhost +local:docker
 endif
 
 	$(DOCKER_RUN)                                    \
@@ -65,6 +72,9 @@ stop:
 ifeq ($(CURRENT_OS),Darwin)
 	-killall -9 socat
 	-osascript -e 'quit app "XQuartz"'
+endif
+ifeq ($(CURRENT_OS),Ubuntu)
+	-xhost -local:docker
 endif
 
 stop-all:
