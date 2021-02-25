@@ -52,6 +52,7 @@ endif
 		--mount source=srv,target=/srv               \
 		--mount source=nix,target=/nix               \
 		-p 8888:8888                                 \
+		-p 5022:5022                                 \
 		-e DISPLAY                                   \
 		-it                                          \
 		-v /tmp/.X11-unix:/tmp/.X11-unix             \

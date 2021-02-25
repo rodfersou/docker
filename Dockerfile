@@ -30,6 +30,7 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
                locales           \
                ncurses-term      \
                neovim            \
+               psmisc            \
                rcm               \
                screen            \
                silversearcher-ag \
