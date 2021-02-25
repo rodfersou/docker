@@ -37,8 +37,6 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
                sudo              \
                tmux              \
                wget              \
-               xclip             \
-               xsel              \
                zsh               \
     && apt-get build-dep -o APT::Get::Build-Dep-Automatic=true -y --no-install-recommends \
                # python2 \

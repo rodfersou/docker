@@ -13,4 +13,6 @@ with import <nixpkgs> {};
   jq
   ctags
   less
+  xclip
+  xsel
 ]
