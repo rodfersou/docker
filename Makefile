@@ -45,20 +45,21 @@ ifeq ($(CURRENT_OS),Ubuntu)
 endif
 
 	$(DOCKER_RUN)                                    \
-		--name $(NAME)                               \
-		--rm                                         \
-		--privileged                                 \
+		--detach-keys="ctrl-s,d"                     \
 		--mount source=cache,target=/cache           \
-		--mount source=srv,target=/srv               \
 		--mount source=nix,target=/nix               \
-		-p 8888:8888                                 \
-		-p 5022:5022                                 \
+		--mount source=srv,target=/srv               \
+		--name $(NAME)                               \
+		--privileged                                 \
+		--rm                                         \
 		-e DISPLAY                                   \
 		-it                                          \
-		-v /tmp/.X11-unix:/tmp/.X11-unix             \
-		-v /var/run/docker.sock:/var/run/docker.sock \
+		-p 5022:5022                                 \
+		-p 8888:8888                                 \
 		-v $$HOME:/home/$$USER                       \
 		-v $$PWD/dotfiles:/home/docker/.dotfiles     \
+		-v /tmp/.X11-unix:/tmp/.X11-unix             \
+		-v /var/run/docker.sock:/var/run/docker.sock \
 		$(TAG)                                       \
 	|| docker attach                                 \
 		$(NAME)
