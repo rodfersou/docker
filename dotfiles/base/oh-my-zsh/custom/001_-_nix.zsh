@@ -5,7 +5,7 @@ source $HOME/.nix-profile/etc/profile.d/nix.sh
 clear
 
 if [[ "$WINDOW" == '1' ]]; then
-    nix-env -i -f $HOME/.dotfiles/packages.nix
+    nix-env -iPf $HOME/.dotfiles/packages.nix
 else
     sleep 1
 fi
