@@ -13,6 +13,8 @@ with import <nixpkgs> {};
 
   jq
   ctags
+  kdiff3
+
   less
   xclip
   xsel
