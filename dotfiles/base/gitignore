@@ -1,4 +1,7 @@
+*.egg-info/
 *.orig
+.direnv/
+.envrc
 .isort.cfg
 .mypy_cache/
 .project
@@ -15,12 +18,14 @@ custom.bootstrap.py
 custom.buildout.cfg
 custom.cfg
 custom.d/
+default.nix
 lib64
 package-lock.json
 Pipfile
 pyvenv.cfg
 qa.cfg
 share
+shell.nix
 TAGS
 tags
 yarn.lock
