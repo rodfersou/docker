@@ -1,7 +1,6 @@
 with import <nixpkgs> {};
 [
   nix
-  nox
   docker
   docker-compose
 
