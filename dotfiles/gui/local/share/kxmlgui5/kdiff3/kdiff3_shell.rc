@@ -1,0 +1,29 @@
+<!DOCTYPE gui SYSTEM 'kpartgui.dtd'>
+<gui version="9" name="kdiff3_shell">
+ <ActionProperties scheme="Default">
+  <Action shortcut="Meta+Y" name="diff_add_manual_diff_help"/>
+  <Action shortcut="Meta+Shift+Y" name="diff_clear_manual_diff_help_list"/>
+  <Action shortcut="Meta+C; Meta+Ins" name="edit_copy"/>
+  <Action shortcut="Meta+X; Shift+Del" name="edit_cut"/>
+  <Action shortcut="Meta+F" name="edit_find"/>
+  <Action shortcut="Meta+V; Shift+Ins" name="edit_paste"/>
+  <Action shortcut="Meta+A" name="edit_select_all"/>
+  <Action shortcut="Meta+O" name="file_open"/>
+  <Action shortcut="Meta+P" name="file_print"/>
+  <Action shortcut="Meta+Q" name="file_quit"/>
+  <Action shortcut="Meta+S" name="file_save"/>
+  <Action shortcut="Meta+Shift+S" name="file_save_as"/>
+  <Action shortcut="Meta+Space" name="go_current"/>
+  <Action shortcut="Meta+PgDown" name="go_next_conflict"/>
+  <Action shortcut="Meta+Down" name="go_next_delta"/>
+  <Action shortcut="Meta+PgUp" name="go_prev_conflict"/>
+  <Action shortcut="Meta+Up" name="go_prev_delta"/>
+  <Action shortcut="Meta+1" name="merge_choose_a"/>
+  <Action shortcut="Meta+Shift+1" name="merge_choose_a_everywhere"/>
+  <Action shortcut="Meta+2" name="merge_choose_b"/>
+  <Action shortcut="Meta+Shift+2" name="merge_choose_b_everywhere"/>
+  <Action shortcut="Meta+3" name="merge_choose_c"/>
+  <Action shortcut="Meta+Shift+3" name="merge_choose_c_everywhere"/>
+  <Action shortcut="Meta+Shift+," name="options_configure"/>
+ </ActionProperties>
+</gui>
