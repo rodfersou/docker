@@ -1,2 +1,2 @@
-DOTFILES_DIRS="$HOME/.dotfiles/crypt $HOME/.dotfiles/base"
+DOTFILES_DIRS="$HOME/.dotfiles/crypt $HOME/.dotfiles/gui $HOME/.dotfiles/base"
 SYMLINK_DIRS="ssh backup"
