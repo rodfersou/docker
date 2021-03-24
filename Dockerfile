@@ -142,6 +142,8 @@ RUN cd \
               /cache/asdf/installs/python/3.6.12/lib/python3.6/_sysconfigdata__linux_x86_64-linux-gnu.py  \
     && asdf plugin-add direnv \
     && asdf install direnv 2.27.0 \
+    && asdf plugin-add adr-tools \
+    && asdf install adr-tools 3.0.0 \
     && cd \
     #
     # VIM Plugins
