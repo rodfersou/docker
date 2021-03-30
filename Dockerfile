@@ -8,8 +8,10 @@ ENV ASDF_DATA_DIR="/cache/asdf"
 ENV NPM_CONFIG_CACHE="/cache/npm"
 ENV YARN_CACHE_FOLDER="/cache/yarn"
 ENV PIP_CACHE_DIR="/cache/pip"
-ENV PIPENV_CACHE_DIR="/cache/pipenv"
 ENV PIPX_HOME="/cache/pipx"
+ENV PIPX_BIN_DIR="/cache/pipx/bin"
+ENV USE_EMOJI=false
+ENV PIPENV_CACHE_DIR="/cache/pipenv"
 ENV PIPENV_VENV_IN_PROJECT=1
 ENV PIPENV_IGNORE_VIRTUALENVS=1
 ENV PIPENV_VERBOSITY=-1
@@ -76,12 +78,13 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
     && echo "docker:docker" | chpasswd \
     && usermod -aG sudo docker         \
     && chown -R docker:docker /srv     \
+    && rm -rf /srv/*                   \
     && mkdir -p /cache/mongo/db        \
     && mkdir -p /cache/npm             \
     && mkdir -p /cache/yarn            \
     && mkdir -p /cache/pip             \
     && mkdir -p /cache/pipenv          \
-    && mkdir -p /cache/pipx            \
+    && mkdir -p /cache/pipx/bin        \
     && chown -R docker:docker /cache   \
     #
     # Cleanup
