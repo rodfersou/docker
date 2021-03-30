@@ -36,6 +36,21 @@ let @u='ofrom Products.CMFPlone.utils import safe_unicode'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Language Client
+" (cd .vim_runtime/my_plugins && git clone --depth=1 --branch next https://github.com/autozimu/LanguageClient-neovim.git)
+" (cd .vim_runtime/my_plugins/LanguageClient-neovim && bash install.sh)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:LanguageClient_autoStart = 1
+let g:LanguageClient_serverCommands = {}
+let g:LanguageClient_diagnosticsSignsMax = 0
+set formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
+nnoremap <leader>lcs :LanguageClientStart<CR>
+nnoremap <leader>a :call LanguageClient_contextMenu()<CR>
+let g:lsp_log_verbose = 1
+let g:lsp_log_file = expand('~/lsp-logs')
+let g:LanguageClient_serverCommands["python"] = ['pyls']
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Nerd Tree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set splitright

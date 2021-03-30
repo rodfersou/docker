@@ -29,6 +29,10 @@ export_alias() {
   PATH_rm "$alias_dir"
   PATH_add "$alias_dir"
   echo "#!/bin/bash -e" > "$target"
+  # https://stackoverflow.com/a/5947802/2116850
+  DGRAY='\033[1;30m'
+  NC='\033[0m' # No Color
+  echo "printf \"${DGRAY}\$ $@${NC}\"" >> "$target"
   echo "$@" >> "$target"
   chmod +x "$target"
 }

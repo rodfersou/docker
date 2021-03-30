@@ -10,8 +10,8 @@ with import <nixpkgs> {};
   nodejs
   yarn
 
-  jq
-  ctags
+  # jq
+  # ctags
   kdiff3
 
   less
