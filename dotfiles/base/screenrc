@@ -26,6 +26,19 @@ bind l next
 hardstatus alwayslastline
 hardstatus string "%{gk}[%{g}%H%{g}][%{wk}%-w%{=b kR}|%{=d}%{W}%n%f%{=b kR}|%{= kw}%+w%{G}]%-20=%{= bw}[ %Y-%m-%d %c ]"
 
+# ctrl-s s 1 => screen 11
+bind s command -c select_1n
+bind -c select_1n 1 select 11
+bind -c select_1n 2 select 12
+bind -c select_1n 3 select 13
+bind -c select_1n 4 select 14
+bind -c select_1n 5 select 15
+bind -c select_1n 6 select 16
+bind -c select_1n 7 select 17
+bind -c select_1n 8 select 18
+bind -c select_1n 9 select 19
+bind -c select_1n 0 select 20
+
 screen -t '' 01
 screen -t '' 02
 screen -t '' 03

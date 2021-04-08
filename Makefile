@@ -53,6 +53,7 @@ endif
 		--privileged                                 \
 		--rm                                         \
 		-e DISPLAY                                   \
+		-e TZ=Asia/Bangkok                           \
 		-it                                          \
 		-p 5022:5022                                 \
 		-p 8888:8888                                 \
