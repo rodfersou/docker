@@ -6,6 +6,7 @@ with import <nixpkgs> {};
 
   python38
   python38.pkgs.pipx
+  # python38.pkgs.python-language-server
 
   nodejs
   yarn
