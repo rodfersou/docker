@@ -5,17 +5,18 @@ set nofoldenable    " disable folding
 set encoding=UTF-8
 set number
 set autoread
+au FocusLost,WinLeave * :silent! w
 
-set clipboard+=unnamedplus
-" function! ClipboardYank()
-"     call system('xclip -i -selection clipboard &> /dev/null', @@)
-" endfunction
-" function! ClipboardPaste()
-"     let @@ = system('xclip -o -selection clipboard &> /dev/null')
-" endfunction
-" vnoremap <silent> y y:call ClipboardYank()<cr>
-" vnoremap <silent> d d:call ClipboardYank()<cr>
-" nnoremap <silent> p :call ClipboardPaste()<cr>
+set clipboard=unnamedplus
+function! ClipboardYank()
+    call system('xclip -i -selection clipboard &> /dev/null', @@)
+endfunction
+function! ClipboardPaste()
+    let @@ = system('xclip -o -selection clipboard &> /dev/null')
+endfunction
+vnoremap <silent> yy:call ClipboardYank()<cr>
+vnoremap <silent> dd:call ClipboardYank()<cr>
+nnoremap <silent> p:call ClipboardPaste()<cr>
 
 colorscheme solarized
 highlight Normal guibg=NONE ctermbg=NONE
