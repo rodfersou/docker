@@ -48,17 +48,16 @@ endif
 		--detach-keys="ctrl-s,d"                     \
 		--mount source=cache,target=/cache           \
 		--mount source=nix,target=/nix               \
-		--mount source=srv,target=/srv               \
 		--name $(NAME)                               \
 		--privileged                                 \
 		--rm                                         \
 		-e DISPLAY                                   \
-		-e TZ=Asia/Bangkok                           \
 		-it                                          \
 		-p 5022:5022                                 \
 		-p 8888:8888                                 \
 		-v $$HOME:/home/$$USER                       \
 		-v $$PWD/dotfiles:/home/docker/.dotfiles     \
+		-v $$PWD/srv:/srv                            \
 		-v /tmp/.X11-unix:/tmp/.X11-unix             \
 		-v /var/run/docker.sock:/var/run/docker.sock \
 		$(TAG)                                       \

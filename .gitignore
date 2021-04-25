@@ -1,3 +1,4 @@
 nix/
 srv/
 *.tar.gz
+*.bkp
