@@ -51,7 +51,9 @@ endif
 		--name $(NAME)                               \
 		--privileged                                 \
 		--rm                                         \
+		-e COLUMNS=$$(tput cols)                     \
 		-e DISPLAY                                   \
+		-e LINES=$$(tput lines)                      \
 		-it                                          \
 		-p 5022:5022                                 \
 		-p 8888:8888                                 \

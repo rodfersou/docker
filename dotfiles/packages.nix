@@ -14,8 +14,10 @@ with import <nixpkgs> {};
   # jq
   # ctags
   kdiff3
+  tortoisehg
 
   less
   xclip
   xsel
+  # rxvt-unicode
 ]

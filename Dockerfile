@@ -8,10 +8,8 @@ ENV ASDF_DATA_DIR="/cache/asdf"
 ENV NPM_CONFIG_CACHE="/cache/npm"
 ENV YARN_CACHE_FOLDER="/cache/yarn"
 ENV PIP_CACHE_DIR="/cache/pip"
-ENV PIPX_HOME="/cache/pipx"
-ENV PIPX_BIN_DIR="/cache/pipx/bin"
-ENV USE_EMOJI=false
 ENV PIPENV_CACHE_DIR="/cache/pipenv"
+ENV PIPX_HOME="/cache/pipx"
 ENV PIPENV_VENV_IN_PROJECT=1
 ENV PIPENV_IGNORE_VIRTUALENVS=1
 ENV PIPENV_VERBOSITY=-1
@@ -25,6 +23,7 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
     && apt-get install -y                                                                                           \
                apt-utils 2>&1 | grep -v "debconf: delaying package configuration, since apt-utils is not installed" \
     && apt-get install -y --no-install-recommends \
+               aptitude          \
                ca-certificates   \
                curl              \
                encfs             \
@@ -78,13 +77,12 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
     && echo "docker:docker" | chpasswd \
     && usermod -aG sudo docker         \
     && chown -R docker:docker /srv     \
-    && rm -rf /srv/*                   \
     && mkdir -p /cache/mongo/db        \
     && mkdir -p /cache/npm             \
     && mkdir -p /cache/yarn            \
     && mkdir -p /cache/pip             \
     && mkdir -p /cache/pipenv          \
-    && mkdir -p /cache/pipx/bin        \
+    && mkdir -p /cache/pipx            \
     && chown -R docker:docker /cache   \
     #
     # Cleanup
@@ -156,7 +154,10 @@ RUN cd \
     && git clone --depth=1 https://github.com/ryanoasis/vim-devicons.git \
     && git clone --depth=1 https://github.com/junegunn/vim-easy-align.git \
     && git clone --depth=1 https://github.com/neoclide/coc.nvim.git \
-    # && git clone --depth=1 https://github.com/aklt/plantuml-syntax.git \
+    && git clone --depth=1 https://github.com/aklt/plantuml-syntax.git \
+    && git clone --depth=1 --branch next https://github.com/autozimu/LanguageClient-neovim.git \
+    && cd LanguageClient-neovim \
+    && bash install.sh \
     && cd \
     #
     # Cleanup
