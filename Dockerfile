@@ -1,18 +1,20 @@
 FROM ubuntu:20.04
 ARG DEBIAN_FRONTEND=noninteractive
 
-ENV USER=docker
-ENV XDG_CACHE_HOME="/cache"
-ENV ASDF_DIR="/cache/asdf"
 ENV ASDF_DATA_DIR="/cache/asdf"
+ENV ASDF_DIR="/cache/asdf"
+ENV LC_CTYPE=C.UTF-8
+ENV NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1
 ENV NPM_CONFIG_CACHE="/cache/npm"
-ENV YARN_CACHE_FOLDER="/cache/yarn"
 ENV PIP_CACHE_DIR="/cache/pip"
 ENV PIPENV_CACHE_DIR="/cache/pipenv"
-ENV PIPX_HOME="/cache/pipx"
-ENV PIPENV_VENV_IN_PROJECT=1
 ENV PIPENV_IGNORE_VIRTUALENVS=1
+ENV PIPENV_VENV_IN_PROJECT=1
 ENV PIPENV_VERBOSITY=-1
+ENV PIPX_HOME="/cache/pipx"
+ENV USER=docker
+ENV XDG_CACHE_HOME="/cache"
+ENV YARN_CACHE_FOLDER="/cache/yarn"
 
 COPY dotfiles .dotfiles
 RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
@@ -27,12 +29,14 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
                ca-certificates   \
                curl              \
                encfs             \
+               fontconfig        \
                git               \
                locales           \
                ncurses-term      \
                neovim            \
                psmisc            \
                rcm               \
+               rxvt-unicode      \
                screen            \
                silversearcher-ag \
                ssh               \
@@ -159,6 +163,14 @@ RUN cd \
     && cd LanguageClient-neovim \
     && bash install.sh \
     && cd \
+    #
+    # Nerd fonts
+    #
+    && mkdir .fonts \
+    && cd .fonts \
+    && wget https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/SourceCodePro/Regular/complete/Sauce%20Code%20Pro%20Nerd%20Font%20Complete%20Mono.ttf?raw=true \
+    && cd \
+    && fc-cache -vf \
     #
     # Cleanup
     #

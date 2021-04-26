@@ -19,5 +19,8 @@ with import <nixpkgs> {};
   less
   xclip
   xsel
+  # fontconfig
+  # nerdfonts
   # rxvt-unicode
+  # terminator
 ]

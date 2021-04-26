@@ -54,6 +54,7 @@ endif
 		-e COLUMNS=$$(tput cols)                     \
 		-e DISPLAY                                   \
 		-e LINES=$$(tput lines)                      \
+		-e TZ=Asia/Bangkok                           \
 		-it                                          \
 		-p 5022:5022                                 \
 		-p 8888:8888                                 \
@@ -62,6 +63,7 @@ endif
 		-v $$PWD/srv:/srv                            \
 		-v /tmp/.X11-unix:/tmp/.X11-unix             \
 		-v /var/run/docker.sock:/var/run/docker.sock \
+		-w /home/$$USER                              \
 		$(TAG)                                       \
 	|| docker attach                                 \
 		$(NAME)
