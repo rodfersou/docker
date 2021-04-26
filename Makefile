@@ -99,6 +99,8 @@ import:
 clean:
 	make stop
 	-docker image rm $(TAG)
+
+clean-nix:
 	-docker volume rm cache nix
 
 clean-all:
@@ -106,7 +108,6 @@ clean-all:
 	-docker rm $$(docker ps -aq)
 	-docker rmi $$(docker images -q)
 	# -docker volume rm $$(docker volume ls -q)
-	-docker volume rm cache nix
 
 rebuild:
 	make clean-all
