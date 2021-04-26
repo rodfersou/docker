@@ -11,7 +11,7 @@ if [[ "$WINDOW" == '1' ]]; then
         && pipx install ipython
     fi
 else
-    sleep 1
+    sleep 2
 fi
 while [ $(ps -ef | grep pipx | wc -l) = "2" ]; do
     sleep 1

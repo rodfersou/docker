@@ -7,7 +7,7 @@ clear
 if [[ "$WINDOW" == '1' ]]; then
     nix-env -if $HOME/.dotfiles/packages.nix
 else
-    sleep 5
+    sleep 2
 fi
 while [ $(ps -ef | grep nix-env | wc -l) = "2" ]; do
     sleep 1

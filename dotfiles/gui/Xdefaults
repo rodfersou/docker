@@ -27,7 +27,7 @@ urxvt*cursorColor: #DCDCCC
 !  - pseudo transparency
 !urxvt*shading:    50
 !urxvt*transparent:true
-urxvt.scrollBar: false
+URxvt.scrollBar: false
 ukuake.scrollBar: false
 
 

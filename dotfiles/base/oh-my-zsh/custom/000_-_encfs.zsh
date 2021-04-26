@@ -13,12 +13,12 @@ while [ -z "$(ls -A $HOME/.dotfiles/crypt)" ]; do
         encfs -s $HOME/.dotfiles/.crypt $HOME/.dotfiles/crypt
         clear
     else
-        sleep 1
+        sleep 2
     fi
 done
 clear
 
-for file in $(dirname $0)/000_-_encfs.d/*; do
+for file in $HOME/.oh-my-zsh/custom/000_-_encfs.d/*; do
     source "$file";
 done
 
