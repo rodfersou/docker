@@ -16,6 +16,10 @@ with import <nixpkgs> {};
   kdiff3
   tortoisehg
 
+  bitwarden-cli
+  smplayer
+  ranger
+
   less
   xclip
   xsel
