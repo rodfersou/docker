@@ -23,6 +23,7 @@ with import <nixpkgs> {};
   less
   xclip
   xsel
+  mercurial
   # fontconfig
   # nerdfonts
   # rxvt-unicode
