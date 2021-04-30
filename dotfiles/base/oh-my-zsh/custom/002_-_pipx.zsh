@@ -7,8 +7,9 @@ rm /srv/srv 2> /dev/null || true
 if [[ "$WINDOW" == '1' ]]; then
     if [ $(ls /srv | wc -l) = "0"  ]; then
         pipx install --include-deps                     \
-             git+https://github.com/rodfersou/gitim.git \
-        && pipx install ipython
+             git+https://github.com/rodfersou/gitim.git
+        pipx install ipython
+        pipx install mercurial
     fi
 else
     sleep 2

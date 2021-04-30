@@ -11,8 +11,7 @@ with import <nixpkgs> {};
   nodejs
   yarn
 
-  # jq
-  # ctags
+  jq
   kdiff3
   tortoisehg
 
@@ -23,7 +22,8 @@ with import <nixpkgs> {};
   less
   xclip
   xsel
-  mercurial
+  piknik
+
   # fontconfig
   # nerdfonts
   # rxvt-unicode
