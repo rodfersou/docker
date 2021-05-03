@@ -10,6 +10,7 @@
 .ropeproject
 .tool-versions
 .webpack
+.DS_Store
 __pycache__
 api/bootstrap-buildout.py
 audit.log
