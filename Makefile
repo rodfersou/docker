@@ -57,6 +57,7 @@ endif
 		-e TZ=Asia/Bangkok                           \
 		-it                                          \
 		-p 5022:5022                                 \
+		-p 8000:8000                                 \
 		-p 8888:8888                                 \
 		-v $$HOME:/home/$$USER                       \
 		-v $$PWD/dotfiles:/home/docker/.dotfiles     \
