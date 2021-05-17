@@ -32,6 +32,7 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
                fontconfig        \
                git               \
                locales           \
+               man               \
                ncurses-term      \
                neovim            \
                psmisc            \

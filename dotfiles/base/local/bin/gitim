@@ -1,2 +1,2 @@
 #!/bin/bash
-$HOME/.local/pipx/venvs/gitim/bin/python -m gitim $@
+python -m gitim $@

@@ -1,4 +1,3 @@
-ansible
 awscli
 beautifulsoup4
 black
@@ -14,7 +13,6 @@ mario
 mercurial
 mypy
 pipenv
-pip
 pipx
 plonecli
 py-spy
