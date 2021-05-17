@@ -1,6 +1,7 @@
 *.egg-info/
 *.orig
 .direnv/
+.DS_Store
 .envrc
 .isort.cfg
 .mypy_cache/
@@ -9,8 +10,8 @@
 .root
 .ropeproject
 .tool-versions
+.venv/
 .webpack
-.DS_Store
 __pycache__
 api/bootstrap-buildout.py
 audit.log
