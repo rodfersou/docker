@@ -141,16 +141,16 @@ RUN cd \
     && cd /cache/asdf \
     && git checkout "$(git describe --abbrev=0 --tags)" \
     && export PATH="/cache/asdf/shims:/cache/asdf/bin:$PATH" \
-    && asdf plugin-add python \
-    && asdf install python latest:3.6 \
-    && asdf install python latest \
+    && asdf plugin-add python                                              \
+    && asdf install python latest:3.6                                      \
+    && asdf install python latest                                          \
     && for pydir in /cache/asdf/installs/python/*; do                      \
         for libdir in $pydir/lib/python*/; do                              \
             ln -sf $libdir/_sysconfigdata_m_linux_$(uname -m)-linux-gnu.py \
                    $libdir/_sysconfigdata__linux_$(uname -m)-linux-gnu.py; \
         done;                                                              \
     done                                                                   \
-    && asdf global python $(basename $pydir) \
+    && asdf global python $(asdf latest python)                            \
     && asdf plugin-add direnv \
     && asdf install direnv 2.27.0 \
     && asdf plugin-add adr-tools \
