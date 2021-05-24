@@ -25,28 +25,39 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
     && apt-get install -y                                                                                           \
                apt-utils 2>&1 | grep -v "debconf: delaying package configuration, since apt-utils is not installed" \
     && apt-get install -y --no-install-recommends \
+               adb               \
                aptitude          \
                ca-certificates   \
                curl              \
+               deluge            \
                encfs             \
                fontconfig        \
                git               \
+               htop              \
+               httpie            \
+               jq                \
+               less              \
                locales           \
-               man               \
                ncurses-term      \
                neovim            \
+               p7zip-full        \
                psmisc            \
+               ranger            \
                rcm               \
                rxvt-unicode      \
                screen            \
                silversearcher-ag \
+               smplayer          \
                ssh               \
                sudo              \
                tmux              \
+               unzip             \
                wget              \
+               xclip             \
+               xsel              \
                zsh               \
     && apt-get build-dep -o APT::Get::Build-Dep-Automatic=true -y --no-install-recommends \
-               # python2 \
+               python2 \
                python3 \
     && apt-get install -y --no-install-recommends \
                build-essential \
@@ -109,32 +120,20 @@ RUN cd \
     # VIM
     #
     && git clone --depth=1 https://github.com/amix/vimrc.git .vim_runtime \
-    && sh .vim_runtime/install_awesome_vimrc.sh \
+    && sh .vim_runtime/install_awesome_vimrc.sh                           \
     #
     # Dotfiles
     #
-    && sudo mv /.dotfiles . \
+    && sudo mv /.dotfiles .                  \
     && sudo chown -R docker:docker .dotfiles \
-    && ln -sf .dotfiles/rcrc .rcrc \
-    && rcup \
+    && ln -sf .dotfiles/rcrc .rcrc           \
+    && rcup                                  \
     #
     # NIX
     #
     && sh -c "$(curl -fsSL https://nixos.org/nix/install)" \
     && sed "/nix-profile/d" -i .zshrc \
     && . /home/docker/.nix-profile/etc/profile.d/nix.sh \
-    # && nix-env -iA                        \
-    #            nixpkgs.nodejs             \
-    #            nixpkgs.python38           \
-    #            nixpkgs.python38.pkgs.pipx \
-    #            nixpkgs.yarn               \
-    #
-    # Pipx
-    #
-    # && pipx ensurepath \
-    # && pipx install --include-deps                     \
-    #         git+https://github.com/rodfersou/gitim.git \
-    # && pipx install ipython \
     #
     # ASDF
     #
@@ -142,8 +141,11 @@ RUN cd \
     && cd /cache/asdf \
     && git checkout "$(git describe --abbrev=0 --tags)" \
     && export PATH="/cache/asdf/shims:/cache/asdf/bin:$PATH" \
+    # Python
     && asdf plugin-add python                                              \
+    && asdf install python latest:2                                        \
     && asdf install python latest:3.6                                      \
+    && asdf install python latest:3.8                                      \
     && asdf install python latest                                          \
     && for pydir in /cache/asdf/installs/python/*; do                      \
         for libdir in $pydir/lib/python*/; do                              \
@@ -152,10 +154,19 @@ RUN cd \
         done;                                                              \
     done                                                                   \
     && asdf global python $(asdf latest python)                            \
-    && asdf plugin-add direnv \
+    # Java
+    && asdf plugin-add java https://github.com/halcyon/asdf-java.git \
+    && asdf install java adoptopenjdk-16.0.1+9                       \
+    && asdf global java adoptopenjdk-16.0.1+9                        \
+    # Direnv
+    && asdf plugin-add direnv     \
     && asdf install direnv 2.27.0 \
-    && asdf plugin-add adr-tools \
+    && asdf global direnv 2.27.0  \
+    # ADR tools
+    && asdf plugin-add adr-tools    \
     && asdf install adr-tools 3.0.0 \
+    && asdf global adr-tools 3.0.0  \
+    # ASDF - END
     && cd \
     #
     # VIM Plugins

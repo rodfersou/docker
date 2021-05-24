@@ -4,7 +4,7 @@ black
 cookiecutter
 debug
 flake8
-git+https://github.com/rodfersou/gitim.git
+git+https://github.com/muhasturk/gitim.git
 git+https://github.com/rodfersou/swagger_to_uml.git
 ipython
 isort

@@ -4,14 +4,9 @@ with import <nixpkgs> {};
   docker
   docker-compose
 
-  python38
-  python38.pkgs.pipx
-  # python38.pkgs.python-language-server
-
   nodejs
   yarn
 
-  jq
   kdiff3
   tortoisehg
 
@@ -19,9 +14,6 @@ with import <nixpkgs> {};
   smplayer
   ranger
 
-  less
-  xclip
-  xsel
   piknik
 
   # fontconfig
