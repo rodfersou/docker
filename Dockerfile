@@ -1,8 +1,10 @@
 FROM ubuntu:20.04
 ARG DEBIAN_FRONTEND=noninteractive
 
+ENV _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on"
 ENV ASDF_DATA_DIR="/cache/asdf"
 ENV ASDF_DIR="/cache/asdf"
+ENV JGO_CACHE_DIR="/cache/jgo"
 ENV LC_CTYPE=C.UTF-8
 ENV NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1
 ENV NPM_CONFIG_CACHE="/cache/npm"
@@ -12,9 +14,10 @@ ENV PIPENV_IGNORE_VIRTUALENVS=1
 ENV PIPENV_VENV_IN_PROJECT=1
 ENV PIPENV_VERBOSITY=-1
 ENV PIPX_HOME="/cache/pipx"
-ENV USER=docker
 ENV XDG_CACHE_HOME="/cache"
 ENV YARN_CACHE_FOLDER="/cache/yarn"
+
+ENV USER=docker
 
 COPY dotfiles .dotfiles
 RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
@@ -30,12 +33,14 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
                ca-certificates   \
                curl              \
                deluge            \
+               direnv            \
                encfs             \
                fontconfig        \
                git               \
                htop              \
                httpie            \
                jq                \
+               kdiff3            \
                less              \
                locales           \
                ncurses-term      \
@@ -61,6 +66,8 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
                python3 \
     && apt-get install -y --no-install-recommends \
                build-essential \
+               dirmngr         \
+               gpg             \
                libbz2-dev      \
                libffi-dev      \
                liblzma-dev     \
@@ -94,12 +101,13 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
     && echo "docker:docker" | chpasswd \
     && usermod -aG sudo docker         \
     && chown -R docker:docker /srv     \
+    && mkdir -p /cache/jgo             \
     && mkdir -p /cache/mongo/db        \
     && mkdir -p /cache/npm             \
-    && mkdir -p /cache/yarn            \
     && mkdir -p /cache/pip             \
     && mkdir -p /cache/pipenv          \
     && mkdir -p /cache/pipx            \
+    && mkdir -p /cache/yarn            \
     && chown -R docker:docker /cache   \
     #
     # Cleanup
@@ -155,18 +163,21 @@ RUN cd \
         done;                                                              \
     done                                                                   \
     && asdf global python $(asdf latest python)                            \
+    # NodeJS
+    && asdf plugin-add nodejs                       \
+    && asdf install    nodejs latest                \
+    && asdf global     nodejs $(asdf latest nodejs) \
     # Java
     && asdf plugin-add java https://github.com/halcyon/asdf-java.git \
-    && asdf install java adoptopenjdk-11.0.11+9                      \
-    && asdf global java adoptopenjdk-11.0.11+9                       \
-    # Direnv
-    && asdf plugin-add direnv     \
-    && asdf install direnv 2.27.0 \
-    && asdf global direnv 2.27.0  \
+    && asdf install    java latest:adoptopenjdk-11                   \
+    && asdf global     java $(asdf latest java adoptopenjdk-11)      \
+    && asdf plugin-add maven                                         \
+    && asdf install    maven latest                                  \
+    && asdf global     maven $(asdf latest maven)                    \
     # ADR tools
-    && asdf plugin-add adr-tools    \
-    && asdf install adr-tools 3.0.0 \
-    && asdf global adr-tools 3.0.0  \
+    && asdf plugin-add adr-tools                          \
+    && asdf install    adr-tools latest                   \
+    && asdf global     adr-tools $(asdf latest adr-tools) \
     # ASDF - END
     && cd \
     #

@@ -4,10 +4,6 @@ with import <nixpkgs> {};
   docker
   docker-compose
 
-  nodejs
-  yarn
-
-  kdiff3
   tortoisehg
 
   bitwarden-cli
