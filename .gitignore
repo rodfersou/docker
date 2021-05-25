@@ -1,4 +1,5 @@
 nix/
 srv/
+.DS_Store
 *.tar.gz
 *.bkp

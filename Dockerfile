@@ -70,6 +70,7 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
                libssl-dev      \
                libxml2-dev     \
                libxmlsec1-dev  \
+               libxtst6        \
                llvm            \
                tk-dev          \
                xz-utils        \
@@ -156,8 +157,8 @@ RUN cd \
     && asdf global python $(asdf latest python)                            \
     # Java
     && asdf plugin-add java https://github.com/halcyon/asdf-java.git \
-    && asdf install java adoptopenjdk-16.0.1+9                       \
-    && asdf global java adoptopenjdk-16.0.1+9                        \
+    && asdf install java adoptopenjdk-11.0.11+9                      \
+    && asdf global java adoptopenjdk-11.0.11+9                       \
     # Direnv
     && asdf plugin-add direnv     \
     && asdf install direnv 2.27.0 \
