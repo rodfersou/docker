@@ -29,7 +29,7 @@ ifeq (, $(shell command -v /opt/X11/bin/Xquartz))
 endif
 ifeq (, $(shell pgrep Xquartz))
 	-open -a XQuartz
-	-(sleep 10 && osascript -e 'quit app "xterm"') &
+	-(sleep 10 && killall -9 xterm) &
 endif
 
 endif
@@ -92,7 +92,7 @@ clean:
 	make stop
 	-docker image rm $(TAG)
 
-clean-nix:
+clean-cache-nix:
 	-docker volume rm cache nix
 
 clean-all:

@@ -11,8 +11,6 @@ with import <nixpkgs> {};
   tortoisehg
 
   bitwarden-cli
-  smplayer
-  ranger
 
   piknik
 
