@@ -33,7 +33,6 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
                ca-certificates   \
                curl              \
                deluge            \
-               direnv            \
                encfs             \
                fontconfig        \
                git               \
@@ -174,6 +173,10 @@ RUN cd \
     && asdf plugin-add maven                                         \
     && asdf install    maven latest                                  \
     && asdf global     maven $(asdf latest maven)                    \
+    # Direnv
+    && asdf plugin-add direnv                       \
+    && asdf install    direnv latest                \
+    && asdf global     direnv $(asdf latest direnv) \
     # ADR tools
     && asdf plugin-add adr-tools                          \
     && asdf install    adr-tools latest                   \

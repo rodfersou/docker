@@ -1,5 +1,4 @@
 SHELL := /bin/bash
-IP := $(shell ifconfig en0 | grep inet | awk '$$1=="inet" {print $$2}')
 
 CURRENT_OS := $(shell uname -s)
 ifeq ($(CURRENT_OS), Linux)
@@ -34,7 +33,7 @@ endif
 
 endif
 
-	xhost + $(IP)
+	xhost +local:docker
 	docker run                                       \
 		--detach-keys="ctrl-s,d"                     \
 		--mount source=cache,target=/cache           \
@@ -43,7 +42,7 @@ endif
 		--privileged                                 \
 		--rm                                         \
 		-e COLUMNS=$$(tput cols)                     \
-		-e DISPLAY=$(IP):0                           \
+		-e DISPLAY=host.docker.internal:0            \
 		-e LINES=$$(tput lines)                      \
 		-e TZ=Asia/Bangkok                           \
 		-it                                          \
@@ -67,13 +66,12 @@ restart:
 
 stop:
 	-docker container stop $(NAME)
+	-xhost -local:docker
 
 ifeq ($(CURRENT_OS), Darwin)
 	-killall -9 socat
 	-osascript -e 'quit app "XQuartz"'
 endif
-
-	-xhost - $(IP)
 
 stop-all:
 	-docker stop $$(docker ps -aq)
