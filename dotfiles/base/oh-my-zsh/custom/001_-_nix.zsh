@@ -1,5 +1,6 @@
 trap 'echo got SIGINT' SIGINT
 
+export NIXPKGS_ALLOW_UNFREE=1
 source $HOME/.nix-profile/etc/profile.d/nix.sh
 
 clear
