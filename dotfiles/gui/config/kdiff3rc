@@ -1,6 +1,6 @@
 [KDiff3 Options]
 ApplicationFont=Inconsolata Nerd Font [CYRE],12,-1,5,50,0,0,0,0,0
-AutoAdvance=false
+AutoAdvance=true
 AutoAdvanceDelay=500
 AutoCopySelection=false
 AutoDetectUnicodeA=true
@@ -13,8 +13,8 @@ AutoSelectOutEncoding=true
 BgColor=0,0,0
 BinaryComparison=true
 CaseSensitiveFilenameComparison=true
-ColorA=0,123,255
-ColorB=0,255,0
+ColorA=0,195,255
+ColorB=0,232,0
 ColorC=150,0,150
 ColorForConflict=255,0,0
 CopyNewer=false
@@ -22,7 +22,7 @@ CreateBakFiles=false
 CurrentRangeBgColor=148,148,68
 CurrentRangeDiffBgColor=47,47,28
 Diff3AlignBC=false
-DiffBgColor=224,224,224
+DiffBgColor=85,85,85
 DirAntiPattern=CVS;.deps;.svn;.hg;.git
 EncodingForA=UTF-8
 EncodingForB=UTF-8

@@ -56,6 +56,7 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
                ssh               \
                sudo              \
                tmux              \
+               tree              \
                unzip             \
                wget              \
                xclip             \
