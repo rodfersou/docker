@@ -20,11 +20,12 @@ py-spy
 pylint
 python-language-server
 pyls-black
-pyls-isort
 pyls-flake8
+pyls-isort==0.2.0
 pyls-mypy
 requests
 unidecode
+virtualenv==16.7.9
 yamllint
 youtube-dl
 yq

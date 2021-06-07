@@ -52,7 +52,6 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
                rxvt-unicode      \
                screen            \
                silversearcher-ag \
-               smplayer          \
                ssh               \
                sudo              \
                tmux              \
@@ -165,9 +164,9 @@ RUN cd \
     done                                                                    \
     && asdf global python $(asdf latest python)                             \
     # NodeJS
-    && asdf plugin-add nodejs                       \
-    && asdf install    nodejs latest                \
-    && asdf global     nodejs $(asdf latest nodejs) \
+    && asdf plugin-add nodejs                          \
+    && asdf install    nodejs latest:12                \
+    && asdf global     nodejs $(asdf latest nodejs 12) \
     # Java
     && asdf plugin-add java https://github.com/halcyon/asdf-java.git \
     && asdf install    java latest:adoptopenjdk-11                   \
