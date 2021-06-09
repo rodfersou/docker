@@ -66,6 +66,7 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
                python3 \
     && apt-get install -y --no-install-recommends \
                build-essential \
+               coreutils       \
                dirmngr         \
                gpg             \
                libbz2-dev      \
@@ -167,6 +168,10 @@ RUN cd \
     && asdf plugin-add nodejs                          \
     && asdf install    nodejs latest:12                \
     && asdf global     nodejs $(asdf latest nodejs 12) \
+    # Go
+    && asdf plugin-add golang https://github.com/kennyp/asdf-golang.git \
+    && asdf install    golang latest                                    \
+    && asdf global     golang $(asdf latest golang)                     \
     # Java
     && asdf plugin-add java https://github.com/halcyon/asdf-java.git \
     && asdf install    java latest:adoptopenjdk-11                   \
