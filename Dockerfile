@@ -159,7 +159,7 @@ RUN cd \
     && asdf install python latest                                           \
     && for pydir in /cache/asdf/installs/python/*; do                       \
         for libdir in $pydir/lib/python*/; do                               \
-            ln -sf ${libdir}_sysconfigdata_m_linux_$(uname -m)-linux-gnu.py \
+            ln -sf /usr/lib/python3.8/_sysconfigdata__aarch64-linux-gnu.py  \
                    ${libdir}_sysconfigdata__linux_$(uname -m)-linux-gnu.py; \
         done;                                                               \
     done                                                                    \
