@@ -33,6 +33,7 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
                ca-certificates   \
                curl              \
                deluge            \
+               emacs-nox         \
                encfs             \
                fontconfig        \
                git               \
