@@ -38,6 +38,7 @@ endif
 		--detach-keys="ctrl-s,d"                     \
 		--mount source=cache,target=/cache           \
 		--mount source=nix,target=/nix               \
+		--mount source=srv,target=/srv               \
 		--name $(NAME)                               \
 		--privileged                                 \
 		--rm                                         \
@@ -51,7 +52,7 @@ endif
 		-p 8888:8888                                 \
 		-v $$HOME:/home/$$USER                       \
 		-v $$PWD/dotfiles:/home/docker/.dotfiles     \
-		-v $$PWD/srv:/srv                            \
+		-v $$PWD/srv:/srv_bkp                            \
 		-v /tmp/.X11-unix:/tmp/.X11-unix             \
 		-v /var/run/docker.sock:/var/run/docker.sock \
 		-w /home/$$USER                              \
@@ -92,6 +93,9 @@ clean:
 
 clean-cache-nix:
 	-docker volume rm cache nix
+
+clean-srv:
+	-docker volume rm srv
 
 clean-all:
 	-docker stop $$(docker ps -aq)

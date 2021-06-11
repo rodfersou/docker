@@ -1,6 +1,6 @@
 python 3.9.5
 java adoptopenjdk-11.0.11+9
-nodejs 16.2.0
+nodejs 12.22.1
 maven 3.8.1
 direnv 2.28.0
 adr-tools 3.0.0
