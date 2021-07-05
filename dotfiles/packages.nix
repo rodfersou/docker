@@ -8,7 +8,6 @@ with import <nixpkgs> {};
 
   bitwarden-cli
 
-  authy
   piknik
 
   # fontconfig

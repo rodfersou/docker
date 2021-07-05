@@ -35,6 +35,8 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
                deluge            \
                emacs-nox         \
                encfs             \
+               entr              \
+               ffmpeg            \
                fontconfig        \
                git               \
                htop              \
@@ -167,19 +169,19 @@ RUN cd \
     && asdf global python $(asdf latest python)                             \
     # NodeJS
     && asdf plugin-add nodejs                          \
-    && asdf install    nodejs latest:12                \
-    && asdf global     nodejs $(asdf latest nodejs 12) \
+    && asdf install    nodejs latest:14                \
+    && asdf global     nodejs $(asdf latest nodejs 14) \
     # Go
-    && asdf plugin-add golang https://github.com/kennyp/asdf-golang.git \
-    && asdf install    golang latest                                    \
-    && asdf global     golang $(asdf latest golang)                     \
+    && asdf plugin-add golang asdf-golang           \
+    && asdf install    golang latest                \
+    && asdf global     golang $(asdf latest golang) \
     # Java
-    && asdf plugin-add java https://github.com/halcyon/asdf-java.git \
-    && asdf install    java latest:adoptopenjdk-11                   \
-    && asdf global     java $(asdf latest java adoptopenjdk-11)      \
-    && asdf plugin-add maven                                         \
-    && asdf install    maven latest                                  \
-    && asdf global     maven $(asdf latest maven)                    \
+    && asdf plugin-add java                                     \
+    && asdf install    java latest:adoptopenjdk-11              \
+    && asdf global     java $(asdf latest java adoptopenjdk-11) \
+    && asdf plugin-add gradle                                   \
+    && asdf install    gradle latest                            \
+    && asdf global     gradle $(asdf latest gradle)             \
     # Direnv
     && asdf plugin-add direnv                       \
     && asdf install    direnv latest                \
@@ -203,6 +205,14 @@ RUN cd \
     && git clone --depth=1 https://github.com/LnL7/vim-nix.git \
     && cd LanguageClient-neovim \
     && bash install.sh \
+    && cd \
+    #
+    # Nerd fonts
+    #
+    && cd /cache \
+    && wget https://download.jetbrains.com/python/pycharm-community-2021.1.2.tar.gz \
+    && tar -zxvf pycharm-community-2021.1.2.tar.gz \
+    && rm -rf pycharm-community-2021.1.2.tar.gz \
     && cd \
     #
     # Nerd fonts
