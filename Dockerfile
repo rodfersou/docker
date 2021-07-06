@@ -179,9 +179,9 @@ RUN cd \
     && asdf plugin-add java                                     \
     && asdf install    java latest:adoptopenjdk-11              \
     && asdf global     java $(asdf latest java adoptopenjdk-11) \
-    #&& asdf plugin-add gradle                                   \
-    #&& asdf install    gradle latest                            \
-    #&& asdf global     gradle $(asdf latest gradle)             \
+    && asdf plugin-add gradle                                   \
+    && asdf install    gradle latest                            \
+    && asdf global     gradle $(asdf latest gradle)             \
     # Direnv
     && asdf plugin-add direnv                       \
     && asdf install    direnv latest                \
