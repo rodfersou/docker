@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:21.04
 ARG DEBIAN_FRONTEND=noninteractive
 
 ENV _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on"
@@ -162,7 +162,7 @@ RUN cd \
     && asdf install python latest                                           \
     && for pydir in /cache/asdf/installs/python/*; do                       \
         for libdir in $pydir/lib/python*/; do                               \
-            ln -sf /usr/lib/python3.8/_sysconfigdata__aarch64-linux-gnu.py  \
+            ln -sf /usr/lib/python3.9/_sysconfigdata__aarch64-linux-gnu.py  \
                    ${libdir}_sysconfigdata__linux_$(uname -m)-linux-gnu.py; \
         done;                                                               \
     done                                                                    \
@@ -172,16 +172,16 @@ RUN cd \
     && asdf install    nodejs latest:14                \
     && asdf global     nodejs $(asdf latest nodejs 14) \
     # Go
-    && asdf plugin-add golang asdf-golang           \
+    && asdf plugin-add golang                       \
     && asdf install    golang latest                \
     && asdf global     golang $(asdf latest golang) \
     # Java
     && asdf plugin-add java                                     \
     && asdf install    java latest:adoptopenjdk-11              \
     && asdf global     java $(asdf latest java adoptopenjdk-11) \
-    && asdf plugin-add gradle                                   \
-    && asdf install    gradle latest                            \
-    && asdf global     gradle $(asdf latest gradle)             \
+    #&& asdf plugin-add gradle                                   \
+    #&& asdf install    gradle latest                            \
+    #&& asdf global     gradle $(asdf latest gradle)             \
     # Direnv
     && asdf plugin-add direnv                       \
     && asdf install    direnv latest                \
