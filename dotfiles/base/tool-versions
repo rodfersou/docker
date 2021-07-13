@@ -4,3 +4,4 @@ nodejs 14.17.3
 direnv 2.28.0
 adr-tools 3.0.0
 golang 1.16.5
+gradle 7.1.1

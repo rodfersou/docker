@@ -1,4 +1,4 @@
-FROM ubuntu:21.04
+FROM ubuntu:20.04
 ARG DEBIAN_FRONTEND=noninteractive
 
 ENV _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on"
@@ -20,7 +20,7 @@ ENV YARN_CACHE_FOLDER="/cache/yarn"
 ENV USER=docker
 
 COPY dotfiles .dotfiles
-RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
+RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
     && apt-get update \
     #
     # BASE
@@ -114,6 +114,11 @@ RUN sed -e '/^# deb-src/ s/# //' -i /etc/apt/sources.list \
     && mkdir -p /cache/yarn            \
     && chown -R docker:docker /cache   \
     #
+    # Fix curl
+    #
+    && sed -i '/^oid_section.*/a \\n# System default\nopenssl_conf = default_conf' /etc/ssl/openssl.cnf \
+    && sed -i '$s/$/\n\n\[default_conf\]\nssl_conf = ssl_sect\n\n\[ssl_sect\]\nsystem_default = system_default_sect\n\n\[system_default_sect\]\nCipherString = DEFAULT\@SECLEVEL=1/' /etc/ssl/openssl.cnf \
+    #
     # Cleanup
     #
     && apt-get autoremove -y \
@@ -162,7 +167,7 @@ RUN cd \
     && asdf install python latest                                           \
     && for pydir in /cache/asdf/installs/python/*; do                       \
         for libdir in $pydir/lib/python*/; do                               \
-            ln -sf /usr/lib/python3.9/_sysconfigdata__aarch64-linux-gnu.py  \
+            ln -sf /usr/lib/python3.8/_sysconfigdata__aarch64-linux-gnu.py  \
                    ${libdir}_sysconfigdata__linux_$(uname -m)-linux-gnu.py; \
         done;                                                               \
     done                                                                    \
@@ -180,8 +185,8 @@ RUN cd \
     && asdf install    java latest:adoptopenjdk-11              \
     && asdf global     java $(asdf latest java adoptopenjdk-11) \
     && asdf plugin-add gradle                                   \
-    && asdf install    gradle latest                            \
-    && asdf global     gradle $(asdf latest gradle)             \
+    #&& asdf install    gradle latest                            \
+    #&& asdf global     gradle $(asdf latest gradle)             \
     # Direnv
     && asdf plugin-add direnv                       \
     && asdf install    direnv latest                \
