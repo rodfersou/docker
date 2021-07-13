@@ -18,6 +18,7 @@ pipenv
 pipx
 plonecli
 py-spy
+pygments
 pylint
 python-language-server
 pyls-black

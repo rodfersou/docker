@@ -180,6 +180,10 @@ RUN cd \
     && asdf plugin-add golang                       \
     && asdf install    golang latest                \
     && asdf global     golang $(asdf latest golang) \
+    # Ruby
+    && asdf plugin-add ruby                     \
+    && asdf install    ruby latest              \
+    && asdf global     ruby $(asdf latest ruby) \
     # Java
     && asdf plugin-add java                                     \
     && asdf install    java latest:adoptopenjdk-11              \
