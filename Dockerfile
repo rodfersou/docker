@@ -41,6 +41,7 @@ RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
                git               \
                htop              \
                httpie            \
+               imagemagick       \
                jq                \
                kdiff3            \
                less              \
@@ -49,6 +50,7 @@ RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
                ncurses-term      \
                neovim            \
                p7zip-full        \
+               pdftk             \
                psmisc            \
                ranger            \
                rcm               \
@@ -118,6 +120,10 @@ RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
     #
     && sed -i '/^oid_section.*/a \\n# System default\nopenssl_conf = default_conf' /etc/ssl/openssl.cnf \
     && sed -i '$s/$/\n\n\[default_conf\]\nssl_conf = ssl_sect\n\n\[ssl_sect\]\nsystem_default = system_default_sect\n\n\[system_default_sect\]\nCipherString = DEFAULT\@SECLEVEL=1/' /etc/ssl/openssl.cnf \
+    #
+    # Fix imagemagick
+    #
+    && sed -i '/^<\/policymap>/i \\ \ <policy domain="coder" rights="read | write" pattern="PDF" />' /etc/ImageMagick-6/policy.xml \
     #
     # Cleanup
     #
