@@ -31,6 +31,7 @@ RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
                adb               \
                aptitude          \
                ca-certificates   \
+               calibre           \
                curl              \
                deluge            \
                emacs-nox         \
