@@ -1,3 +1,5 @@
 asciidoctor
-pygments.rb
 asciidoctor-diagram
+asciidoctor-epub3
+asciidoctor-pdf
+pygments.rb
