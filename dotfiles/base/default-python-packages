@@ -17,6 +17,7 @@ pip
 pipenv
 pipx
 plonecli
+poetry
 py-spy
 pygments
 pylint
