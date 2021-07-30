@@ -16,6 +16,8 @@ ENV PIPENV_VERBOSITY=-1
 ENV PIPX_HOME="/cache/pipx"
 ENV XDG_CACHE_HOME="/cache"
 ENV YARN_CACHE_FOLDER="/cache/yarn"
+# Fix Pycharm interface
+ENV LIBGL_ALWAYS_INDIRECT=1
 
 ENV USER=docker
 
@@ -126,6 +128,15 @@ RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
     #
     && sed -i '/^<\/policymap>/i \\ \ <policy domain="coder" rights="read | write" pattern="PDF" />' /etc/ImageMagick-6/policy.xml \
     #
+    # Pycharm
+    #
+    && apt-get install -y --no-install-recommends                                                      \
+               dbus                                                                                    \
+               libgl1-mesa-glx                                                                         \
+               mesa-utils                                                                              \
+    && echo -e '#!/bin/bash\n/cache/pycharm-community-2021.1.2/bin/pycharm.sh $@\n' > /usr/bin/pycharm \
+    && chmod +x /usr/bin/pycharm                                                                       \
+    #
     # Cleanup
     #
     && apt-get autoremove -y \
@@ -223,7 +234,7 @@ RUN cd \
     && bash install.sh \
     && cd \
     #
-    # Nerd fonts
+    # Pycharm
     #
     && cd /cache \
     && wget https://download.jetbrains.com/python/pycharm-community-2021.1.2.tar.gz \
