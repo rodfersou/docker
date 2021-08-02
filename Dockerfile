@@ -29,53 +29,15 @@ RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
     #
     && apt-get install -y                                                                                           \
                apt-utils 2>&1 | grep -v "debconf: delaying package configuration, since apt-utils is not installed" \
-    && apt-get install -y --no-install-recommends \
-               adb               \
-               aptitude          \
-               ca-certificates   \
-               calibre           \
-               curl              \
-               deluge            \
-               emacs-nox         \
-               encfs             \
-               entr              \
-               ffmpeg            \
-               fontconfig        \
-               git               \
-               htop              \
-               httpie            \
-               imagemagick       \
-               jq                \
-               kdiff3            \
-               less              \
-               locales           \
-               man               \
-               ncurses-term      \
-               neovim            \
-               p7zip-full        \
-               pdftk             \
-               psmisc            \
-               ranger            \
-               rcm               \
-               rxvt-unicode      \
-               screen            \
-               silversearcher-ag \
-               ssh               \
-               sudo              \
-               tmux              \
-               tree              \
-               unzip             \
-               wget              \
-               xclip             \
-               xsel              \
-               zsh               \
     && apt-get build-dep -o APT::Get::Build-Dep-Automatic=true -y --no-install-recommends \
     #           python2 \
                python3 \
     && apt-get install -y --no-install-recommends \
                build-essential \
+               ca-certificates \
                coreutils       \
                dirmngr         \
+               fontconfig      \
                gpg             \
                libbz2-dev      \
                libffi-dev      \
@@ -88,9 +50,48 @@ RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
                libxmlsec1-dev  \
                libxtst6        \
                llvm            \
+               locales         \
+               ncurses-term    \
+               psmisc          \
                tk-dev          \
                xz-utils        \
                zlib1g-dev      \
+    && apt-get install -y --no-install-recommends \
+               adb               \
+               curl              \
+               entr              \
+               git               \
+               httpie            \
+               jq                \
+               kdiff3            \
+               man               \
+               rxvt-unicode      \
+               screen            \
+               silversearcher-ag \
+               tmux              \
+               wget              \
+               xclip             \
+               xsel              \
+               zsh               \
+    && apt-get install -y --no-install-recommends \
+               aptitude          \
+               calibre           \
+               deluge            \
+               emacs-nox         \
+               encfs             \
+               ffmpeg            \
+               htop              \
+               imagemagick       \
+               less              \
+               neovim            \
+               p7zip-full        \
+               pdftk             \
+               ranger            \
+               rcm               \
+               ssh               \
+               sudo              \
+               tree              \
+               unzip             \
     && locale-gen en_US.UTF-8 \
     && yes | unminimize \
     && touch /etc/services \
@@ -150,8 +151,8 @@ RUN cd \
     # ZSH
     #
     && sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
-    && sed -e "/^plugins/ s/git/git wd globalias/" -i .zshrc \
-    && echo "prompt_context() {}" >> .zshrc \
+    && sed -e "/^plugins/ s/git/git wd globalias/" -i .zshrc                                \
+    && echo "prompt_context() {}" >> .zshrc                                                 \
     #
     # VIM
     #
@@ -168,15 +169,15 @@ RUN cd \
     # NIX
     #
     && sh -c "$(curl -fsSL https://nixos.org/nix/install)" \
-    && sed "/nix-profile/d" -i .zshrc \
-    && . /home/docker/.nix-profile/etc/profile.d/nix.sh \
+    && sed "/nix-profile/d" -i .zshrc                      \
+    && . /home/docker/.nix-profile/etc/profile.d/nix.sh    \
     #
     # ASDF
     #
     && git clone https://github.com/asdf-vm/asdf.git /cache/asdf \
-    && cd /cache/asdf \
-    && git checkout "$(git describe --abbrev=0 --tags)" \
-    && export PATH="/cache/asdf/shims:/cache/asdf/bin:$PATH" \
+    && cd /cache/asdf                                            \
+    && git checkout "$(git describe --abbrev=0 --tags)"          \
+    && export PATH="/cache/asdf/shims:/cache/asdf/bin:$PATH"     \
     # Python
     && asdf plugin-add python                                                   \
     #&& asdf install python latest:2                                            \
@@ -222,33 +223,33 @@ RUN cd \
     #
     # VIM Plugins
     #
-    && cd .vim_runtime/my_plugins \
-    # && git clone --depth=1 https://github.com/ervandew/supertab.git \
-    && git clone --depth=1 https://github.com/ryanoasis/vim-devicons.git \
-    && git clone --depth=1 https://github.com/junegunn/vim-easy-align.git \
-    && git clone --depth=1 https://github.com/neoclide/coc.nvim.git \
-    && git clone --depth=1 https://github.com/aklt/plantuml-syntax.git \
+    && cd .vim_runtime/my_plugins                                                              \
+    # && git clone --depth=1 https://github.com/ervandew/supertab.git                          \
+    && git clone --depth=1 https://github.com/ryanoasis/vim-devicons.git                       \
+    && git clone --depth=1 https://github.com/junegunn/vim-easy-align.git                      \
+    && git clone --depth=1 https://github.com/neoclide/coc.nvim.git                            \
+    && git clone --depth=1 https://github.com/aklt/plantuml-syntax.git                         \
     && git clone --depth=1 --branch next https://github.com/autozimu/LanguageClient-neovim.git \
-    && git clone --depth=1 https://github.com/LnL7/vim-nix.git \
-    && cd LanguageClient-neovim \
-    && bash install.sh \
-    && cd \
+    && git clone --depth=1 https://github.com/LnL7/vim-nix.git                                 \
+    && cd LanguageClient-neovim                                                                \
+    && bash install.sh                                                                         \
+    && cd                                                                                      \
     #
     # Pycharm
     #
-    && cd /cache \
+    && cd /cache                                                                    \
     && wget https://download.jetbrains.com/python/pycharm-community-2021.1.2.tar.gz \
-    && tar -zxvf pycharm-community-2021.1.2.tar.gz \
-    && rm -rf pycharm-community-2021.1.2.tar.gz \
-    && cd \
+    && tar -zxvf pycharm-community-2021.1.2.tar.gz                                  \
+    && rm -rf pycharm-community-2021.1.2.tar.gz                                     \
+    && cd                                                                           \
     #
     # Nerd fonts
     #
-    && mkdir .fonts \
-    && cd .fonts \
+    && mkdir .fonts                                                                                                                                                          \
+    && cd .fonts                                                                                                                                                             \
     && wget https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/SourceCodePro/Regular/complete/Sauce%20Code%20Pro%20Nerd%20Font%20Complete%20Mono.ttf?raw=true \
-    && cd \
-    && fc-cache -vf \
+    && cd                                                                                                                                                                    \
+    && fc-cache -vf                                                                                                                                                          \
     #
     # Cleanup
     #
