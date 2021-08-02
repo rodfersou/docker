@@ -70,7 +70,7 @@ RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
                xsel              \
                zsh               \
     && apt-get build-dep -o APT::Get::Build-Dep-Automatic=true -y --no-install-recommends \
-               python2 \
+    #           python2 \
                python3 \
     && apt-get install -y --no-install-recommends \
                build-essential \
@@ -178,45 +178,45 @@ RUN cd \
     && git checkout "$(git describe --abbrev=0 --tags)" \
     && export PATH="/cache/asdf/shims:/cache/asdf/bin:$PATH" \
     # Python
-    && asdf plugin-add python                                                  \
-    && asdf install python latest:2                                            \
-    && asdf install python latest:3.6                                          \
-    && asdf install python latest:3.8                                          \
-    && asdf install python latest                                              \
-    && for pydir in /cache/asdf/installs/python/*; do                          \
-        for libdir in $pydir/lib/python*/; do                                  \
-            ln -sf /usr/lib/python3.8/_sysconfigdata__$(uname -m)-linux-gnu.py \
-                   ${libdir}_sysconfigdata__linux_$(uname -m)-linux-gnu.py;    \
-        done;                                                                  \
-    done                                                                       \
-    && asdf global python $(asdf latest python)                                \
+    && asdf plugin-add python                                                   \
+    #&& asdf install python latest:2                                            \
+    && asdf install python latest:3.6                                           \
+    && asdf install python latest:3.8                                           \
+    && asdf install python latest                                               \
+    #&& for pydir in /cache/asdf/installs/python/*; do                          \
+    #    for libdir in $pydir/lib/python*/; do                                  \
+    #        ln -sf /usr/lib/python3.8/_sysconfigdata__$(uname -m)-linux-gnu.py \
+    #               ${libdir}_sysconfigdata__linux_$(uname -m)-linux-gnu.py;    \
+    #    done;                                                                  \
+    #done                                                                       \
+    && asdf global python latest                                                \
     # NodeJS
     && asdf plugin-add nodejs                          \
     && asdf install    nodejs latest:14                \
     && asdf global     nodejs $(asdf latest nodejs 14) \
     # Go
-    && asdf plugin-add golang                       \
-    && asdf install    golang latest                \
-    && asdf global     golang $(asdf latest golang) \
+    && asdf plugin-add golang        \
+    && asdf install    golang latest \
+    && asdf global     golang latest \
     # Ruby
-    && asdf plugin-add ruby                     \
-    && asdf install    ruby latest              \
-    && asdf global     ruby $(asdf latest ruby) \
+    && asdf plugin-add ruby        \
+    && asdf install    ruby latest \
+    && asdf global     ruby latest \
     # Java
     && asdf plugin-add java                                     \
     && asdf install    java latest:adoptopenjdk-11              \
     && asdf global     java $(asdf latest java adoptopenjdk-11) \
-    && asdf plugin-add gradle                                   \
-    #&& asdf install    gradle latest                            \
-    #&& asdf global     gradle $(asdf latest gradle)             \
+    && asdf plugin-add gradle                        \
+    #&& asdf install    gradle latest                \
+    #&& asdf global     gradle $(asdf latest gradle) \
     # Direnv
-    && asdf plugin-add direnv                       \
-    && asdf install    direnv latest                \
-    && asdf global     direnv $(asdf latest direnv) \
+    && asdf plugin-add direnv        \
+    && asdf install    direnv latest \
+    && asdf global     direnv latest \
     # ADR tools
-    && asdf plugin-add adr-tools                          \
-    && asdf install    adr-tools latest                   \
-    && asdf global     adr-tools $(asdf latest adr-tools) \
+    && asdf plugin-add adr-tools        \
+    && asdf install    adr-tools latest \
+    && asdf global     adr-tools latest \
     # ASDF - END
     && cd \
     #
