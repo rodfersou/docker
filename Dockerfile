@@ -2,7 +2,6 @@ FROM ubuntu:20.04
 ARG DEBIAN_FRONTEND=noninteractive
 ARG PYCHARM_VERSION="pycharm-community-2021.1.3"
 
-ENV _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on"
 ENV ASDF_DATA_DIR="/cache/asdf"
 ENV ASDF_DIR="/cache/asdf"
 ENV JGO_CACHE_DIR="/cache/jgo"
@@ -18,6 +17,7 @@ ENV PIPX_HOME="/cache/pipx"
 ENV XDG_CACHE_HOME="/cache"
 ENV YARN_CACHE_FOLDER="/cache/yarn"
 # Fix Pycharm interface
+ENV _JAVA_OPTIONS="-Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 ENV LIBGL_ALWAYS_INDIRECT=1
 
 ENV USER=docker
@@ -132,12 +132,12 @@ RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
     #
     # Pycharm
     #
-    && apt-get install -y --no-install-recommends                                                      \
-               dbus                                                                                    \
-               libgl1-mesa-glx                                                                         \
-               mesa-utils                                                                              \
-    && echo -e '#!/bin/bash\n/cache/${PYCHARM_VERSION}/bin/pycharm.sh $@\n' > /usr/bin/pycharm \
-    && chmod +x /usr/bin/pycharm                                                                       \
+    && apt-get install -y --no-install-recommends                                                             \
+               dbus                                                                                           \
+               libgl1-mesa-glx                                                                                \
+               mesa-utils                                                                                     \
+    && echo -e '#!/bin/bash\n/cache/${PYCHARM_VERSION}/bin/pycharm.sh $@\n 2> /dev/null &' > /usr/bin/pycharm \
+    && chmod +x /usr/bin/pycharm                                                                              \
     #
     # Cleanup
     #
