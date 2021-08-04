@@ -1,5 +1,6 @@
 FROM ubuntu:20.04
 ARG DEBIAN_FRONTEND=noninteractive
+ARG PYCHARM_VERSION="pycharm-community-2021.1.3"
 
 ENV _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on"
 ENV ASDF_DATA_DIR="/cache/asdf"
@@ -135,7 +136,7 @@ RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
                dbus                                                                                    \
                libgl1-mesa-glx                                                                         \
                mesa-utils                                                                              \
-    && echo -e '#!/bin/bash\n/cache/pycharm-community-2021.1.2/bin/pycharm.sh $@\n' > /usr/bin/pycharm \
+    && echo -e '#!/bin/bash\n/cache/${PYCHARM_VERSION}/bin/pycharm.sh $@\n' > /usr/bin/pycharm \
     && chmod +x /usr/bin/pycharm                                                                       \
     #
     # Cleanup
@@ -238,9 +239,9 @@ RUN cd \
     # Pycharm
     #
     && cd /cache                                                                    \
-    && wget https://download.jetbrains.com/python/pycharm-community-2021.1.2.tar.gz \
-    && tar -zxvf pycharm-community-2021.1.2.tar.gz                                  \
-    && rm -rf pycharm-community-2021.1.2.tar.gz                                     \
+    && wget https://download.jetbrains.com/python/${PYCHARM_VERSION}.tar.gz \
+    && tar -zxvf ${PYCHARM_VERSION}.tar.gz                                  \
+    && rm -rf ${PYCHARM_VERSION}.tar.gz                                     \
     && cd                                                                           \
     #
     # Nerd fonts
