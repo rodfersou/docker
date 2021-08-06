@@ -18,6 +18,7 @@ ENV XDG_CACHE_HOME="/cache"
 ENV YARN_CACHE_FOLDER="/cache/yarn"
 # Fix Pycharm interface
 ENV _JAVA_OPTIONS="-Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
+ENV JAVA_FONTS=/home/docker/.fonts
 ENV LIBGL_ALWAYS_INDIRECT=1
 
 ENV USER=docker
@@ -61,6 +62,7 @@ RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
                adb               \
                curl              \
                entr              \
+               ghostscript       \
                git               \
                httpie            \
                jq                \
@@ -248,7 +250,7 @@ RUN cd \
     #
     && mkdir .fonts                                                                                                                                                          \
     && cd .fonts                                                                                                                                                             \
-    && wget https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/SourceCodePro/Regular/complete/Sauce%20Code%20Pro%20Nerd%20Font%20Complete%20Mono.ttf?raw=true \
+    && wget https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/SourceCodePro/Regular/complete/Sauce%20Code%20Pro%20Nerd%20Font%20Complete%20Mono.ttf?raw=true -O Sauce_Code_Pro_Nerd_Font_Complete_Mono.ttf \
     && cd                                                                                                                                                                    \
     && fc-cache -vf                                                                                                                                                          \
     #

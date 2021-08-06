@@ -1,0 +1,37 @@
+<application>
+  <component name="ActionsLocalSummary">
+    <e n="EditorBackSpace">
+      <i c="15" l="1628228331006" />
+    </e>
+    <e n="EditorEscape">
+      <i c="4" l="1628229156730" />
+    </e>
+    <e n="Exit">
+      <i c="1" l="1628229242974" />
+    </e>
+    <e n="HideIgnoredFiles">
+      <i c="1" l="1628228735543" />
+    </e>
+    <e n="SelectNextOccurrence">
+      <i c="14" l="1628229155160" />
+    </e>
+    <e n="ShowSettings">
+      <i c="10" l="1628229168316" />
+    </e>
+    <e n="WelcomeScreen.OpenDirectoryProject">
+      <i c="1" l="1628227197805" />
+    </e>
+    <e n="com.intellij.ide.plugins.newui.SelectionBasedPluginModelAction$UninstallAction">
+      <i c="8" l="1628228937437" />
+    </e>
+    <e n="com.intellij.openapi.actionSystem.EmptyAction$MyDelegatingAction">
+      <i c="24" l="1628229163191" />
+    </e>
+    <e n="com.intellij.openapi.fileEditor.impl.tabActions.CloseTab">
+      <i c="2" l="1628228723998" />
+    </e>
+    <e n="com.intellij.openapi.wm.impl.ToolWindowHeader$HideAction">
+      <i c="1" l="1628228771663" />
+    </e>
+  </component>
+</application>
