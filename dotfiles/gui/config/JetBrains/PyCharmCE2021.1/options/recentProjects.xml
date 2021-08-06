@@ -4,13 +4,13 @@
       <map>
         <entry key="/srv/boughtbymany/service-claim">
           <value>
-            <RecentProjectMetaInfo frameTitle="service-claim – case_handlers.py" opened="true" projectWorkspaceId="1vwWzr3N7txZlYHoJfujqy8pOcp">
+            <RecentProjectMetaInfo frameTitle="service-claim – utils.py" opened="true" projectWorkspaceId="1vwWzr3N7txZlYHoJfujqy8pOcp">
               <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
               <option name="build" value="PC-211.7442.45" />
-              <option name="buildTimestamp" value="1622576730961" />
-              <frame x="0" y="0" width="1670" height="1042" />
+              <option name="buildTimestamp" value="1622576746192" />
+              <frame x="0" y="0" width="1680" height="1050" extendedState="6" />
               <option name="productionCode" value="PC" />
-              <option name="projectOpenTimestamp" value="1628227255576" />
+              <option name="projectOpenTimestamp" value="1628245433786" />
             </RecentProjectMetaInfo>
           </value>
         </entry>
