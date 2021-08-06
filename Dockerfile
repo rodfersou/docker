@@ -134,12 +134,12 @@ RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
     #
     # Pycharm
     #
-    && apt-get install -y --no-install-recommends                                                             \
-               dbus                                                                                           \
-               libgl1-mesa-glx                                                                                \
-               mesa-utils                                                                                     \
-    && echo -e '#!/bin/bash\n/cache/${PYCHARM_VERSION}/bin/pycharm.sh $@\n 2> /dev/null &' > /usr/bin/pycharm \
-    && chmod +x /usr/bin/pycharm                                                                              \
+    && apt-get install -y --no-install-recommends                                                              \
+               dbus                                                                                            \
+               libgl1-mesa-glx                                                                                 \
+               mesa-utils                                                                                      \
+    && echo -e "#\!/bin/bash\n/cache/${PYCHARM_VERSION}/bin/pycharm.sh $@ 2> /dev/null &\n" > /usr/bin/pycharm \
+    && chmod +x /usr/bin/pycharm                                                                               \
     #
     # Cleanup
     #
@@ -183,17 +183,19 @@ RUN cd \
     && export PATH="/cache/asdf/shims:/cache/asdf/bin:$PATH"     \
     # Python
     && asdf plugin-add python                                                   \
-    #&& asdf install python latest:2                                            \
-    && asdf install python latest:3.6                                           \
-    && asdf install python latest:3.8                                           \
     && asdf install python latest                                               \
+    && asdf global python latest                                                \
+    && rm /home/docker/default-python-packages                                  \
+    && asdf install python latest:3.8                                           \
+    && asdf install python latest:3.6                                           \
+    #&& asdf install python latest:2                                            \
     #&& for pydir in /cache/asdf/installs/python/*; do                          \
     #    for libdir in $pydir/lib/python*/; do                                  \
     #        ln -sf /usr/lib/python3.8/_sysconfigdata__$(uname -m)-linux-gnu.py \
     #               ${libdir}_sysconfigdata__linux_$(uname -m)-linux-gnu.py;    \
     #    done;                                                                  \
     #done                                                                       \
-    && asdf global python latest                                                \
+    && rcup                                                                     \
     # NodeJS
     && asdf plugin-add nodejs                          \
     && asdf install    nodejs latest:14                \
