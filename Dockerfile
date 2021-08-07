@@ -143,7 +143,8 @@ RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
     #
     # Cleanup
     #
-    && apt-get autoremove -y \
+    && apt-get clean               \
+    && apt-get autoremove -y       \
     && rm -rf /var/lib/apt/lists/*
 
 USER docker
@@ -185,7 +186,7 @@ RUN cd \
     && asdf plugin-add python                                                   \
     && asdf install python latest                                               \
     && asdf global python latest                                                \
-    && rm /home/docker/default-python-packages                                  \
+    && rm /home/docker/.default-python-packages                                 \
     && asdf install python latest:3.8                                           \
     && asdf install python latest:3.6                                           \
     #&& asdf install python latest:2                                            \
