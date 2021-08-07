@@ -26,7 +26,6 @@ package-lock.json
 Pipfile
 pyvenv.cfg
 qa.cfg
-share
 shell.nix
 TAGS
 tags

@@ -22,7 +22,6 @@
     <property name="MTUILite.version" value="4.0" />
     <property name="MarketplacePluginsSearchHistory" value="/sortBy:downloads&#10;/organization:&quot;Atom Material Themes &amp; Plugins&quot;&#10;sublime&#10;subli&#10;subl" />
     <property name="NonModalCommitCustomization.IsApplied" value="true" />
-    <property name="PluginConfigurable.selectionTab" value="1" />
     <property name="PyCharm.InitialConfiguration" value="true" />
     <property name="PyCharm.InitialConfiguration.V2" value="true" />
     <property name="PyCharm.InitialConfiguration.V3" value="true" />
@@ -31,12 +30,12 @@
     <property name="PyCharm.InitialConfiguration.V6" value="true" />
     <property name="PyCharm.InitialConfiguration.V7" value="true" />
     <property name="SettingsSearchHistory" value="4" />
-    <property name="appcds.runOnSecondStart" value="PC-212.4746.96-78cf123aae15ae1d18f6b5f1b3a0290f075fd4a3cc9edf784420f94d7546a552" />
+    <property name="appcds.runOnSecondStart" value="PC-212.4746.96-55efc2dc4af10a0997011cd12efcf33e3a6b9001342ffe951ee775a0eff35bb2" />
     <property name="ask.about.ctrl.y.shortcut.v2" value="true" />
     <property name="experimentalFeature.terminal.shell.command.handling" value="false" />
-    <property name="file.chooser.recent.files" value="/srv/boughtbymany/service-claim" />
-    <property name="file.gist.reindex.count" value="21498" />
-    <property name="fileTypeChangedCounter" value="141" />
+    <property name="file.chooser.recent.files" value="$APPLICATION_CONFIG_DIR$/settings.zip&#10;/srv/boughtbymany/service-claim" />
+    <property name="file.gist.reindex.count" value="21864" />
+    <property name="fileTypeChangedCounter" value="152" />
     <property name="fileTypeDetectors" value="com.intellij.ide.scratch.ScratchFileServiceImpl$Detector:org.jetbrains.plugins.textmate.TextMateFileType$TextMateFileDetector" />
     <property name="got.it.tooltip.cwm.invitation.notification" value="1" />
     <property name="ide.memory.adjusted" value="true" />
@@ -46,7 +45,7 @@
     <property name="ignore.vm.options.env.vars" value="true" />
     <property name="lastSeenTip" value="neue-LiveTemplates.html" />
     <property name="lastTimeTipsWereShown" value="1628227260989" />
-    <property name="last_opened_file_path" value="/srv/boughtbymany/service-claim" />
+    <property name="last_opened_file_path" value="$APPLICATION_CONFIG_DIR$/settings.zip" />
     <property name="log.trace.categories" value="#com.jetbrains.rdserver.requests&#10;#com.jetbrains.rd.ide.document&#10;#com.jetbrains.rdserver.document&#10;#com.jetbrains.rdserver.editors&#10;#com.jetbrains.rdserver.actions" />
     <property name="mt.showInstallAtom" value="true" />
     <property name="mt.showStatisticsAgreement" value="true" />

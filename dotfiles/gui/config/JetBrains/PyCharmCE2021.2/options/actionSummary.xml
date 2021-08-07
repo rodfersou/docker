@@ -22,7 +22,7 @@
       <i c="1" l="1628229242974" />
     </e>
     <e n="ExportSettings">
-      <i c="6" l="1628307424232" />
+      <i c="7" l="1628310527931" />
     </e>
     <e n="FindUsages">
       <i c="1" l="1628307181039" />
@@ -36,6 +36,9 @@
     <e n="HideIgnoredFiles">
       <i c="3" l="1628306339261" />
     </e>
+    <e n="ImportSettings">
+      <i c="1" l="1628310323558" />
+    </e>
     <e n="Run">
       <i c="2" l="1628307435641" />
     </e>
@@ -43,7 +46,7 @@
       <i c="14" l="1628229155160" />
     </e>
     <e n="ShowSettings">
-      <i c="24" l="1628307316789" />
+      <i c="26" l="1628310560735" />
     </e>
     <e n="WelcomeScreen.OpenDirectoryProject">
       <i c="1" l="1628227197805" />
@@ -63,8 +66,11 @@
     <e n="com.intellij.openapi.updateSettings.impl.UpdateChecker$showNotification$1">
       <i c="1" l="1628300870380" />
     </e>
+    <e n="com.intellij.openapi.wm.impl.MoreSquareStripeButton$Companion$createAction$1">
+      <i c="2" l="1628310513168" />
+    </e>
     <e n="com.intellij.openapi.wm.impl.SquareStripeButton$SquareAnActionButton">
-      <i c="12" l="1628307062976" />
+      <i c="13" l="1628310374157" />
     </e>
     <e n="com.intellij.openapi.wm.impl.ToolWindowHeader$HideAction">
       <i c="3" l="1628307185886" />
