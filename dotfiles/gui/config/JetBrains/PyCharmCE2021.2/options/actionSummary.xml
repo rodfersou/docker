@@ -6,32 +6,44 @@
     <e n="EditorEscape">
       <i c="4" l="1628229156730" />
     </e>
+    <e n="EnableDirectoryIconsAction">
+      <i c="1" l="1628301502114" />
+    </e>
+    <e n="EnableFileIconsAction">
+      <i c="1" l="1628301480991" />
+    </e>
+    <e n="EnableUIIconsAction">
+      <i c="1" l="1628301510518" />
+    </e>
     <e n="Exit">
       <i c="1" l="1628229242974" />
     </e>
     <e n="HideIgnoredFiles">
-      <i c="1" l="1628228735543" />
+      <i c="2" l="1628301605806" />
     </e>
     <e n="SelectNextOccurrence">
       <i c="14" l="1628229155160" />
     </e>
     <e n="ShowSettings">
-      <i c="10" l="1628229168316" />
+      <i c="14" l="1628301661100" />
     </e>
     <e n="WelcomeScreen.OpenDirectoryProject">
       <i c="1" l="1628227197805" />
     </e>
     <e n="com.intellij.ide.plugins.newui.SelectionBasedPluginModelAction$UninstallAction">
-      <i c="8" l="1628228937437" />
+      <i c="9" l="1628301712234" />
     </e>
     <e n="com.intellij.openapi.actionSystem.EmptyAction$MyDelegatingAction">
       <i c="24" l="1628229163191" />
     </e>
     <e n="com.intellij.openapi.fileEditor.impl.tabActions.CloseTab">
-      <i c="4" l="1628245451730" />
+      <i c="5" l="1628301032824" />
     </e>
     <e n="com.intellij.openapi.updateSettings.impl.UpdateChecker$showNotification$1">
       <i c="1" l="1628300870380" />
+    </e>
+    <e n="com.intellij.openapi.wm.impl.SquareStripeButton$SquareAnActionButton">
+      <i c="3" l="1628301455313" />
     </e>
     <e n="com.intellij.openapi.wm.impl.ToolWindowHeader$HideAction">
       <i c="1" l="1628228771663" />

@@ -138,7 +138,7 @@ RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
                dbus                                                                                            \
                libgl1-mesa-glx                                                                                 \
                mesa-utils                                                                                      \
-    && echo -e "#\!/bin/bash\n/cache/${PYCHARM_VERSION}/bin/pycharm.sh $@ 2> /dev/null &\n" > /usr/bin/pycharm \
+    && echo -e "#\!/bin/bash\n/cache/${PYCHARM_VERSION}/bin/pycharm.sh \$@ 2> /dev/null &\n" > /usr/bin/pycharm \
     && chmod +x /usr/bin/pycharm                                                                               \
     #
     # Cleanup

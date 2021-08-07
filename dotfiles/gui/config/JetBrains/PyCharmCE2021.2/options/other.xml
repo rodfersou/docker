@@ -1,6 +1,8 @@
 <application>
   <component name="NotRoamableUiSettings">
     <option name="editorAAType" value="Greyscale" />
+    <option name="fontScale" value="1.0" />
+    <option name="fontSize" value="14" />
     <option name="ideAAType" value="Greyscale" />
   </component>
   <component name="ProjectPluginTrackerManager">
@@ -17,9 +19,8 @@
   <component name="PropertiesComponent">
     <property name="InstalledPluginsSearchHistory" value="ui&#10;keys&#10;key&#10;ke&#10;s" />
     <property name="MTUILite.version" value="4.0" />
-    <property name="MarketplacePluginsSearchHistory" value="ui&#10;sublime&#10;keys&#10;theme" />
+    <property name="MarketplacePluginsSearchHistory" value="sublime&#10;subli&#10;subl&#10;sub&#10;su" />
     <property name="NonModalCommitCustomization.IsApplied" value="true" />
-    <property name="PluginConfigurable.selectionTab" value="1" />
     <property name="PyCharm.InitialConfiguration" value="true" />
     <property name="PyCharm.InitialConfiguration.V2" value="true" />
     <property name="PyCharm.InitialConfiguration.V3" value="true" />
@@ -28,22 +29,24 @@
     <property name="PyCharm.InitialConfiguration.V6" value="true" />
     <property name="PyCharm.InitialConfiguration.V7" value="true" />
     <property name="SettingsSearchHistory" value="4" />
-    <property name="appcds.runOnSecondStart" value="PC-211.7628.24-b88bf07141abaa6f3925b583a4cae474c73fffacd549fd7bef78ccf3c9943efe" />
+    <property name="appcds.runOnSecondStart" value="PC-212.4746.96-b320ec49aeb8cb6dab0ff9832bac40e8415c50eaa460fdfc6e4af2d6d27186a8" />
     <property name="ask.about.ctrl.y.shortcut.v2" value="true" />
     <property name="experimentalFeature.terminal.shell.command.handling" value="false" />
     <property name="file.chooser.recent.files" value="/srv/boughtbymany/service-claim" />
-    <property name="file.gist.reindex.count" value="4172" />
-    <property name="fileTypeChangedCounter" value="2" />
-    <property name="fileTypeDetectors" value="com.intellij.ide.scratch.ScratchFileServiceImpl$Detector" />
+    <property name="file.gist.reindex.count" value="8344" />
+    <property name="fileTypeChangedCounter" value="72" />
+    <property name="fileTypeDetectors" value="com.intellij.ide.scratch.ScratchFileServiceImpl$Detector:org.jetbrains.plugins.textmate.TextMateFileType$TextMateFileDetector" />
     <property name="got.it.tooltip.cwm.invitation.notification" value="1" />
     <property name="ide.memory.adjusted" value="true" />
-    <property name="ide.self.update.started.for.build" value="PC-211.7628.24" />
-    <property name="ide.updates.previous.build.number" value="PC-211.7628.24" />
+    <property name="ide.updates.old.dirs.scan.scheduled" value="1628905755137" />
+    <property name="ide.updates.previous.build.number" value="PC-212.4746.96" />
     <property name="ideavim.statistics.timestamp" value="1628227259583" />
     <property name="lastSeenTip" value="neue-LiveTemplates.html" />
     <property name="lastTimeTipsWereShown" value="1628227260989" />
     <property name="last_opened_file_path" value="/srv/boughtbymany/service-claim" />
     <property name="log.trace.categories" value="#com.jetbrains.rdserver.requests&#10;#com.jetbrains.rd.ide.document&#10;#com.jetbrains.rdserver.document&#10;#com.jetbrains.rdserver.editors&#10;#com.jetbrains.rdserver.actions" />
+    <property name="mt.showInstallAtom" value="true" />
+    <property name="registry.to.advanced.settings.migration.build" value="PC-212.4746.96" />
     <property name="seenTips" value="neue-LiveTemplates.html" />
     <property name="selected.color.option.type" value="FOLDED_TEXT_BORDER_COLOR" />
     <property name="tasks.pass.word.conversion.enforced" value="true" />
