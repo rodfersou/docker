@@ -1,5 +1,8 @@
 <application>
   <component name="ActionsLocalSummary">
+    <e n="ConfigureIcs">
+      <i c="1" l="1628305595309" />
+    </e>
     <e n="EditorBackSpace">
       <i c="15" l="1628228331006" />
     </e>
@@ -18,35 +21,56 @@
     <e n="Exit">
       <i c="1" l="1628229242974" />
     </e>
+    <e n="ExportSettings">
+      <i c="6" l="1628307424232" />
+    </e>
+    <e n="FindUsages">
+      <i c="1" l="1628307181039" />
+    </e>
+    <e n="GotoDeclaration">
+      <i c="5" l="1628307241749" />
+    </e>
+    <e n="GotoImplementation">
+      <i c="1" l="1628307150168" />
+    </e>
     <e n="HideIgnoredFiles">
-      <i c="2" l="1628301605806" />
+      <i c="3" l="1628306339261" />
+    </e>
+    <e n="Run">
+      <i c="2" l="1628307435641" />
     </e>
     <e n="SelectNextOccurrence">
       <i c="14" l="1628229155160" />
     </e>
     <e n="ShowSettings">
-      <i c="14" l="1628301661100" />
+      <i c="24" l="1628307316789" />
     </e>
     <e n="WelcomeScreen.OpenDirectoryProject">
       <i c="1" l="1628227197805" />
     </e>
     <e n="com.intellij.ide.plugins.newui.SelectionBasedPluginModelAction$UninstallAction">
-      <i c="9" l="1628301712234" />
+      <i c="11" l="1628306771441" />
+    </e>
+    <e n="com.intellij.notification.NotificationAction$Simple">
+      <i c="2" l="1628306347941" />
     </e>
     <e n="com.intellij.openapi.actionSystem.EmptyAction$MyDelegatingAction">
-      <i c="24" l="1628229163191" />
+      <i c="26" l="1628307114617" />
     </e>
     <e n="com.intellij.openapi.fileEditor.impl.tabActions.CloseTab">
-      <i c="5" l="1628301032824" />
+      <i c="11" l="1628307278458" />
     </e>
     <e n="com.intellij.openapi.updateSettings.impl.UpdateChecker$showNotification$1">
       <i c="1" l="1628300870380" />
     </e>
     <e n="com.intellij.openapi.wm.impl.SquareStripeButton$SquareAnActionButton">
-      <i c="3" l="1628301455313" />
+      <i c="12" l="1628307062976" />
     </e>
     <e n="com.intellij.openapi.wm.impl.ToolWindowHeader$HideAction">
-      <i c="1" l="1628228771663" />
+      <i c="3" l="1628307185886" />
+    </e>
+    <e n="com.intellij.space.actions.SpaceMainToolBarAction">
+      <i c="2" l="1628307026798" />
     </e>
   </component>
 </application>

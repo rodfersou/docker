@@ -134,12 +134,10 @@ RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
     #
     # Pycharm
     #
-    && apt-get install -y --no-install-recommends                                                              \
-               dbus                                                                                            \
-               libgl1-mesa-glx                                                                                 \
-               mesa-utils                                                                                      \
-    && echo -e "#\!/bin/bash\n/cache/${PYCHARM_VERSION}/bin/pycharm.sh \$@ 2> /dev/null &\n" > /usr/bin/pycharm \
-    && chmod +x /usr/bin/pycharm                                                                               \
+    && apt-get install -y --no-install-recommends \
+               dbus                               \
+               libgl1-mesa-glx                    \
+               mesa-utils                         \
     #
     # Cleanup
     #
@@ -243,19 +241,20 @@ RUN cd \
     #
     # Pycharm
     #
-    && cd /cache                                                                    \
+    && cd /cache                                                            \
     && wget https://download.jetbrains.com/python/${PYCHARM_VERSION}.tar.gz \
     && tar -zxvf ${PYCHARM_VERSION}.tar.gz                                  \
     && rm -rf ${PYCHARM_VERSION}.tar.gz                                     \
-    && cd                                                                           \
+    && ln -sf ${PYCHARM_VERSION} pycharm                                    \
+    && cd                                                                   \
     #
     # Nerd fonts
     #
-    && mkdir .fonts                                                                                                                                                          \
-    && cd .fonts                                                                                                                                                             \
+    && mkdir .fonts \
+    && cd .fonts    \
     && wget https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/SourceCodePro/Regular/complete/Sauce%20Code%20Pro%20Nerd%20Font%20Complete%20Mono.ttf?raw=true -O Sauce_Code_Pro_Nerd_Font_Complete_Mono.ttf \
-    && cd                                                                                                                                                                    \
-    && fc-cache -vf                                                                                                                                                          \
+    && cd           \
+    && fc-cache -vf \
     #
     # Cleanup
     #

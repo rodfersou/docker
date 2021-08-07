@@ -1,0 +1,2 @@
+#!/bin/bash
+/cache/pycharm/bin/pycharm.sh $@ 2> /dev/null &
