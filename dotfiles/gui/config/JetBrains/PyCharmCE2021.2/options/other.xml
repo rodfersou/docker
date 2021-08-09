@@ -20,7 +20,7 @@
     <property name="ExpandBeforeRunStepsPanel" value="true" />
     <property name="InstalledPluginsSearchHistory" value="ui&#10;keys&#10;key&#10;ke&#10;s" />
     <property name="MTUILite.version" value="4.0" />
-    <property name="MarketplacePluginsSearchHistory" value="/sortBy:downloads&#10;/organization:&quot;Atom Material Themes &amp; Plugins&quot;&#10;sublime&#10;subli&#10;subl" />
+    <property name="MarketplacePluginsSearchHistory" value="black&#10;bla&#10;b&#10;pydantic&#10;pydan" />
     <property name="NonModalCommitCustomization.IsApplied" value="true" />
     <property name="PyCharm.InitialConfiguration" value="true" />
     <property name="PyCharm.InitialConfiguration.V2" value="true" />
@@ -30,12 +30,12 @@
     <property name="PyCharm.InitialConfiguration.V6" value="true" />
     <property name="PyCharm.InitialConfiguration.V7" value="true" />
     <property name="SettingsSearchHistory" value="4" />
-    <property name="appcds.runOnSecondStart" value="PC-212.4746.96-55efc2dc4af10a0997011cd12efcf33e3a6b9001342ffe951ee775a0eff35bb2" />
+    <property name="appcds.runOnSecondStart" value="PC-212.4746.96-e8208227d7d4afc6a7650d0f3a21d7d6e6c83f9c2b57ed34f6f539a863a64d86" />
     <property name="ask.about.ctrl.y.shortcut.v2" value="true" />
     <property name="experimentalFeature.terminal.shell.command.handling" value="false" />
     <property name="file.chooser.recent.files" value="$APPLICATION_CONFIG_DIR$/settings.zip&#10;/srv/boughtbymany/service-claim" />
-    <property name="file.gist.reindex.count" value="21864" />
-    <property name="fileTypeChangedCounter" value="152" />
+    <property name="file.gist.reindex.count" value="21865" />
+    <property name="fileTypeChangedCounter" value="159" />
     <property name="fileTypeDetectors" value="com.intellij.ide.scratch.ScratchFileServiceImpl$Detector:org.jetbrains.plugins.textmate.TextMateFileType$TextMateFileDetector" />
     <property name="got.it.tooltip.cwm.invitation.notification" value="1" />
     <property name="ide.memory.adjusted" value="true" />

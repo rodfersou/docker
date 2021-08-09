@@ -4,7 +4,7 @@
       <i c="1" l="1628305595309" />
     </e>
     <e n="EditorBackSpace">
-      <i c="15" l="1628228331006" />
+      <i c="27" l="1628311979976" />
     </e>
     <e n="EditorEscape">
       <i c="4" l="1628229156730" />
@@ -37,16 +37,19 @@
       <i c="3" l="1628306339261" />
     </e>
     <e n="ImportSettings">
-      <i c="1" l="1628310323558" />
+      <i c="2" l="1628311625983" />
     </e>
     <e n="Run">
       <i c="2" l="1628307435641" />
+    </e>
+    <e n="SearchEverywhere">
+      <i c="1" l="1628312482574" />
     </e>
     <e n="SelectNextOccurrence">
       <i c="14" l="1628229155160" />
     </e>
     <e n="ShowSettings">
-      <i c="26" l="1628310560735" />
+      <i c="31" l="1628312341290" />
     </e>
     <e n="WelcomeScreen.OpenDirectoryProject">
       <i c="1" l="1628227197805" />
@@ -61,7 +64,10 @@
       <i c="26" l="1628307114617" />
     </e>
     <e n="com.intellij.openapi.fileEditor.impl.tabActions.CloseTab">
-      <i c="11" l="1628307278458" />
+      <i c="19" l="1628312462253" />
+    </e>
+    <e n="com.intellij.openapi.project.DumbAwareAction$SimpleDumbAwareAction">
+      <i c="1" l="1628312485661" />
     </e>
     <e n="com.intellij.openapi.updateSettings.impl.UpdateChecker$showNotification$1">
       <i c="1" l="1628300870380" />
@@ -70,7 +76,7 @@
       <i c="2" l="1628310513168" />
     </e>
     <e n="com.intellij.openapi.wm.impl.SquareStripeButton$SquareAnActionButton">
-      <i c="13" l="1628310374157" />
+      <i c="16" l="1628312444920" />
     </e>
     <e n="com.intellij.openapi.wm.impl.ToolWindowHeader$HideAction">
       <i c="3" l="1628307185886" />
