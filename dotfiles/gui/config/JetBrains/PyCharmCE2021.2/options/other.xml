@@ -30,18 +30,18 @@
     <property name="PyCharm.InitialConfiguration.V6" value="true" />
     <property name="PyCharm.InitialConfiguration.V7" value="true" />
     <property name="SettingsSearchHistory" value="4" />
-    <property name="appcds.runOnSecondStart" value="PC-212.4746.96-e8208227d7d4afc6a7650d0f3a21d7d6e6c83f9c2b57ed34f6f539a863a64d86" />
+    <property name="appcds.runOnSecondStart" value="PC-212.4746.96-8aaa7c156d7508ade4291eeebdf47654aa3b820c3bd46546cb7e10e27d192341" />
     <property name="ask.about.ctrl.y.shortcut.v2" value="true" />
     <property name="experimentalFeature.terminal.shell.command.handling" value="false" />
     <property name="file.chooser.recent.files" value="$APPLICATION_CONFIG_DIR$/settings.zip&#10;/srv/boughtbymany/service-claim" />
-    <property name="file.gist.reindex.count" value="21865" />
+    <property name="file.gist.reindex.count" value="21878" />
     <property name="fileTypeChangedCounter" value="159" />
     <property name="fileTypeDetectors" value="com.intellij.ide.scratch.ScratchFileServiceImpl$Detector:org.jetbrains.plugins.textmate.TextMateFileType$TextMateFileDetector" />
     <property name="got.it.tooltip.cwm.invitation.notification" value="1" />
     <property name="ide.memory.adjusted" value="true" />
     <property name="ide.updates.old.dirs.scan.scheduled" value="1628905755137" />
     <property name="ide.updates.previous.build.number" value="PC-212.4746.96" />
-    <property name="ideavim.statistics.timestamp" value="1628227259583" />
+    <property name="ideavim.statistics.timestamp" value="1628495921691" />
     <property name="ignore.vm.options.env.vars" value="true" />
     <property name="lastSeenTip" value="neue-LiveTemplates.html" />
     <property name="lastTimeTipsWereShown" value="1628227260989" />
@@ -53,6 +53,10 @@
     <property name="seenTips" value="neue-LiveTemplates.html" />
     <property name="selected.color.option.type" value="FOLDED_TEXT_BORDER_COLOR" />
     <property name="tasks.pass.word.conversion.enforced" value="true" />
+  </component>
+  <component name="PyCodeInsightSettings">
+    <option name="RENAME_SEARCH_IN_COMMENTS_FOR_FUNCTION" value="true" />
+    <option name="RENAME_SEARCH_NON_CODE_FOR_FUNCTION" value="true" />
   </component>
   <component name="ToolbarSettingsService">
     <option name="NEW_TOOLBAR_SETTINGS" value="OLD_NAVBAR" />

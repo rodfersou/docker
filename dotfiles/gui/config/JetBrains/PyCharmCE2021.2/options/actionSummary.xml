@@ -4,7 +4,7 @@
       <i c="1" l="1628305595309" />
     </e>
     <e n="EditorBackSpace">
-      <i c="27" l="1628311979976" />
+      <i c="33" l="1628495957608" />
     </e>
     <e n="EditorEscape">
       <i c="4" l="1628229156730" />
@@ -39,6 +39,9 @@
     <e n="ImportSettings">
       <i c="2" l="1628311625983" />
     </e>
+    <e n="RenameElement">
+      <i c="1" l="1628495941851" />
+    </e>
     <e n="Run">
       <i c="2" l="1628307435641" />
     </e>
@@ -64,7 +67,7 @@
       <i c="26" l="1628307114617" />
     </e>
     <e n="com.intellij.openapi.fileEditor.impl.tabActions.CloseTab">
-      <i c="19" l="1628312462253" />
+      <i c="20" l="1628496062787" />
     </e>
     <e n="com.intellij.openapi.project.DumbAwareAction$SimpleDumbAwareAction">
       <i c="1" l="1628312485661" />
@@ -76,7 +79,7 @@
       <i c="2" l="1628310513168" />
     </e>
     <e n="com.intellij.openapi.wm.impl.SquareStripeButton$SquareAnActionButton">
-      <i c="16" l="1628312444920" />
+      <i c="18" l="1628495926660" />
     </e>
     <e n="com.intellij.openapi.wm.impl.ToolWindowHeader$HideAction">
       <i c="3" l="1628307185886" />
