@@ -159,7 +159,7 @@ RUN cd \
     # VIM
     #
     && git clone --depth=1 https://github.com/amix/vimrc.git .vim_runtime \
-    && sh .vim_runtime/install_awesome_vimrc.sh                           \
+    && sh ~/.vim_runtime/install_awesome_vimrc.sh                         \
     #
     # Dotfiles
     #
@@ -227,7 +227,7 @@ RUN cd \
     #
     # VIM Plugins
     #
-    && cd .vim_runtime/my_plugins                                                              \
+    && cd ~/.vim_runtime/my_plugins                                                            \
     # && git clone --depth=1 https://github.com/ervandew/supertab.git                          \
     && git clone --depth=1 https://github.com/ryanoasis/vim-devicons.git                       \
     && git clone --depth=1 https://github.com/junegunn/vim-easy-align.git                      \
@@ -235,9 +235,9 @@ RUN cd \
     && git clone --depth=1 https://github.com/aklt/plantuml-syntax.git                         \
     && git clone --depth=1 --branch next https://github.com/autozimu/LanguageClient-neovim.git \
     && git clone --depth=1 https://github.com/LnL7/vim-nix.git                                 \
-    && cd .vim_runtime/my_plugins/coc.nvim                                                     \
+    && cd ~/.vim_runtime/my_plugins/coc.nvim                                                   \
     && yarn                                                                                    \
-    && cd .vim_runtime/my_plugins/LanguageClient-neovim                                        \
+    && cd ~/.vim_runtime/my_plugins/LanguageClient-neovim                                      \
     && bash install.sh                                                                         \
     && cd                                                                                      \
     #
@@ -252,8 +252,8 @@ RUN cd \
     #
     # Nerd fonts
     #
-    && mkdir .fonts \
-    && cd .fonts    \
+    && mkdir ~/.fonts \
+    && cd ~/.fonts    \
     && wget https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/SourceCodePro/Regular/complete/Sauce%20Code%20Pro%20Nerd%20Font%20Complete%20Mono.ttf?raw=true -O Sauce_Code_Pro_Nerd_Font_Complete_Mono.ttf \
     && cd           \
     && fc-cache -vf \
