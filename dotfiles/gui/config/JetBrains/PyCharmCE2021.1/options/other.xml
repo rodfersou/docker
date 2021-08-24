@@ -1,12 +1,17 @@
 <application>
   <component name="NotRoamableUiSettings">
-    <option name="editorAAType" value="Greyscale" />
-    <option name="ideAAType" value="Greyscale" />
+    <option name="editorAAType" value="No antialiasing" />
+    <option name="ideAAType" value="No antialiasing" />
   </component>
   <component name="ProjectPluginTrackerManager">
     <trackers>
       <map>
         <entry key="1vwWzr3N7txZlYHoJfujqy8pOcp">
+          <value>
+            <ProjectPluginTracker />
+          </value>
+        </entry>
+        <entry key="1x7afBk3LzQEO9OdvrgPoABTyUS">
           <value>
             <ProjectPluginTracker />
           </value>
@@ -19,7 +24,6 @@
     <property name="MTUILite.version" value="4.0" />
     <property name="MarketplacePluginsSearchHistory" value="ui&#10;sublime&#10;keys&#10;theme" />
     <property name="NonModalCommitCustomization.IsApplied" value="true" />
-    <property name="PluginConfigurable.selectionTab" value="1" />
     <property name="PyCharm.InitialConfiguration" value="true" />
     <property name="PyCharm.InitialConfiguration.V2" value="true" />
     <property name="PyCharm.InitialConfiguration.V3" value="true" />
@@ -28,23 +32,22 @@
     <property name="PyCharm.InitialConfiguration.V6" value="true" />
     <property name="PyCharm.InitialConfiguration.V7" value="true" />
     <property name="SettingsSearchHistory" value="4" />
-    <property name="appcds.runOnSecondStart" value="PC-211.7628.24-b88bf07141abaa6f3925b583a4cae474c73fffacd549fd7bef78ccf3c9943efe" />
+    <property name="appcds.runOnSecondStart" value="PC-211.7628.24-02bc7ebb2625772816d79ca6461e063ef1819b68b41efa6d65045c3bc2bbbf33" />
     <property name="ask.about.ctrl.y.shortcut.v2" value="true" />
     <property name="experimentalFeature.terminal.shell.command.handling" value="false" />
     <property name="file.chooser.recent.files" value="/srv/boughtbymany/service-claim" />
-    <property name="file.gist.reindex.count" value="4172" />
+    <property name="file.gist.reindex.count" value="18997" />
     <property name="fileTypeChangedCounter" value="2" />
     <property name="fileTypeDetectors" value="com.intellij.ide.scratch.ScratchFileServiceImpl$Detector" />
     <property name="got.it.tooltip.cwm.invitation.notification" value="1" />
     <property name="ide.memory.adjusted" value="true" />
-    <property name="ide.self.update.started.for.build" value="PC-211.7628.24" />
     <property name="ide.updates.previous.build.number" value="PC-211.7628.24" />
-    <property name="ideavim.statistics.timestamp" value="1628227259583" />
-    <property name="lastSeenTip" value="neue-LiveTemplates.html" />
-    <property name="lastTimeTipsWereShown" value="1628227260989" />
+    <property name="ideavim.statistics.timestamp" value="1629263728123" />
+    <property name="lastSeenTip" value="neue-RichTextCopy.html" />
+    <property name="lastTimeTipsWereShown" value="1629367289800" />
     <property name="last_opened_file_path" value="/srv/boughtbymany/service-claim" />
     <property name="log.trace.categories" value="#com.jetbrains.rdserver.requests&#10;#com.jetbrains.rd.ide.document&#10;#com.jetbrains.rdserver.document&#10;#com.jetbrains.rdserver.editors&#10;#com.jetbrains.rdserver.actions" />
-    <property name="seenTips" value="neue-LiveTemplates.html" />
+    <property name="seenTips" value="neue-LiveTemplates.html,neue-ImagesLookup.html,neue-RichTextCopy.html" />
     <property name="selected.color.option.type" value="FOLDED_TEXT_BORDER_COLOR" />
     <property name="tasks.pass.word.conversion.enforced" value="true" />
   </component>

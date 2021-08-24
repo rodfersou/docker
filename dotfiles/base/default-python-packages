@@ -4,6 +4,7 @@ black
 cookiecutter
 debug
 flake8
+flake8-respect-noqa
 git+https://github.com/rodfersou/gitim.git
 git+https://github.com/rodfersou/swagger_to_uml.git
 ipython

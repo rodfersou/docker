@@ -180,33 +180,32 @@ RUN cd \
     && cd /cache/asdf                                            \
     && git checkout "$(git describe --abbrev=0 --tags)"          \
     && export PATH="/cache/asdf/shims:/cache/asdf/bin:$PATH"     \
+    #
     # Python
-    && asdf plugin-add python                                                   \
-    && asdf install python latest                                               \
-    && asdf global python latest                                                \
-    && rm /home/docker/.default-python-packages                                 \
-    && asdf install python latest:3.8                                           \
-    && asdf install python latest:3.6                                           \
-    #&& asdf install python latest:2                                            \
-    #&& for pydir in /cache/asdf/installs/python/*; do                          \
-    #    for libdir in $pydir/lib/python*/; do                                  \
-    #        ln -sf /usr/lib/python3.8/_sysconfigdata__$(uname -m)-linux-gnu.py \
-    #               ${libdir}_sysconfigdata__linux_$(uname -m)-linux-gnu.py;    \
-    #    done;                                                                  \
-    #done                                                                       \
-    && rcup                                                                     \
+    && asdf plugin-add python                     \
+    && asdf install python latest                 \
+    && asdf global python latest                  \
+    # && rm /home/docker/.default-python-packages \
+    && asdf install python latest:3.8             \
+    && asdf install python latest:3.6             \
+    #&& asdf install python latest:2              \
+    && rcup                                       \
+    #
     # NodeJS
     && asdf plugin-add nodejs                          \
     && asdf install    nodejs latest:14                \
     && asdf global     nodejs $(asdf latest nodejs 14) \
+    #
     # Go
     && asdf plugin-add golang        \
     && asdf install    golang latest \
     && asdf global     golang latest \
+    #
     # Ruby
     && asdf plugin-add ruby        \
     && asdf install    ruby latest \
     && asdf global     ruby latest \
+    #
     # Java
     && asdf plugin-add java                                     \
     && asdf install    java latest:adoptopenjdk-11              \
@@ -214,15 +213,19 @@ RUN cd \
     && asdf plugin-add gradle                        \
     #&& asdf install    gradle latest                \
     #&& asdf global     gradle $(asdf latest gradle) \
+    #
     # Direnv
     && asdf plugin-add direnv        \
     && asdf install    direnv latest \
     && asdf global     direnv latest \
+    #
     # ADR tools
     && asdf plugin-add adr-tools        \
     && asdf install    adr-tools latest \
     && asdf global     adr-tools latest \
-    # ASDF - END
+    #
+    ## END - ASDF
+    #
     && cd \
     #
     # VIM Plugins

@@ -1,4 +1,11 @@
 <application>
+  <component name="VimHistorySettings">
+    <history>
+      <history-cmd>
+        <entry encoding="base64">dw==</entry>
+      </history-cmd>
+    </history>
+  </component>
   <component name="VimMarksSettings">
     <globalmarks />
     <filemarks>
@@ -9,7 +16,17 @@
     <jumps />
   </component>
   <component name="VimRegisterSettings">
-    <registers />
+    <registers>
+      <register name="&quot;" type="4">
+        <text encoding="base64">Xw==</text>
+      </register>
+      <register name=":" type="4">
+        <text encoding="base64">dw==</text>
+      </register>
+      <register name="-" type="4">
+        <text encoding="base64">Xw==</text>
+      </register>
+    </registers>
   </component>
   <component name="VimSearchSettings">
     <search>
