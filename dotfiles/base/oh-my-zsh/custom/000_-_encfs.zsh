@@ -18,7 +18,7 @@ while [ -z "$(ls -A $HOME/.dotfiles/crypt)" ]; do
         clear
     else
         clear
-        sleep 2
+        sleep 5
     fi
 done
 clear
