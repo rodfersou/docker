@@ -10,8 +10,8 @@ ifeq ($(CURRENT_OS), Darwin)
 	SHELL := env PATH=$(PATH) /bin/bash
 endif
 
-TAG='rodfersou/ubuntu:20.04'
-NAME='rodfersou_ubuntu_20.04'
+TAG='rodfersou/ubuntu:21.04'
+NAME='rodfersou_ubuntu_21.04'
 
 all: start
 
@@ -52,7 +52,6 @@ endif
 		-p 8888:8888                                 \
 		-v $$HOME:/home/$$USER                       \
 		-v $$PWD/dotfiles:/home/docker/.dotfiles     \
-		-v $$PWD/srv:/srv_bkp                            \
 		-v /tmp/.X11-unix:/tmp/.X11-unix             \
 		-v /var/run/docker.sock:/var/run/docker.sock \
 		-w /home/$$USER                              \

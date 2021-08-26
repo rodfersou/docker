@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:21.04
 ARG DEBIAN_FRONTEND=noninteractive
 ARG PYCHARM_VERSION="pycharm-community-2021.1.3"
 
@@ -210,9 +210,9 @@ RUN cd \
     && asdf plugin-add java                                     \
     && asdf install    java latest:adoptopenjdk-11              \
     && asdf global     java $(asdf latest java adoptopenjdk-11) \
-    && asdf plugin-add gradle                        \
-    #&& asdf install    gradle latest                \
-    #&& asdf global     gradle $(asdf latest gradle) \
+    && asdf plugin-add gradle                                   \
+    && asdf install    gradle latest                            \
+    && asdf global     gradle latest                            \
     #
     # Direnv
     && asdf plugin-add direnv        \

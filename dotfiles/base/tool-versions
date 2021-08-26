@@ -1,7 +1,7 @@
 adr-tools 3.0.0
 direnv 2.28.0
 golang 1.17
-gradle 7.1.1
+gradle 7.2
 java adoptopenjdk-11.0.12+7
 nodejs 14.17.5
 python 3.9.6
