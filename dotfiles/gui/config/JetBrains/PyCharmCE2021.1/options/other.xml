@@ -36,18 +36,18 @@
     <property name="ask.about.ctrl.y.shortcut.v2" value="true" />
     <property name="experimentalFeature.terminal.shell.command.handling" value="false" />
     <property name="file.chooser.recent.files" value="/srv/boughtbymany/service-claim" />
-    <property name="file.gist.reindex.count" value="18997" />
+    <property name="file.gist.reindex.count" value="22642" />
     <property name="fileTypeChangedCounter" value="2" />
     <property name="fileTypeDetectors" value="com.intellij.ide.scratch.ScratchFileServiceImpl$Detector" />
     <property name="got.it.tooltip.cwm.invitation.notification" value="1" />
     <property name="ide.memory.adjusted" value="true" />
     <property name="ide.updates.previous.build.number" value="PC-211.7628.24" />
     <property name="ideavim.statistics.timestamp" value="1629263728123" />
-    <property name="lastSeenTip" value="neue-RichTextCopy.html" />
-    <property name="lastTimeTipsWereShown" value="1629367289800" />
+    <property name="lastSeenTip" value="neue-RunTests.html" />
+    <property name="lastTimeTipsWereShown" value="1630049824741" />
     <property name="last_opened_file_path" value="/srv/boughtbymany/service-claim" />
     <property name="log.trace.categories" value="#com.jetbrains.rdserver.requests&#10;#com.jetbrains.rd.ide.document&#10;#com.jetbrains.rdserver.document&#10;#com.jetbrains.rdserver.editors&#10;#com.jetbrains.rdserver.actions" />
-    <property name="seenTips" value="neue-LiveTemplates.html,neue-ImagesLookup.html,neue-RichTextCopy.html" />
+    <property name="seenTips" value="neue-LiveTemplates.html,neue-RichTextCopy.html,neue-ImagesLookup.html,neue-RunTests.html" />
     <property name="selected.color.option.type" value="FOLDED_TEXT_BORDER_COLOR" />
     <property name="tasks.pass.word.conversion.enforced" value="true" />
   </component>

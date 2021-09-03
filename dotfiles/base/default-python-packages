@@ -2,6 +2,7 @@ awscli
 beautifulsoup4
 black
 cookiecutter
+cssselect
 debug
 flake8
 flake8-respect-noqa
