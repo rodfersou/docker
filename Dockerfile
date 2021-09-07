@@ -1,6 +1,6 @@
 FROM ubuntu:21.04
 ARG DEBIAN_FRONTEND=noninteractive
-ARG PYCHARM_VERSION="pycharm-community-2021.1.3"
+ARG PYCHARM_VERSION="pycharm-community-2021.2.1"
 
 ENV ASDF_DATA_DIR="/cache/asdf"
 ENV ASDF_DIR="/cache/asdf"
@@ -17,9 +17,9 @@ ENV PIPX_HOME="/cache/pipx"
 ENV XDG_CACHE_HOME="/cache"
 ENV YARN_CACHE_FOLDER="/cache/yarn"
 # Fix Pycharm interface
-ENV _JAVA_OPTIONS="-Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dsun.java2d.d3d=false"
+# ENV _JAVA_OPTIONS="-Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dsun.java2d.d3d=false"
 ENV JAVA_FONTS=/home/docker/.fonts
-ENV LIBGL_ALWAYS_INDIRECT=1
+# ENV LIBGL_ALWAYS_INDIRECT=1
 
 ENV USER=docker
 
@@ -125,8 +125,8 @@ RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
     #
     # Fix curl
     #
-    && sed -i '/^oid_section.*/a \\n# System default\nopenssl_conf = default_conf' /etc/ssl/openssl.cnf \
-    && sed -i '$s/$/\n\n\[default_conf\]\nssl_conf = ssl_sect\n\n\[ssl_sect\]\nsystem_default = system_default_sect\n\n\[system_default_sect\]\nCipherString = DEFAULT\@SECLEVEL=1/' /etc/ssl/openssl.cnf \
+    #&& sed -i '/^oid_section.*/a \\n# System default\nopenssl_conf = default_conf' /etc/ssl/openssl.cnf \
+    #&& sed -i '$s/$/\n\n\[default_conf\]\nssl_conf = ssl_sect\n\n\[ssl_sect\]\nsystem_default = system_default_sect\n\n\[system_default_sect\]\nCipherString = DEFAULT\@SECLEVEL=1/' /etc/ssl/openssl.cnf \
     #
     # Fix imagemagick
     #
@@ -167,6 +167,14 @@ RUN cd \
     && sudo chown -R docker:docker .dotfiles \
     && ln -sf .dotfiles/rcrc .rcrc           \
     && rcup                                  \
+    #
+    # AWS CLI V2
+    #
+    && cd /cache                                                                          \
+    && curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "awscliv2.zip" \
+    && 7z x awscliv2.zip                                                                  \
+    && sudo ./aws/install                                                                 \
+    && cd                                                                                 \
     #
     # NIX
     #
@@ -210,6 +218,9 @@ RUN cd \
     && asdf plugin-add java                                     \
     && asdf install    java latest:adoptopenjdk-11              \
     && asdf global     java $(asdf latest java adoptopenjdk-11) \
+    && asdf plugin-add maven                                    \
+    && asdf install    maven latest                             \
+    && asdf global     maven latest                             \
     && asdf plugin-add gradle                                   \
     && asdf install    gradle latest                            \
     && asdf global     gradle latest                            \
