@@ -43,11 +43,11 @@
     <property name="ide.memory.adjusted" value="true" />
     <property name="ide.updates.previous.build.number" value="PC-211.7628.24" />
     <property name="ideavim.statistics.timestamp" value="1629263728123" />
-    <property name="lastSeenTip" value="neue-RunTests.html" />
-    <property name="lastTimeTipsWereShown" value="1630049824741" />
+    <property name="lastSeenTip" value="neue-SelectIn.html" />
+    <property name="lastTimeTipsWereShown" value="1635955238847" />
     <property name="last_opened_file_path" value="/srv/boughtbymany/service-claim" />
     <property name="log.trace.categories" value="#com.jetbrains.rdserver.requests&#10;#com.jetbrains.rd.ide.document&#10;#com.jetbrains.rdserver.document&#10;#com.jetbrains.rdserver.editors&#10;#com.jetbrains.rdserver.actions" />
-    <property name="seenTips" value="neue-LiveTemplates.html,neue-RichTextCopy.html,neue-ImagesLookup.html,neue-RunTests.html" />
+    <property name="seenTips" value="neue-pull_requests.html,neue-RunTests.html,neue-RichTextCopy.html,neue-ImagesLookup.html,neue-LiveTemplates.html,neue-SelectIn.html" />
     <property name="selected.color.option.type" value="FOLDED_TEXT_BORDER_COLOR" />
     <property name="tasks.pass.word.conversion.enforced" value="true" />
   </component>

@@ -4,7 +4,7 @@
       <i c="2" l="1630050509857" />
     </e>
     <e n="EditorBackSpace">
-      <i c="17" l="1629708800293" />
+      <i c="19" l="1635955640199" />
     </e>
     <e n="EditorEscape">
       <i c="4" l="1628229156730" />
@@ -18,11 +18,17 @@
     <e n="Exit">
       <i c="1" l="1628229242974" />
     </e>
+    <e n="FindUsages">
+      <i c="1" l="1632705527816" />
+    </e>
     <e n="HideIgnoredFiles">
       <i c="1" l="1628228735543" />
     </e>
     <e n="MarkExcludeRoot">
       <i c="7" l="1630050024675" />
+    </e>
+    <e n="Move">
+      <i c="1" l="1635955594059" />
     </e>
     <e n="RenameElement">
       <i c="14" l="1630050037454" />
@@ -46,7 +52,7 @@
       <i c="87" l="1629265680760" />
     </e>
     <e n="com.intellij.openapi.fileEditor.impl.tabActions.CloseTab">
-      <i c="7" l="1630049824800" />
+      <i c="9" l="1635955557607" />
     </e>
     <e n="com.intellij.openapi.updateSettings.impl.UpdateChecker$showNotification$1">
       <i c="1" l="1628300870380" />

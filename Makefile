@@ -45,9 +45,9 @@ endif
 		-e COLUMNS=$$(tput cols)                     \
 		-e DISPLAY=host.docker.internal:0            \
 		-e LINES=$$(tput lines)                      \
-		-e TZ=Asia/Bangkok                           \
+		-e TZ=Europe/London                          \
 		-it                                          \
-		-p 5022:5022                                 \
+		-p 5000-5100:5000-5100                       \
 		-p 8000:8000                                 \
 		-p 8888:8888                                 \
 		-v $$HOME:/home/$$USER                       \

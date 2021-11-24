@@ -1,6 +1,7 @@
 FROM ubuntu:21.04
 ARG DEBIAN_FRONTEND=noninteractive
 ARG PYCHARM_VERSION="pycharm-community-2021.2.1"
+ARG NEBULA_VERSION="v0.1.2"
 
 ENV ASDF_DATA_DIR="/cache/asdf"
 ENV ASDF_DIR="/cache/asdf"
@@ -25,7 +26,7 @@ ENV USER=docker
 
 COPY dotfiles .dotfiles
 RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
-    && apt-get update \
+    && apt-get update                                 \
     #
     # BASE
     #
@@ -39,6 +40,7 @@ RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
                ca-certificates \
                coreutils       \
                dirmngr         \
+               finch           \
                fontconfig      \
                gpg             \
                libbz2-dev      \
@@ -65,6 +67,7 @@ RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
                ghostscript       \
                git               \
                httpie            \
+               jp                \
                jq                \
                kdiff3            \
                man               \
@@ -139,6 +142,20 @@ RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
                libgl1-mesa-glx                    \
                mesa-utils                         \
     #
+    # BBM TOOLS
+    #
+    # AWS CLI V2
+    && cd /cache                                                                          \
+    && curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "awscliv2.zip" \
+    && 7z x awscliv2.zip                                                                  \
+    && ./aws/install                                                                      \
+    #
+    # NEBULA
+    && wget https://github.com/boughtbymany/nebula-cli/releases/download/${NEBULA_VERSION}/nebula-${NEBULA_VERSION}-linux-arm.tar.gz \
+    && tar -zxvf nebula-${NEBULA_VERSION}-linux-arm.tar.gz                                                                           \
+    && mv nebula-${NEBULA_VERSION}-linux-arm /usr/local/                                                                             \
+    && ln -s /usr/local/nebula-${NEBULA_VERSION}-linux-arm/bin/nebula /usr/local/bin/nebula                                          \
+    #
     # Cleanup
     #
     && apt-get clean               \
@@ -167,14 +184,6 @@ RUN cd \
     && sudo chown -R docker:docker .dotfiles \
     && ln -sf .dotfiles/rcrc .rcrc           \
     && rcup                                  \
-    #
-    # AWS CLI V2
-    #
-    && cd /cache                                                                          \
-    && curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "awscliv2.zip" \
-    && 7z x awscliv2.zip                                                                  \
-    && sudo ./aws/install                                                                 \
-    && cd                                                                                 \
     #
     # NIX
     #
@@ -263,6 +272,11 @@ RUN cd \
     && rm -rf ${PYCHARM_VERSION}.tar.gz                                     \
     && ln -sf ${PYCHARM_VERSION} pycharm                                    \
     && cd                                                                   \
+    #
+    # Brew
+    #
+    && sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)" \
+    && export PATH="/home/docker/.linuxbrew/bin:$PATH"                                             \
     #
     # Nerd fonts
     #

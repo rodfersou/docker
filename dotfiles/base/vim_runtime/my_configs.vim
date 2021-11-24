@@ -44,7 +44,8 @@ endif
 " let @d='oimport pdb; pdb.set_trace()import ipdb; ipdb.set_trace()import debug'
 " let @s='msgg/^fromV)k;sort i/^importV)k;sort i`s;noh'
 " let @u='ofrom Products.CMFPlone.utils import safe_unicode'
-let @d='oimport ipdb; ipdb.set_trace()  # noqa'
+" let @d='oimport ipdb; ipdb.set_trace()  # noqa'
+let @d='o__import__("ipdb").set_trace()'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
