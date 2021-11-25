@@ -151,10 +151,10 @@ RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
     && ./aws/install                                                                      \
     #
     # NEBULA
-    && wget https://github.com/boughtbymany/nebula-cli/releases/download/${NEBULA_VERSION}/nebula-${NEBULA_VERSION}-linux-arm.tar.gz \
-    && tar -zxvf nebula-${NEBULA_VERSION}-linux-arm.tar.gz                                                                           \
-    && mv nebula-${NEBULA_VERSION}-linux-arm /usr/local/                                                                             \
-    && ln -s /usr/local/nebula-${NEBULA_VERSION}-linux-arm/bin/nebula /usr/local/bin/nebula                                          \
+    #&& wget https://github.com/boughtbymany/nebula-cli/releases/download/${NEBULA_VERSION}/nebula-${NEBULA_VERSION}-linux-arm.tar.gz \
+    #&& tar -zxvf nebula-${NEBULA_VERSION}-linux-arm.tar.gz                                                                           \
+    #&& mv nebula-${NEBULA_VERSION}-linux-arm /usr/local/                                                                             \
+    #&& ln -s /usr/local/nebula-${NEBULA_VERSION}-linux-arm/bin/nebula /usr/local/bin/nebula                                          \
     #
     # Cleanup
     #
@@ -171,7 +171,6 @@ RUN cd \
     #
     && sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
     && sed -e "/^plugins/ s/git/git wd globalias/" -i .zshrc                                \
-    && echo "prompt_context() {}" >> .zshrc                                                 \
     #
     # VIM
     #
@@ -275,8 +274,8 @@ RUN cd \
     #
     # Brew
     #
-    && sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)" \
-    && export PATH="/home/docker/.linuxbrew/bin:$PATH"                                             \
+    #&& sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)" \
+    #&& export PATH="/home/docker/.linuxbrew/bin:$PATH"                                             \
     #
     # Nerd fonts
     #
