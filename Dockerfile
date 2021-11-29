@@ -1,11 +1,10 @@
 FROM ubuntu:21.04
 ARG DEBIAN_FRONTEND=noninteractive
-ARG PYCHARM_VERSION="pycharm-community-2021.2.1"
+# ARG PYCHARM_VERSION="pycharm-community-2021.2.1"
 ARG NEBULA_VERSION="v0.1.2"
 
 ENV ASDF_DATA_DIR="/cache/asdf"
 ENV ASDF_DIR="/cache/asdf"
-ENV JGO_CACHE_DIR="/cache/jgo"
 ENV LC_CTYPE=C.UTF-8
 ENV NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1
 ENV NPM_CONFIG_CACHE="/cache/npm"
@@ -19,7 +18,7 @@ ENV XDG_CACHE_HOME="/cache"
 ENV YARN_CACHE_FOLDER="/cache/yarn"
 # Fix Pycharm interface
 # ENV _JAVA_OPTIONS="-Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dsun.java2d.d3d=false"
-ENV JAVA_FONTS=/home/docker/.fonts
+# ENV JAVA_FONTS=/home/docker/.fonts
 # ENV LIBGL_ALWAYS_INDIRECT=1
 
 ENV USER=docker
@@ -36,12 +35,12 @@ RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
     #           python2 \
                python3 \
     && apt-get install -y --no-install-recommends \
+               # adb           \
+               # fontconfig    \
                build-essential \
                ca-certificates \
                coreutils       \
                dirmngr         \
-               finch           \
-               fontconfig      \
                gpg             \
                libbz2-dev      \
                libffi-dev      \
@@ -55,49 +54,52 @@ RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
                libxtst6        \
                llvm            \
                locales         \
-               ncurses-term    \
-               psmisc          \
                tk-dev          \
                xz-utils        \
                zlib1g-dev      \
     && apt-get install -y --no-install-recommends \
-               adb               \
-               curl              \
+               less         \
+               man          \
+               ncurses-term \
+               psmisc       \
+               rcm          \
+               ssh          \
+               sudo         \
+               tree         \
+               xclip        \
+               xsel         \
+               zsh          \
+    && apt-get install -y --no-install-recommends \
                entr              \
-               ghostscript       \
                git               \
                httpie            \
                jp                \
                jq                \
                kdiff3            \
-               man               \
-               rxvt-unicode      \
                screen            \
                silversearcher-ag \
                tmux              \
-               wget              \
-               xclip             \
-               xsel              \
-               zsh               \
     && apt-get install -y --no-install-recommends \
-               aptitude          \
-               calibre           \
-               deluge            \
-               emacs-nox         \
-               encfs             \
-               ffmpeg            \
-               htop              \
-               imagemagick       \
-               less              \
-               neovim            \
-               p7zip-full        \
-               pdftk             \
-               ranger            \
-               rcm               \
-               ssh               \
-               sudo              \
-               tree              \
-               unzip             \
+               # deluge       \
+               # rxvt-unicode \
+               calibre     \
+               curl        \
+               ghostscript \
+               imagemagick \
+               p7zip-full  \
+               pdftk       \
+               unzip       \
+               wget        \
+    && apt-get install -y --no-install-recommends \
+               aptitude  \
+               emacs-nox \
+               encfs     \
+               ffmpeg    \
+               finch     \
+               htop      \
+               irssi     \
+               neovim    \
+               ranger    \
     && locale-gen en_US.UTF-8 \
     && yes | unminimize \
     && touch /etc/services \
@@ -117,7 +119,6 @@ RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
     && echo "docker:docker" | chpasswd \
     && usermod -aG sudo docker         \
     && chown -R docker:docker /srv     \
-    && mkdir -p /cache/jgo             \
     && mkdir -p /cache/mongo/db        \
     && mkdir -p /cache/npm             \
     && mkdir -p /cache/pip             \
@@ -126,21 +127,16 @@ RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
     && mkdir -p /cache/yarn            \
     && chown -R docker:docker /cache   \
     #
-    # Fix curl
-    #
-    #&& sed -i '/^oid_section.*/a \\n# System default\nopenssl_conf = default_conf' /etc/ssl/openssl.cnf \
-    #&& sed -i '$s/$/\n\n\[default_conf\]\nssl_conf = ssl_sect\n\n\[ssl_sect\]\nsystem_default = system_default_sect\n\n\[system_default_sect\]\nCipherString = DEFAULT\@SECLEVEL=1/' /etc/ssl/openssl.cnf \
-    #
     # Fix imagemagick
     #
     && sed -i '/^<\/policymap>/i \\ \ <policy domain="coder" rights="read | write" pattern="PDF" />' /etc/ImageMagick-6/policy.xml \
     #
     # Pycharm
     #
-    && apt-get install -y --no-install-recommends \
-               dbus                               \
-               libgl1-mesa-glx                    \
-               mesa-utils                         \
+    # && apt-get install -y --no-install-recommends \
+    #            dbus                               \
+    #            libgl1-mesa-glx                    \
+    #            mesa-utils                         \
     #
     # BBM TOOLS
     #
@@ -151,10 +147,11 @@ RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
     && ./aws/install                                                                      \
     #
     # NEBULA
-    #&& wget https://github.com/boughtbymany/nebula-cli/releases/download/${NEBULA_VERSION}/nebula-${NEBULA_VERSION}-linux-arm.tar.gz \
-    #&& tar -zxvf nebula-${NEBULA_VERSION}-linux-arm.tar.gz                                                                           \
-    #&& mv nebula-${NEBULA_VERSION}-linux-arm /usr/local/                                                                             \
-    #&& ln -s /usr/local/nebula-${NEBULA_VERSION}-linux-arm/bin/nebula /usr/local/bin/nebula                                          \
+    # && cd /cache                                                                          \
+    # && wget https://github.com/boughtbymany/nebula-cli/releases/download/${NEBULA_VERSION}/nebula-${NEBULA_VERSION}-linux-arm.tar.gz \
+    # && tar -zxvf nebula-${NEBULA_VERSION}-linux-arm.tar.gz                                                                           \
+    # && mv nebula-${NEBULA_VERSION}-linux-arm /usr/local/                                                                             \
+    # && ln -s /usr/local/nebula-${NEBULA_VERSION}-linux-arm/bin/nebula /usr/local/bin/nebula                                          \
     #
     # Cleanup
     #
@@ -265,12 +262,12 @@ RUN cd \
     #
     # Pycharm
     #
-    && cd /cache                                                            \
-    && wget https://download.jetbrains.com/python/${PYCHARM_VERSION}.tar.gz \
-    && tar -zxvf ${PYCHARM_VERSION}.tar.gz                                  \
-    && rm -rf ${PYCHARM_VERSION}.tar.gz                                     \
-    && ln -sf ${PYCHARM_VERSION} pycharm                                    \
-    && cd                                                                   \
+    # && cd /cache                                                            \
+    # && wget https://download.jetbrains.com/python/${PYCHARM_VERSION}.tar.gz \
+    # && tar -zxvf ${PYCHARM_VERSION}.tar.gz                                  \
+    # && rm -rf ${PYCHARM_VERSION}.tar.gz                                     \
+    # && ln -sf ${PYCHARM_VERSION} pycharm                                    \
+    # && cd                                                                   \
     #
     # Brew
     #
@@ -279,11 +276,11 @@ RUN cd \
     #
     # Nerd fonts
     #
-    && mkdir ~/.fonts \
-    && cd ~/.fonts    \
-    && wget https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/SourceCodePro/Regular/complete/Sauce%20Code%20Pro%20Nerd%20Font%20Complete%20Mono.ttf?raw=true -O Sauce_Code_Pro_Nerd_Font_Complete_Mono.ttf \
-    && cd           \
-    && fc-cache -vf \
+    # && mkdir ~/.fonts \
+    # && cd ~/.fonts    \
+    # && wget https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/SourceCodePro/Regular/complete/Sauce%20Code%20Pro%20Nerd%20Font%20Complete%20Mono.ttf?raw=true -O Sauce_Code_Pro_Nerd_Font_Complete_Mono.ttf \
+    # && cd           \
+    # && fc-cache -vf \
     #
     # Cleanup
     #
