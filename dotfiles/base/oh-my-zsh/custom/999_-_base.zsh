@@ -18,7 +18,9 @@ bindkey -s "^\\" "fg\n"
 alias -g X='> /dev/null 2> /dev/null &'
 alias -g R='reset;'
 alias -g C='clear;'
-alias -g L='2>&1 | less'
+alias -g L='2>&1 | less -XFR'
+alias -g J='| jq'
+alias jq='jq -C'
 
 alias reload='R source ~/.zshrc'
 alias F='find -L . -print | grep '
@@ -31,7 +33,7 @@ _K() {
     echo "Usage: K <program>"
   fi
 }
-alias K_='declare -f _cdo'
+alias K_='declare -f _K'
 alias K='_K'
 alias Kp='K interpreter'
 
