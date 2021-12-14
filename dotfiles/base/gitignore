@@ -30,3 +30,7 @@ shell.nix
 TAGS
 tags
 yarn.lock
+
+# Ignore bento tool run paths (this line added by `bento init`)
+.bento/
+.bentoignore

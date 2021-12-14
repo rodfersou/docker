@@ -1,10 +1,11 @@
 @angular/cli
+@vue/cli
 asar
 castnow
 create-react-app
 create-volto-app
 csscomb
 internal-ip-cli
+serverless
 tiddlywiki
 yarn
-@vue/cli
