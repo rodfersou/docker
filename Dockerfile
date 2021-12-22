@@ -206,8 +206,8 @@ RUN cd \
     #
     # NodeJS
     && asdf plugin-add nodejs                          \
-    && asdf install    nodejs latest:14                \
-    && asdf global     nodejs $(asdf latest nodejs 14) \
+    && asdf install    nodejs latest:16                \
+    && asdf global     nodejs $(asdf latest nodejs 16) \
     #
     # Go
     && asdf plugin-add golang        \
