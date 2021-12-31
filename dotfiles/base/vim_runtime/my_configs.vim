@@ -2,6 +2,10 @@
 " => General fixes
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nofoldenable    " disable folding
+set foldlevelstart=99
+set foldlevel=99
+au WinEnter * set nofen
+au WinLeave * set nofen
 set encoding=UTF-8
 set number
 set autoread
