@@ -42,9 +42,7 @@ endif
 		--name $(NAME)                               \
 		--privileged                                 \
 		--rm                                         \
-		-e COLUMNS=$$(tput cols)                     \
 		-e DISPLAY=host.docker.internal:0            \
-		-e LINES=$$(tput lines)                      \
 		-e TZ=Europe/London                          \
 		-it                                          \
 		-p 5000-5100:5000-5100                       \
@@ -58,6 +56,8 @@ endif
 		$(TAG)                                       \
 	|| docker attach                                 \
 		$(NAME)
+#		-e LINES=$$(tput lines)                      \
+#		-e COLUMNS=$$(tput cols)                     \
 
 
 restart:

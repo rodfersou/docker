@@ -107,6 +107,7 @@ RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
     # sudo
     #
     && sed -e '/^\%sudo/ s/\ ALL$/\ NOPASSWD:ALL/' -i /etc/sudoers \
+    # && echo "%admin   ALL=(ALL:ALL) NOPASSWD:ALL" > admin && sudo chown 0 admin && sudo mv admin /etc/sudoers.d \
     #
     # ADD docker user
     #
@@ -118,6 +119,7 @@ RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
                docker                  \
     && echo "docker:docker" | chpasswd \
     && usermod -aG sudo docker         \
+    # && usermod -aG admin docker         \
     && chown -R docker:docker /srv     \
     && mkdir -p /cache/mongo/db        \
     && mkdir -p /cache/npm             \
