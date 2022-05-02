@@ -50,7 +50,7 @@ endif
 		-p 8888:8888                                 \
 		-v $$HOME:/home/$$USER                       \
 		-v $$PWD/dotfiles:/home/docker/.dotfiles     \
-		-v /tmp/.X11-unix:/tmp/.X11-unix             \
+		-v /tmp/.X11-unix:/tmp/.X11-unix:rw          \
 		-v /var/run/docker.sock:/var/run/docker.sock \
 		-w /home/$$USER                              \
 		$(TAG)                                       \

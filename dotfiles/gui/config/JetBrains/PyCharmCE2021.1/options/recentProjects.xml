@@ -4,13 +4,25 @@
       <map>
         <entry key="/srv/boughtbymany/service-claim">
           <value>
-            <RecentProjectMetaInfo frameTitle="service-claim – step_function_test.py" opened="true" projectWorkspaceId="1x7afBk3LzQEO9OdvrgPoABTyUS">
+            <RecentProjectMetaInfo frameTitle="service-claim – step_function_test.py" projectWorkspaceId="1x7afBk3LzQEO9OdvrgPoABTyUS">
               <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
               <option name="build" value="PC-211.7628.24" />
               <option name="buildTimestamp" value="1625032096966" />
               <frame x="0" y="0" width="1650" height="1026" />
               <option name="productionCode" value="PC" />
               <option name="projectOpenTimestamp" value="1635955233172" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="/srv/boughtbymany/service-covea-middleware">
+          <value>
+            <RecentProjectMetaInfo frameTitle="service-covea-middleware" opened="true" projectWorkspaceId="272eAx7OmVCVwULEqwS00XYoh7l">
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="build" value="PC-211.7628.24" />
+              <option name="buildTimestamp" value="1625032081054" />
+              <frame x="0" y="179" width="1430" height="892" />
+              <option name="productionCode" value="PC" />
+              <option name="projectOpenTimestamp" value="1648522472043" />
             </RecentProjectMetaInfo>
           </value>
         </entry>

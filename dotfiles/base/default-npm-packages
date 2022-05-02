@@ -9,3 +9,4 @@ internal-ip-cli
 serverless
 tiddlywiki
 yarn
+git+ssh://git@github.com:boughtbymany/nebula-cli.git#v0.1.5

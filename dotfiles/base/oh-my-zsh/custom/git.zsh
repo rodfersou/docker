@@ -32,3 +32,9 @@ _greload() {
 }
 alias greload_='declare -f _greload'
 alias greload='_greload'
+
+_gempty() {
+  git commit --allow-empty -m "Empty commit to trigger CI"
+}
+alias gempty_='declare -f _gempty'
+alias gempty='_gempty'

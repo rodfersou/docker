@@ -16,6 +16,11 @@
             <ProjectPluginTracker />
           </value>
         </entry>
+        <entry key="272eAx7OmVCVwULEqwS00XYoh7l">
+          <value>
+            <ProjectPluginTracker />
+          </value>
+        </entry>
       </map>
     </trackers>
   </component>
@@ -32,22 +37,22 @@
     <property name="PyCharm.InitialConfiguration.V6" value="true" />
     <property name="PyCharm.InitialConfiguration.V7" value="true" />
     <property name="SettingsSearchHistory" value="4" />
-    <property name="appcds.runOnSecondStart" value="PC-211.7628.24-02bc7ebb2625772816d79ca6461e063ef1819b68b41efa6d65045c3bc2bbbf33" />
+    <property name="appcds.runOnSecondStart" value="PC-211.7628.24-4d2336731c8ddca6f81fca1971401a2acd50723d115e1041f9276531d06c18f2" />
     <property name="ask.about.ctrl.y.shortcut.v2" value="true" />
     <property name="experimentalFeature.terminal.shell.command.handling" value="false" />
     <property name="file.chooser.recent.files" value="/srv/boughtbymany/service-claim" />
-    <property name="file.gist.reindex.count" value="22642" />
+    <property name="file.gist.reindex.count" value="31839" />
     <property name="fileTypeChangedCounter" value="2" />
     <property name="fileTypeDetectors" value="com.intellij.ide.scratch.ScratchFileServiceImpl$Detector" />
     <property name="got.it.tooltip.cwm.invitation.notification" value="1" />
     <property name="ide.memory.adjusted" value="true" />
     <property name="ide.updates.previous.build.number" value="PC-211.7628.24" />
     <property name="ideavim.statistics.timestamp" value="1629263728123" />
-    <property name="lastSeenTip" value="neue-SelectIn.html" />
-    <property name="lastTimeTipsWereShown" value="1635955238847" />
+    <property name="lastSeenTip" value="neue-InspectionsWidget.html" />
+    <property name="lastTimeTipsWereShown" value="1649961081189" />
     <property name="last_opened_file_path" value="/srv/boughtbymany/service-claim" />
     <property name="log.trace.categories" value="#com.jetbrains.rdserver.requests&#10;#com.jetbrains.rd.ide.document&#10;#com.jetbrains.rdserver.document&#10;#com.jetbrains.rdserver.editors&#10;#com.jetbrains.rdserver.actions" />
-    <property name="seenTips" value="neue-pull_requests.html,neue-RunTests.html,neue-RichTextCopy.html,neue-ImagesLookup.html,neue-LiveTemplates.html,neue-SelectIn.html" />
+    <property name="seenTips" value="neue-RichTextCopy.html,neue-ImagesLookup.html,neue-LiveTemplates.html,neue-pull_requests.html,neue-RunTests.html,neue-SelectIn.html,neue-InspectionsWidget.html" />
     <property name="selected.color.option.type" value="FOLDED_TEXT_BORDER_COLOR" />
     <property name="tasks.pass.word.conversion.enforced" value="true" />
   </component>

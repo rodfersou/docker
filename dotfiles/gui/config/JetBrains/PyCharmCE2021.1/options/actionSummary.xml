@@ -1,5 +1,8 @@
 <application>
   <component name="ActionsLocalSummary">
+    <e n="$Delete">
+      <i c="1" l="1648522657789" />
+    </e>
     <e n="$Undo">
       <i c="2" l="1630050509857" />
     </e>
@@ -34,7 +37,7 @@
       <i c="14" l="1630050037454" />
     </e>
     <e n="SaveAll">
-      <i c="1" l="1629265686827" />
+      <i c="2" l="1649961129590" />
     </e>
     <e n="SelectNextOccurrence">
       <i c="14" l="1628229155160" />
