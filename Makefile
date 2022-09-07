@@ -7,8 +7,6 @@ endif
 
 ifeq ($(CURRENT_OS), Darwin)
 	PATH  := /opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
-	#DISPLAY := :0.0
-	#export DISPLAY
 	SHELL := env PATH=$(PATH) /bin/bash
 endif
 
@@ -35,8 +33,6 @@ endif
 
 endif
 
-	#xhost +local:docker
-	#xhost +
 	docker run                                       \
 		--detach-keys="ctrl-s,d"                     \
 		--mount source=cache,target=/cache           \
@@ -56,11 +52,11 @@ endif
 		-v /tmp/.X11-unix:/tmp/.X11-unix:rw          \
 		-v /var/run/docker.sock:/var/run/docker.sock \
 		-w /home/$$USER                              \
-		$(TAG) #                                       \
-#	|| docker attach                                 \
-#		$(NAME)
-#		-e LINES=$$(tput lines)                      \
-#		-e COLUMNS=$$(tput cols)                     \
+		$(TAG)                                       \
+	|| docker attach                                 \
+		$(NAME)                                      \
+		-e LINES=$$(tput lines)                      \
+		-e COLUMNS=$$(tput cols)                     \
 
 
 restart:
@@ -69,8 +65,6 @@ restart:
 
 stop:
 	-docker container stop $(NAME)
-	#-xhost -local:docker
-	#-xhost -
 
 ifeq ($(CURRENT_OS), Darwin)
 	-killall -9 socat
