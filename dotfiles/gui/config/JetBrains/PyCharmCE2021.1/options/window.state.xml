@@ -1,6 +1,10 @@
 <application>
+  <component name="DimensionService">
+    <location key="find.popup.0.0.1280.800" x="413" y="74" />
+    <size key="find.popup.0.0.1280.800" width="641" height="726" />
+  </component>
   <component name="WindowManager">
-    <frame x="0" y="179" width="1430" height="892" />
+    <frame x="0" y="0" width="1270" height="792" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" order="0" />
@@ -11,9 +15,9 @@
     </layout>
   </component>
   <component name="WindowStateApplicationService">
-    <state x="840" y="290" width="373" height="319" key="FileChooserDialogImpl" timestamp="1628227253278">
-      <screen x="0" y="0" width="1680" height="1050" />
+    <state x="939" y="583" width="300" height="185" key="ProcessPopupWindow" timestamp="1658994914682">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="840" y="290" width="373" height="319" key="FileChooserDialogImpl/0.0.1680.1050/1680.0.1050.1680" timestamp="1628227253278" />
+    <state x="939" y="583" width="300" height="185" key="ProcessPopupWindow/0.0.1280.800" timestamp="1658994914682" />
   </component>
 </application>

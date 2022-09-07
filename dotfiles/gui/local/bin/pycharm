@@ -1,2 +1,3 @@
 #!/bin/bash
+export _JAVA_OPTIONS="-Dsun.java2d.xrender=false"
 /cache/pycharm/bin/pycharm.sh $@ 2> /dev/null &

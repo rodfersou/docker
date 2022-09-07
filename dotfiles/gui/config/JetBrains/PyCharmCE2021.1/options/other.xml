@@ -41,20 +41,43 @@
     <property name="ask.about.ctrl.y.shortcut.v2" value="true" />
     <property name="experimentalFeature.terminal.shell.command.handling" value="false" />
     <property name="file.chooser.recent.files" value="/srv/boughtbymany/service-claim" />
-    <property name="file.gist.reindex.count" value="31839" />
+    <property name="file.gist.reindex.count" value="63905" />
     <property name="fileTypeChangedCounter" value="2" />
     <property name="fileTypeDetectors" value="com.intellij.ide.scratch.ScratchFileServiceImpl$Detector" />
     <property name="got.it.tooltip.cwm.invitation.notification" value="1" />
     <property name="ide.memory.adjusted" value="true" />
     <property name="ide.updates.previous.build.number" value="PC-211.7628.24" />
     <property name="ideavim.statistics.timestamp" value="1629263728123" />
-    <property name="lastSeenTip" value="neue-InspectionsWidget.html" />
-    <property name="lastTimeTipsWereShown" value="1649961081189" />
+    <property name="lastSeenTip" value="neue-search_everywhere_expr.html" />
+    <property name="lastTimeTipsWereShown" value="1661414506462" />
     <property name="last_opened_file_path" value="/srv/boughtbymany/service-claim" />
     <property name="log.trace.categories" value="#com.jetbrains.rdserver.requests&#10;#com.jetbrains.rd.ide.document&#10;#com.jetbrains.rdserver.document&#10;#com.jetbrains.rdserver.editors&#10;#com.jetbrains.rdserver.actions" />
-    <property name="seenTips" value="neue-RichTextCopy.html,neue-ImagesLookup.html,neue-LiveTemplates.html,neue-pull_requests.html,neue-RunTests.html,neue-SelectIn.html,neue-InspectionsWidget.html" />
+    <property name="seenTips" value="neue-HighlightUsagesInFile.html,neue-ImagesLookup.html,neue-CommentCode.html,neue-RemoveBreakpoint.html,neue-Scratch.html,neue-RichTextCopy.html,neue-MoveUpDown.html,neue-IntroduceVariable.html,neue-LiveTemplates.html,neue-pull_requests.html,neue-SelectIn.html,neue-RunTests.html,neue-InspectionsWidget.html,neue-find_action.html,neue-search_everywhere_expr.html" />
     <property name="selected.color.option.type" value="FOLDED_TEXT_BORDER_COLOR" />
     <property name="tasks.pass.word.conversion.enforced" value="true" />
+  </component>
+  <component name="PyCodeInsightSettings">
+    <option name="RENAME_SEARCH_IN_COMMENTS_FOR_FUNCTION" value="true" />
+    <option name="RENAME_SEARCH_NON_CODE_FOR_FUNCTION" value="true" />
+    <option name="RENAME_SEARCH_IN_COMMENTS_FOR_VARIABLE" value="true" />
+    <option name="RENAME_SEARCH_NON_CODE_FOR_VARIABLE" value="true" />
+  </component>
+  <component name="PyTestFrameworkService">
+    <option name="SDK_TO_PYTEST">
+      <map>
+        <entry key="/srv/boughtbymany/service-claim/.venv/bin/python" value="true" />
+      </map>
+    </option>
+    <option name="SDK_TO_NOSETEST">
+      <map>
+        <entry key="/srv/boughtbymany/service-claim/.venv/bin/python" value="false" />
+      </map>
+    </option>
+    <option name="SDK_TO_TRIALTEST">
+      <map>
+        <entry key="/srv/boughtbymany/service-claim/.venv/bin/python" value="false" />
+      </map>
+    </option>
   </component>
   <component name="ToolbarSettingsService">
     <option name="NEW_TOOLBAR_SETTINGS" value="OLD_NAVBAR" />

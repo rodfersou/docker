@@ -1,28 +1,52 @@
 <application>
   <component name="ActionsLocalSummary">
     <e n="$Delete">
-      <i c="1" l="1648522657789" />
+      <i c="2" l="1660647660401" />
+    </e>
+    <e n="$SelectAll">
+      <i c="1" l="1660049040232" />
     </e>
     <e n="$Undo">
-      <i c="2" l="1630050509857" />
+      <i c="7" l="1660648140406" />
     </e>
     <e n="EditorBackSpace">
-      <i c="19" l="1635955640199" />
+      <i c="218" l="1660648169070" />
+    </e>
+    <e n="EditorDown">
+      <i c="3" l="1660048899871" />
     </e>
     <e n="EditorEscape">
-      <i c="4" l="1628229156730" />
+      <i c="7" l="1660648089850" />
     </e>
     <e n="EditorLeft">
-      <i c="111" l="1630050040392" />
+      <i c="138" l="1660648079849" />
+    </e>
+    <e n="EditorPasteSimple">
+      <i c="1" l="1660049041784" />
     </e>
     <e n="EditorRight">
-      <i c="4" l="1629708787600" />
+      <i c="99" l="1660647763753" />
+    </e>
+    <e n="EditorUp">
+      <i c="4" l="1660048898909" />
     </e>
     <e n="Exit">
-      <i c="1" l="1628229242974" />
+      <i c="2" l="1658308831564" />
+    </e>
+    <e n="FindInPath">
+      <i c="5" l="1660648163260" />
+    </e>
+    <e n="FindNext">
+      <i c="1" l="1660648085832" />
     </e>
     <e n="FindUsages">
-      <i c="1" l="1632705527816" />
+      <i c="2" l="1661416824304" />
+    </e>
+    <e n="GotoDeclaration">
+      <i c="3" l="1659686400906" />
+    </e>
+    <e n="GotoImplementation">
+      <i c="2" l="1658994625463" />
     </e>
     <e n="HideIgnoredFiles">
       <i c="1" l="1628228735543" />
@@ -33,20 +57,29 @@
     <e n="Move">
       <i c="1" l="1635955594059" />
     </e>
+    <e n="NewDir">
+      <i c="3" l="1660647863901" />
+    </e>
     <e n="RenameElement">
-      <i c="14" l="1630050037454" />
+      <i c="37" l="1660648157997" />
+    </e>
+    <e n="ReplaceInPath">
+      <i c="2" l="1660648046518" />
     </e>
     <e n="SaveAll">
-      <i c="2" l="1649961129590" />
+      <i c="4" l="1660648184550" />
     </e>
     <e n="SelectNextOccurrence">
       <i c="14" l="1628229155160" />
     </e>
     <e n="ShowSettings">
-      <i c="13" l="1629263630285" />
+      <i c="14" l="1658994654404" />
     </e>
     <e n="WelcomeScreen.OpenDirectoryProject">
       <i c="1" l="1628227197805" />
+    </e>
+    <e n="com.intellij.find.impl.FindPopupPanel$MyEnterAction">
+      <i c="1" l="1660648073006" />
     </e>
     <e n="com.intellij.ide.plugins.newui.SelectionBasedPluginModelAction$UninstallAction">
       <i c="8" l="1628228937437" />
@@ -55,13 +88,16 @@
       <i c="87" l="1629265680760" />
     </e>
     <e n="com.intellij.openapi.fileEditor.impl.tabActions.CloseTab">
-      <i c="9" l="1635955557607" />
+      <i c="25" l="1661414539079" />
+    </e>
+    <e n="com.intellij.openapi.project.DumbAwareAction$SimpleDumbAwareAction">
+      <i c="3" l="1660648065932" />
     </e>
     <e n="com.intellij.openapi.updateSettings.impl.UpdateChecker$showNotification$1">
       <i c="1" l="1628300870380" />
     </e>
     <e n="com.intellij.openapi.wm.impl.ToolWindowHeader$HideAction">
-      <i c="1" l="1628228771663" />
+      <i c="2" l="1661414563471" />
     </e>
     <e n="com.maddyhome.idea.vim.ui.ex.ExShortcutKeyAction">
       <i c="1" l="1629265686822" />

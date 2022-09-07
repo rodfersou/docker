@@ -18,7 +18,8 @@ ENV XDG_CACHE_HOME="/cache"
 ENV YARN_CACHE_FOLDER="/cache/yarn"
 # Fix Pycharm interface
 # ENV _JAVA_OPTIONS="-Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dsun.java2d.d3d=false"
-ENV _JAVA_OPTIONS="-Dsun.java2d.opengl=true"
+# ENV _JAVA_OPTIONS="-Dsun.java2d.opengl=true"
+ENV _JAVA_OPTIONS="-Dsun.java2d.xrender=false"
 # ENV JAVA_FONTS=/home/docker/.fonts
 # ENV LIBGL_ALWAYS_INDIRECT=1
 
