@@ -1,14 +1,14 @@
-FROM ubuntu:21.04 as asdf-base
+FROM ubuntu:22.04 as asdf-base
 ARG DEBIAN_FRONTEND=noninteractive
 ENV ASDF_DIR "/asdf"
 ENV ASDF_DATA_DIR $ASDF_DIR
 ENV PATH $ASDF_DIR/shims:$ASDF_DIR/bin:$PATH
-RUN apt update                                              \
- && apt install -y --no-install-recommends                  \
-        ca-certificates                                     \
-        curl                                                \
-        git                                                 \
-        wget                                                \
+RUN apt update                             \
+ && apt install -y --no-install-recommends \
+        ca-certificates                    \
+        curl                               \
+        git                                \
+        wget                               \
  && git clone https://github.com/asdf-vm/asdf.git $ASDF_DIR \
  && cd $ASDF_DIR                                            \
  && git checkout "$(git describe --abbrev=0 --tags)"        \
@@ -46,35 +46,43 @@ RUN apt update                             \
 
 
 FROM asdf-builder as asdf-python
-ARG DEBIAN_FRONTEND=noninteractive
+COPY dotfiles/.default-python-packages /root
 RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list                              \
  && apt-get update                                                                 \
  && apt build-dep -o APT::Get::Build-Dep-Automatic=true -y --no-install-recommends \
         python3                                                                    \
  && asdf plugin-add python                                                         \
  && asdf install    python latest                                                  \
- && asdf global     python latest                                                  \
- && asdf install    python latest:3.8                                              \
+ && rm /root/.default*                                                             \
+ && asdf global  python latest                                                     \
+ && asdf install python latest:3.8                                                 \
+ && asdf install python latest:3.9                                                 \
  && apt-get clean                                                                  \
  && apt-get autoremove -y                                                          \
  && rm -rf /var/lib/apt/lists/*
 
 
 FROM asdf-builder as asdf-nodejs
-RUN asdf plugin-add nodejs                       \
- && asdf install nodejs latest:16                \
+COPY dotfiles/.default-npm-packages /root
+RUN asdf plugin-add nodejs        \
+ && asdf install nodejs latest:16 \
+ && rm /root/.default*            \
  && asdf global  nodejs $(asdf latest nodejs 16)
 
 
 FROM asdf-builder as asdf-golang
+COPY dotfiles/.default-golang-pkgs /root
 RUN asdf plugin-add golang     \
  && asdf install golang latest \
+ && rm /root/.default*         \
  && asdf global  golang latest
 
 
 FROM asdf-builder as asdf-ruby
+COPY dotfiles/.default-gems /root
 RUN asdf plugin-add ruby     \
  && asdf install ruby latest \
+ && rm /root/.default*       \
  && asdf global  ruby latest
 
 
@@ -93,19 +101,13 @@ RUN asdf plugin-add java                                     \
 #&& asdf global     maven latest
 
 
-#FROM asdf-builder as asdf-direnv
-#RUN asdf plugin-add direnv        \
-# && asdf install    direnv latest \
-# && asdf global     direnv latest \
-
-
 FROM asdf-builder as asdf-adr-tools
 RUN asdf plugin-add adr-tools     \
  && asdf install adr-tools latest \
  && asdf global  adr-tools latest
 
 
-FROM ubuntu:21.04
+FROM ubuntu:22.04
 ENV ASDF_DIR "/asdf"
 ENV ASDF_DATA_DIR $ASDF_DIR
 ENV PATH $ASDF_DIR/shims:$ASDF_DIR/bin:$PATH
