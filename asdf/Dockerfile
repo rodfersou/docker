@@ -19,6 +19,7 @@ RUN apt update                             \
 
 FROM asdf-base as asdf-builder
 ARG DEBIAN_FRONTEND=noninteractive
+COPY dotfiles/.default* /root
 RUN apt update                             \
  && apt install -y --no-install-recommends \
         build-essential                    \
@@ -46,17 +47,17 @@ RUN apt update                             \
 
 
 FROM asdf-builder as asdf-python
-COPY dotfiles/.default-python-packages /root
+ARG DEBIAN_FRONTEND=noninteractive
 RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list                              \
  && apt-get update                                                                 \
  && apt build-dep -o APT::Get::Build-Dep-Automatic=true -y --no-install-recommends \
         python3                                                                    \
  && asdf plugin-add python                                                         \
- && asdf install    python latest                                                  \
- && rm /root/.default*                                                             \
+ && asdf install python latest                                                     \
+ # && rm /root/.default*            \
  && asdf global  python latest                                                     \
- && asdf install python latest:3.8                                                 \
  && asdf install python latest:3.9                                                 \
+ && asdf install python latest:3.8                                                 \
  && apt-get clean                                                                  \
  && apt-get autoremove -y                                                          \
  && rm -rf /var/lib/apt/lists/*
