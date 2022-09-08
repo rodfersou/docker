@@ -1,4 +1,5 @@
 ZSH_THEME="agnoster"
+DEFAULT_USER="docker"
 DISABLE_AUTO_UPDATE="true"
 DISABLE_AUTO_TITLE="true"
 
