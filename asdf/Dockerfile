@@ -100,6 +100,11 @@ RUN asdf plugin-add java                                     \
 #&& asdf install    maven latest                             \
 #&& asdf global     maven latest
 
+FROM asdf-builder as asdf-direnv
+RUN asdf plugin-add direnv        \
+ && asdf install    direnv latest \
+ && asdf global     direnv latest
+
 
 FROM asdf-builder as asdf-adr-tools
 RUN asdf plugin-add adr-tools     \
@@ -129,6 +134,9 @@ COPY --from=asdf-java      /asdf/installs/java      /asdf/installs/java
 # COPY --from=asdf-java      /asdf/plugins/ant        /asdf/plugins/ant
 # COPY --from=asdf-java      /asdf/installs/ant       /asdf/installs/ant
 COPY --from=asdf-java      /root/.tool-versions     /root/.tool-versions-java
+COPY --from=asdf-direnv    /asdf/plugins/direnv     /asdf/plugins/direnv
+COPY --from=asdf-direnv    /asdf/installs/direnv    /asdf/installs/direnv
+COPY --from=asdf-direnv    /root/.tool-versions     /root/.tool-versions-direnv
 COPY --from=asdf-adr-tools /asdf/plugins/adr-tools  /asdf/plugins/adr-tools
 COPY --from=asdf-adr-tools /asdf/installs/adr-tools /asdf/installs/adr-tools
 COPY --from=asdf-adr-tools /root/.tool-versions     /root/.tool-versions-adr-tools

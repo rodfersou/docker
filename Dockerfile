@@ -47,7 +47,6 @@ RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
                zsh          \
     && apt-get install -y --no-install-recommends \
                entr              \
-               direnv            \
                git               \
                httpie            \
                jp                \
