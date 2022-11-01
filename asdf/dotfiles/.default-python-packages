@@ -28,7 +28,7 @@ pyls-isort==0.2.0
 pyls-mypy
 requests
 unidecode
-virtualenv==16.7.9
+virtualenv
 yamllint
 youtube-dl
 yq

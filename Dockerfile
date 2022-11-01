@@ -22,7 +22,7 @@ ENV YARN_CACHE_FOLDER="/cache/yarn"
 
 ENV USER=docker
 
-COPY dotfiles .dotfiles
+COPY --chown=docker:docker dotfiles .dotfiles
 RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
     && apt-get update                                 \
     #
@@ -127,8 +127,8 @@ RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
 
 USER docker
 WORKDIR /home/docker
-COPY --from=rodfersou/asdf /asdf /asdf
-COPY --from=rodfersou/asdf /root/.tool-versions /home/docker/.tool-versions
+COPY --from=rodfersou/asdf --chown=docker:docker /asdf /asdf
+COPY --from=rodfersou/asdf --chown=docker:docker /root/.tool-versions /home/docker/.tool-versions
 
 RUN cd \
     #
@@ -145,7 +145,6 @@ RUN cd \
     # Dotfiles
     #
     && sudo mv /.dotfiles .                  \
-    && sudo chown -R docker:docker .dotfiles \
     && ln -sf .dotfiles/rcrc .rcrc           \
     && rcup                                  \
     #
