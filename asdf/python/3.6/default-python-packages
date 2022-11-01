@@ -10,15 +10,11 @@ git+https://github.com/rodfersou/swagger_to_uml.git
 ipython
 isort
 lxml
-mario
 mercurial
 mypy
-pip
 pipenv
 pipx
-plonecli
 poetry
-py-spy
 pygments
 pylint
 python-language-server

@@ -55,6 +55,7 @@ RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
                screen            \
                silversearcher-ag \
                tmux              \
+               zathura           \
     && apt-get install -y --no-install-recommends \
                curl       \
                p7zip-full \
