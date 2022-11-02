@@ -17,7 +17,20 @@ all: start
 
 build:
 	make clean
-	docker buildx build -t $(TAG) .
+	docker buildx build -t $(TAG) . --progress plain
+
+build-all:
+	(cd base      && make build)
+	(cd builder   && make build)
+	(cd adr-tools && make build)
+	(cd direnv    && make build)
+	(cd golang    && make build)
+	(cd java      && make build)
+	(cd nodejs    && make build)
+	(cd python    && make build-all)
+	(cd ruby      && make build)
+	(cd rust      && make build)
+	make build
 
 start:
 	docker run --rm -it $(TAG) bash

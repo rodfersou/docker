@@ -17,7 +17,7 @@ all: start
 
 build:
 	make clean
-	docker buildx build -t $(TAG) .
+	docker buildx build -t $(TAG) . --progress plain
 
 bash:
 	docker run -it --rm --name $(NAME) $(TAG) bash

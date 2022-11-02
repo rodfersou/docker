@@ -1,10 +1,10 @@
 # syntax=docker/dockerfile:1
 FROM rodfersou/asdf-python-builder AS asdf-python
-RUN <<COMMANDS
+RUN <<BASH bash
     asdf install python latest:3.11
     asdf global  python latest:3.11
     pip install -U pip
-COMMANDS
+BASH
 
 
 FROM rodfersou/asdf-python-base

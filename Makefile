@@ -17,7 +17,11 @@ all: start
 
 build:
 	make clean
-	docker build -t $(TAG) .
+	docker buildx build -t $(TAG) . --progress plain
+
+build-all:
+	(cd asdf && make build-all)
+	make build
 
 start:
 

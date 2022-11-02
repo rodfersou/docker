@@ -17,7 +17,17 @@ all: start
 
 build:
 	make clean
-	docker buildx build -t $(TAG) .
+	docker buildx build -t $(TAG) . --progress plain
+
+build-all:
+	(cd base    && make build)
+	(cd builder && make build)
+	# (cd 3.6   && make build)
+	(cd 3.8     && make build)
+	(cd 3.9     && make build)
+	(cd 3.10    && make build)
+	(cd 3.11    && make build)
+	make build
 
 start:
 	docker run --rm -it $(TAG) bash

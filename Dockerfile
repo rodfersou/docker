@@ -1,11 +1,13 @@
 FROM ubuntu:22.04
 ARG DEBIAN_FRONTEND=noninteractive
 # ARG PYCHARM_VERSION="pycharm-community-2021.2.1"
-ARG NEBULA_VERSION="v0.1.2"
+ARG NEBULA_VERSION="v0.1.6"
 
 ENV ASDF_DIR "/asdf"
 ENV ASDF_DATA_DIR $ASDF_DIR
-ENV PATH $ASDF_DIR/shims:$ASDF_DIR/bin:$PATH
+ENV PIPX_HOME "/pipx"
+ENV PIPX_BIN_DIR $PIPX_HOME/bin
+ENV PATH $ASDF_DIR/bin:$ASDF_DIR/shims:$PIPX_BIN_DIR:$PATH
 ENV LC_CTYPE=C.UTF-8
 ENV NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1
 ENV NPM_CONFIG_CACHE="/cache/npm"
@@ -14,7 +16,6 @@ ENV PIPENV_CACHE_DIR="/cache/pipenv"
 ENV PIPENV_IGNORE_VIRTUALENVS=1
 ENV PIPENV_VENV_IN_PROJECT=1
 ENV PIPENV_VERBOSITY=-1
-ENV PIPX_HOME="/cache/pipx"
 ENV XDG_CACHE_HOME="/cache"
 ENV YARN_CACHE_FOLDER="/cache/yarn"
 # Fix Pycharm interface
@@ -45,6 +46,8 @@ RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
                xclip        \
                xsel         \
                zsh          \
+    && apt-get install -y --no-install-recommends \
+               build-essential \
     && apt-get install -y --no-install-recommends \
                entr              \
                git               \
@@ -94,7 +97,6 @@ RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
     && mkdir -p /cache/npm             \
     && mkdir -p /cache/pip             \
     && mkdir -p /cache/pipenv          \
-    && mkdir -p /cache/pipx            \
     && mkdir -p /cache/yarn            \
     && chown -R docker:docker /cache   \
     #
@@ -128,8 +130,10 @@ RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
 
 USER docker
 WORKDIR /home/docker
-COPY --from=rodfersou/asdf --chown=docker:docker /asdf /asdf
-COPY --from=rodfersou/asdf --chown=docker:docker /root/.tool-versions /home/docker/.tool-versions
+COPY --from=rodfersou/asdf --chown=docker:docker /asdf                              /asdf
+COPY --from=rodfersou/asdf --chown=docker:docker /root/.tool-versions               /home/docker/.tool-versions
+COPY --from=rodfersou/asdf --chown=docker:docker /root/.config/pypoetry/config.toml /home/docker/.config/pypoetry/config.toml
+COPY --from=rodfersou/asdf --chown=docker:docker /pipx                              /pipx
 
 RUN cd \
     #
