@@ -8,7 +8,7 @@ with import <nixpkgs> {};
 
   bitwarden-cli
 
-  piknik
+  # piknik
 
   # fontconfig
   # nerdfonts

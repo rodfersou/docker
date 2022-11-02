@@ -33,7 +33,9 @@ RUN sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list \
                apt-utils 2>&1 | grep -v "debconf: delaying package configuration, since apt-utils is not installed" \
     && apt-get install -y --no-install-recommends \
                ca-certificates \
+               gnupg           \
                locales         \
+               lsb-release     \
     && apt-get install -y --no-install-recommends \
                less         \
                man          \
