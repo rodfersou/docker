@@ -1,4 +1,5 @@
 FROM rodfersou/asdf-builder AS asdf-java
+ENV _JAVA_OPTIONS="-Dsun.java2d.xrender=false"
 RUN asdf plugin-add java                                     \
  && asdf install    java latest:adoptopenjdk-11              \
  && asdf global     java $(asdf latest java adoptopenjdk-11)

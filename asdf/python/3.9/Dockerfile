@@ -1,9 +1,9 @@
 # syntax=docker/dockerfile:1
 FROM rodfersou/asdf-python-builder AS asdf-python
-RUN <<BASH bash                                                                             \
- && <<PIP   xargs -n 1 sh -c "pip install -U \$0 || true"                                   \
- && <<PIPX  xargs -n 1 sh -c "pipx install --include-deps \$0 || true"                      \
- && <<PIPXI xargs -n 2 sh -c "pipx inject --include-apps --include-deps -f \$0 \$1 || true"
+RUN <<BASH bash                                                                                     \
+ && <<PIP   xargs -n 1 sh -c "pip install -U \"\$0\" || true"                                       \
+ && <<PIPX  xargs -n 1 sh -c "pipx install --include-deps \"\$0\" || true"                          \
+ && <<PIPXI xargs -n 2 sh -c "pipx inject --include-apps --include-deps -f \"\$0\" \"\$1\" || true"
     asdf install python latest:3.9
     asdf global  python latest:3.9
     pip install -U pip
@@ -12,11 +12,13 @@ RUN <<BASH bash                                                                 
 BASH
     beautifulsoup4
     cssselect
+    jedi
     lxml
+    neovim
     pdbpp
-    psutils
     pygments
     requests
+    setuptools
     unidecode
 PIP
     black
@@ -35,18 +37,18 @@ PIP
     poetry
     py-spy
     pylint
-    python-language-server
+    python-lsp-server
     virtualenv==16.7.9
     yamllint
     youtube-dl
     yq
 PIPX
-    flake8 flake8-respect-noqa
-    mario mario-addons
-    python-language-server pyls-black
-    python-language-server pyls-flake8
-    python-language-server pyls-isort==0.2.0
-    python-language-server pyls-mypy
+    flake8            flake8-respect-noqa
+    mario             mario-addons
+    python-lsp-server pyls-isort
+    python-lsp-server pylsp-mypy
+    python-lsp-server pylsp-rope
+    python-lsp-server python-lsp-black
 PIPXI
 
 

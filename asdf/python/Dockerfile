@@ -13,8 +13,9 @@ COPY --from=rodfersou/asdf-python-3-8   /asdf/installs/python              /asdf
 COPY --from=rodfersou/asdf-python-3-9   /asdf/installs/python              /asdf/installs/python
 COPY --from=rodfersou/asdf-python-3-10  /asdf/installs/python              /asdf/installs/python
 COPY --from=rodfersou/asdf-python-3-11  /asdf/installs/python              /asdf/installs/python
-COPY --from=rodfersou/asdf-python-3-9   /root/.tool-versions               /root/.tool-versions
 COPY --from=rodfersou/asdf-python-3-9   /root/.config/pypoetry/config.toml /root/.config/pypoetry/config.toml
+COPY --from=rodfersou/asdf-python-3-9   /root/.pdbrc.py                    /root/.pdbrc.py
+COPY --from=rodfersou/asdf-python-3-9   /root/.tool-versions               /root/.tool-versions
 COPY --from=rodfersou/asdf-python-3-9   /pipx                              /pipx
 
 RUN asdf reshim

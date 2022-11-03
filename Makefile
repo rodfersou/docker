@@ -10,8 +10,8 @@ ifeq ($(CURRENT_OS), Darwin)
 	SHELL := env PATH=$(PATH) /bin/bash
 endif
 
-TAG='rodfersou/ubuntu:22.04'
-NAME='rodfersou_ubuntu_22.04'
+TAG='rodfersou/docker'
+NAME='rodfersou_docker'
 
 all: start
 

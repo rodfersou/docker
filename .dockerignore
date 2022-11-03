@@ -1,2 +1,8 @@
-srv/
 *.tar.gz
+.DS_Store
+.git/
+asdf/
+README.md
+scripts/
+srv/
+tasks.py
