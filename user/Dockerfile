@@ -4,7 +4,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 ENV LANG     C.UTF-8
 ENV LC_ALL   C.UTF-8
 ENV LC_CTYPE C.UTF-8
-RUN <<BASH sh
+RUN <<SH sh
     locale-gen en_US.UTF-8
 
     # ADD docker user
@@ -18,7 +18,7 @@ RUN <<BASH sh
     usermod -aG sudo docker
     chown -R docker:docker /srv
     chown -R docker:docker /cache
-BASH
+SH
 
 USER docker
 WORKDIR /home/docker
