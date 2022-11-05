@@ -33,9 +33,11 @@ ENV PIPENV_CACHE_DIR  /cache/pipenv
 ENV USER docker
 ENV PATH $ASDF_DIR/bin:$ASDF_DIR/shims:$PIPX_BIN_DIR:$PATH
 
-COPY --from=rodfersou/docker-user / /
 COPY --from=rodfersou/asdf-user   / /
-COPY --from=rodfersou/docker-vim  / /
+COPY --from=rodfersou/docker-vim /home/docker/.config/nvim/init.vim /home/docker/.config/nvim/init.vim
+COPY --from=rodfersou/docker-vim /home/docker/.vim_runtime/my_configs.vim /home/docker/.vim_runtime/my_configs.vim
+COPY --from=rodfersou/docker-vim /home/docker/.vimrc /home/docker/.vimrc
+COPY --from=rodfersou/docker-vim /home/docker/.vim_runtime /home/docker/.vim_runtime
 
 COPY --chown=docker:docker dotfiles .dotfiles
 
@@ -43,11 +45,12 @@ USER docker
 WORKDIR /home/docker
 
 RUN cd \
+    && sudo chown -R docker:docker /cache \
     #
     # ZSH
     #
     && sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
-    && sed -e "/^plugins/ s/git/aws git globalias wd/" -i .zshrc                                \
+    && sed -e "/^plugins/ s/git/aws git globalias invoke wd/" -i .zshrc                                \
     #
     # Dotfiles
     #

@@ -12,6 +12,7 @@ RUN <<BASH bash                                                                 
 BASH
     beautifulsoup4
     cssselect
+    git+https://github.com/rodfersou/gitim.git
     jedi
     lxml
     neovim
@@ -24,7 +25,6 @@ PIP
     black
     cookiecutter
     flake8
-    git+https://github.com/rodfersou/gitim.git
     git+https://github.com/rodfersou/swagger_to_uml.git
     invoke
     ipython

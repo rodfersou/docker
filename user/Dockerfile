@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM rodfersou/docker-base
+FROM ubuntu:22.04
 ARG DEBIAN_FRONTEND=noninteractive
 ENV LANG     C.UTF-8
 ENV LC_ALL   C.UTF-8
@@ -17,7 +17,7 @@ RUN <<SH sh
     echo "docker:docker" | chpasswd
     usermod -aG sudo docker
     chown -R docker:docker /srv
-    chown -R docker:docker /cache
+    # chown -R docker:docker /cache
 SH
 
 USER docker

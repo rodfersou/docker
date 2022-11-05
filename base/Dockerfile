@@ -79,7 +79,7 @@ APT
     cd /cache
     curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "awscliv2.zip"
     7z x awscliv2.zip
-    ./aws/install
+    sh aws/install
 
     # NEBULA
     # && cd /cache                                                                          \
