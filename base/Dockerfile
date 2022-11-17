@@ -34,8 +34,10 @@ PRE
     wget
     xz-utils
 
-    # DEV UTILS
+    # BASE DEV
     build-essential
+
+    # DEV UTILS
     entr
     git
     httpie
@@ -45,6 +47,7 @@ PRE
     screen
     silversearcher-ag
     tmux
+    whiptail
 
     # GENERAL UTILS
     aptitude

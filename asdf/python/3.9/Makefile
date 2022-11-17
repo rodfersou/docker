@@ -20,6 +20,9 @@ build:
 	docker buildx build -t $(TAG) . --progress plain
 
 start:
+	docker run --rm -it $(TAG)
+
+bash:
 	docker run --rm -it $(TAG) bash
 
 restart:

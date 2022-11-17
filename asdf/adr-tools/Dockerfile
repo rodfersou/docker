@@ -1,4 +1,4 @@
-FROM rodfersou/asdf-builder AS asdf-adr-tools
+FROM rodfersou/asdf-base AS asdf-adr-tools
 RUN asdf plugin-add adr-tools     \
  && asdf install adr-tools latest \
  && asdf global  adr-tools latest

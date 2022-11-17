@@ -17,7 +17,7 @@ all: start
 
 build:
 	make clean
-	docker buildx build -t $(TAG) . --progress plain
+	docker buildx build -t $(TAG) . --progress plain --no-cache
 
 build-all:
 	(cd base      && make build)
@@ -33,6 +33,9 @@ build-all:
 	make build
 
 start:
+	docker run --rm -it $(TAG)
+
+bash:
 	docker run --rm -it $(TAG) bash
 
 restart:

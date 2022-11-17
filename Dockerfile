@@ -30,10 +30,18 @@ ENV YARN_CACHE_FOLDER /cache/yarn
 ENV PIP_CACHE_DIR     /cache/pip
 ENV PIPENV_CACHE_DIR  /cache/pipenv
 
+COPY --from=rodfersou/docker-user --chown=docker:docker /etc /etc
+COPY --from=rodfersou/docker-user --chown=docker:docker /home/docker /home/docker
+
 ENV USER docker
 ENV PATH $ASDF_DIR/bin:$ASDF_DIR/shims:$PIPX_BIN_DIR:$PATH
 
-COPY --from=rodfersou/asdf-user   / /
+COPY --from=rodfersou/asdf --chown=docker:docker /asdf                              /asdf
+COPY --from=rodfersou/asdf --chown=docker:docker /root/.tool-versions               /home/docker/.tool-versions
+COPY --from=rodfersou/asdf --chown=docker:docker /root/.config/pypoetry/config.toml /home/docker/.config/pypoetry/config.toml
+COPY --from=rodfersou/asdf --chown=docker:docker /root/.pdbrc.py                    /home/docker/.pdbrc.py
+COPY --from=rodfersou/asdf --chown=docker:docker /pipx                              /pipx
+COPY --from=rodfersou/asdf /usr/lib/lib*.so.1.1                                     /usr/lib
 COPY --from=rodfersou/docker-vim /home/docker/.config/nvim/init.vim /home/docker/.config/nvim/init.vim
 COPY --from=rodfersou/docker-vim /home/docker/.vim_runtime/my_configs.vim /home/docker/.vim_runtime/my_configs.vim
 COPY --from=rodfersou/docker-vim /home/docker/.vimrc /home/docker/.vimrc
@@ -45,36 +53,28 @@ USER docker
 WORKDIR /home/docker
 
 RUN cd \
-    && sudo chown -R docker:docker /cache \
-    #
+ && sudo chown -R docker:docker /cache \
+ && sudo chown -R docker:docker /srv \
     # ZSH
-    #
-    && sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
-    && sed -e "/^plugins/ s/git/aws git globalias invoke wd/" -i .zshrc                                \
-    #
+ && sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
+ && sed -e "/^plugins/ s/git/aws git globalias invoke wd/" -i .zshrc \
     # Dotfiles
-    #
-    && sudo mv /.dotfiles .                  \
-    && ln -sf .dotfiles/rcrc .rcrc           \
-    && rcup                                  \
-    #
+ && sudo mv /.dotfiles . \
+ && ln -sf .dotfiles/rcrc .rcrc \
+ && rcup \
     # NIX
-    #
-    && sh -c "$(curl -fsSL https://nixos.org/nix/install)" \
-    && sed "/nix-profile/d" -i .zshrc                      \
-    && . /home/docker/.nix-profile/etc/profile.d/nix.sh    \
-    #
+ && sh -c "$(curl -fsSL https://nixos.org/nix/install)" \
+ && sed "/nix-profile/d" -i .zshrc \
+ && . /home/docker/.nix-profile/etc/profile.d/nix.sh \
     # Pycharm
-    #
-    # && cd /cache                                                            \
-    # && wget https://download.jetbrains.com/python/${PYCHARM_VERSION}.tar.gz \
-    # && tar -zxvf ${PYCHARM_VERSION}.tar.gz                                  \
-    # && rm -rf ${PYCHARM_VERSION}.tar.gz                                     \
-    # && ln -sf ${PYCHARM_VERSION} pycharm                                    \
-    # && cd                                                                   \
-    #
+#&& cd /cache \
+#&& wget https://download.jetbrains.com/python/${PYCHARM_VERSION}.tar.gz \
+#&& tar -zxvf ${PYCHARM_VERSION}.tar.gz \
+#&& rm -rf ${PYCHARM_VERSION}.tar.gz \
+#&& ln -sf ${PYCHARM_VERSION} pycharm \
+#&& cd \
     # Cleanup
-    #
-    && nix-collect-garbage -d
+ && nix-collect-garbage -d
+
 
 CMD ["/usr/bin/screen", "-RRaADU"]

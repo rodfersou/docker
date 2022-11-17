@@ -1,5 +1,7 @@
 # syntax=docker/dockerfile:1
 FROM ubuntu:22.04
+#FROM rodfersou/asdf-base
+#FROM rodfersou/asdf-python-base
 
 ENV ASDF_DIR      /asdf
 ENV ASDF_DATA_DIR $ASDF_DIR
@@ -23,12 +25,13 @@ ENV PATH $ASDF_DIR/bin:$ASDF_DIR/shims:$PIPX_BIN_DIR:$PATH
 
 
 COPY --from=rodfersou/asdf-base      /asdf                              /asdf
-COPY --from=rodfersou/asdf-python    /asdf/plugins/python               /asdf/plugins/python
 COPY --from=rodfersou/asdf-python    /asdf/installs/python              /asdf/installs/python
-COPY --from=rodfersou/asdf-python    /root/.config/pypoetry/config.toml /root/.config/pypoetry/config.toml
-COPY --from=rodfersou/asdf-python    /root/.pdbrc.py                    /root/.pdbrc.py
-COPY --from=rodfersou/asdf-python    /root/.tool-versions               /root/.tool-versions-python
+COPY --from=rodfersou/asdf-python    /asdf/plugins/python               /asdf/plugins/python
 COPY --from=rodfersou/asdf-python    /pipx                              /pipx
+COPY --from=rodfersou/asdf-python    /root/.tool-versions               /root/.tool-versions-python
+COPY --from=rodfersou/asdf-python    /usr/lib/lib*.so.1.1               /usr/lib
+COPY --from=rodfersou/asdf-python /root/.config/pypoetry/config.toml /root/.config/pypoetry/config.toml
+COPY --from=rodfersou/asdf-python /root/.pdbrc.py /root/.pdbrc.py
 COPY --from=rodfersou/asdf-nodejs    /asdf/plugins/nodejs               /asdf/plugins/nodejs
 COPY --from=rodfersou/asdf-nodejs    /asdf/installs/nodejs              /asdf/installs/nodejs
 COPY --from=rodfersou/asdf-nodejs    /root/.tool-versions               /root/.tool-versions-nodejs

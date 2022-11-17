@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 FROM rodfersou/asdf-python-builder AS asdf-python
-RUN <<BASH bash                                                                                     \
+RUN <<PRE bash                                                                                      \
  && <<PIP   xargs -n 1 sh -c "pip install -U \"\$0\" || true"                                       \
  && <<PIPX  xargs -n 1 sh -c "pipx install --include-deps \"\$0\" || true"                          \
  && <<PIPXI xargs -n 2 sh -c "pipx inject --include-apps --include-deps -f \"\$0\" \"\$1\" || true"
@@ -9,7 +9,7 @@ RUN <<BASH bash                                                                 
     pip install -U pip
     pip install -U pipx
     asdf reshim
-BASH
+PRE
     beautifulsoup4
     cssselect
     git+https://github.com/rodfersou/gitim.git
@@ -32,7 +32,7 @@ PIP
     mario
     mercurial
     mypy
-    pipenv
+    pipenv==2022.10.25
     plonecli
     poetry
     py-spy
@@ -53,10 +53,11 @@ PIPXI
 
 
 FROM rodfersou/asdf-python-base
-COPY --from=asdf-python /asdf/plugins/python  /asdf/plugins/python
 COPY --from=asdf-python /asdf/installs/python /asdf/installs/python
+COPY --from=asdf-python /asdf/plugins/python  /asdf/plugins/python
 COPY --from=asdf-python /pipx                 /pipx
 COPY --from=asdf-python /root/.tool-versions  /root/.tool-versions
+COPY --from=asdf-python /usr/lib/*/lib*.so.1.1 /usr/lib
 RUN asdf reshim
 
 
