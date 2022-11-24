@@ -2,5 +2,6 @@ import invoke
 
 
 @invoke.task
-def build(c):
-    c.run("docker buildx build -t $(TAG) . --progress plain")
+def start(c):
+    c.run(f"docker run --rm -it {c['TAG']}")
+

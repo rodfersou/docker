@@ -1,7 +1,27 @@
+import inspect
 import sys
-sys.path.append('../../..')
 
-TAG='rodfersou/asdf-python-3-9'
-NAME='rodfersou_asdf_python_3_9'
+import invoke
 
-from scripts import *
+sys.path.append("../../..")
+
+import scripts
+
+ns = invoke.Collection()
+
+
+for _, task in inspect.getmembers(scripts):
+    if not isinstance(task, invoke.tasks.Task):
+        continue
+    ns.add_task(task)
+
+
+ns.configure(scripts.get_configuration(__file__))
+
+
+# @invoke.task
+# def build(c, fix=False):
+#     print("world!")
+
+
+# ns.add_task(build)

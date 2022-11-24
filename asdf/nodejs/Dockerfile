@@ -1,14 +1,9 @@
-FROM rodfersou/asdf-builder AS asdf-nodejs
-COPY default-npm-packages /root/.default-npm-packages
-RUN asdf plugin-add nodejs        \
- && asdf install nodejs latest:14 \
- && asdf global  nodejs $(asdf latest nodejs 14)
-
-
+# syntax=docker/dockerfile:1
 FROM rodfersou/asdf-base
-COPY --from=asdf-nodejs /asdf/plugins/nodejs  /asdf/plugins/nodejs
-COPY --from=asdf-nodejs /asdf/installs/nodejs /asdf/installs/nodejs
-COPY --from=asdf-nodejs /root/.tool-versions  /root/.tool-versions
+COPY --from=rodfersou/asdf-nodejs-14 /asdf/plugins/nodejs  /asdf/plugins/nodejs
+COPY --from=rodfersou/asdf-nodejs-14 /asdf/installs/nodejs /asdf/installs/nodejs
+COPY --from=rodfersou/asdf-nodejs-14 /root/.tool-versions  /root/.tool-versions
 
+RUN asdf reshim
 
-CMD ["asdf"]
+CMD ["asdf", "list"]
