@@ -41,13 +41,12 @@ COPY --from=rodfersou/asdf --chown=docker:docker /root/.tool-versions           
 COPY --from=rodfersou/asdf --chown=docker:docker /root/.config/pypoetry/config.toml /home/docker/.config/pypoetry/config.toml
 COPY --from=rodfersou/asdf --chown=docker:docker /root/.pdbrc.py                    /home/docker/.pdbrc.py
 COPY --from=rodfersou/asdf --chown=docker:docker /pipx                              /pipx
-COPY --from=rodfersou/asdf /usr/lib/lib*.so.1.1                                     /usr/lib
-COPY --from=rodfersou/docker-vim /home/docker/.config/nvim/init.vim /home/docker/.config/nvim/init.vim
-COPY --from=rodfersou/docker-vim /home/docker/.vim_runtime/my_configs.vim /home/docker/.vim_runtime/my_configs.vim
-COPY --from=rodfersou/docker-vim /home/docker/.vimrc /home/docker/.vimrc
-COPY --from=rodfersou/docker-vim /home/docker/.vim_runtime /home/docker/.vim_runtime
+COPY --from=rodfersou/asdf                       /usr/lib/lib*.so.1.1               /usr/lib
 
-COPY --chown=docker:docker dotfiles .dotfiles
+COPY --chown=docker:docker --from=rodfersou/vim /root/.config/nvim/init.vim       /home/docker/.config/nvim/init.vim
+COPY --chown=docker:docker --from=rodfersou/vim /root/.vimrc                      /home/docker/.vimrc
+COPY --chown=docker:docker --from=rodfersou/vim /root/.vim_runtime                /home/docker/.vim_runtime
+COPY --chown=docker:docker                      dotfiles                          .dotfiles
 
 USER docker
 WORKDIR /home/docker

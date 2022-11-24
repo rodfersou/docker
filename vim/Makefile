@@ -10,8 +10,8 @@ ifeq ($(CURRENT_OS), Darwin)
 	SHELL := env PATH=$(PATH) /bin/bash
 endif
 
-TAG='rodfersou/docker-vim'
-NAME='rodfersou_docker_vim'
+TAG='rodfersou/vim'
+NAME='rodfersou_vim'
 
 all: start
 
