@@ -21,24 +21,27 @@ for _, task in inspect.getmembers(scripts):
 def start(c):
     os.system(
         f"""
-        docker run                                  \
-            --detach-keys="ctrl-s,d"                \
-            --mount source=cache,target=/cache      \
-            --mount source=nix,target=/nix          \
-            --mount source=srv,target=/srv          \
-            --name {c['NAME']}                      \
-            --privileged                            \
-            --rm                                    \
-            -e DISPLAY=host.docker.internal:0       \
-            -e TZ=Europe/London                     \
-            -it                                     \
-            -p 5000-5100:5000-5100                  \
-            -v $HOME:/home/$USER                    \
-            -v $PWD/dotfiles:/home/docker/.dotfiles \
-            -v /tmp/.X11-unix:/tmp/.X11-unix:rw     \
-            -w /home/$USER                          \
-            {c['TAG']}                              \
-        || docker attach                            \
+        docker run                                       \
+            --detach-keys="ctrl-s,d"                     \
+            --mount source=asdf,target=/asdf             \
+            --mount source=cache,target=/cache           \
+            --mount source=docker,target=/var/lib/docker \
+            --mount source=nix,target=/nix               \
+            --mount source=pipx,target=/pipx             \
+            --mount source=srv,target=/srv               \
+            --name {c['NAME']}                           \
+            --privileged                                 \
+            --rm                                         \
+            -e DISPLAY=host.docker.internal:0            \
+            -e TZ=Europe/London                          \
+            -it                                          \
+            -p 5000-5100:5000-5100                       \
+            -v $HOME:/home/$USER                         \
+            -v $PWD/dotfiles:/home/docker/.dotfiles      \
+            -v /tmp/.X11-unix:/tmp/.X11-unix:rw          \
+            -w /home/$USER                               \
+            {c['TAG']}                                   \
+        || docker attach                                 \
             {c['NAME']}
         """
     )
