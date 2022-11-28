@@ -10,8 +10,8 @@ ifeq ($(CURRENT_OS), Darwin)
 	SHELL := env PATH=$(PATH) /bin/bash
 endif
 
-TAG='rodfersou/docker-base'
-NAME='rodfersou_docker_base'
+TAG='rodfersou/base'
+NAME='rodfersou_base'
 
 all: start
 

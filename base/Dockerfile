@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 FROM ubuntu:22.04
 ARG DEBIAN_FRONTEND=noninteractive
-RUN <<PRE  bash                                                                                                                  \
+RUN <<PRE  bash \
  && <<APT  xargs -d '\n' -n 1 bash -c "[[ ! "\$0" =~ (^\b*#|^\b*$) ]] && apt-get install -y --no-install-recommends \$0 || true" \
  && <<POST bash
     sed -e '/^# deb/ s/# //' -i /etc/apt/sources.list
@@ -13,6 +13,15 @@ PRE
     gnupg
     locales
     lsb-release
+
+    # DOCKER IN DOCKER
+    ca-certificates
+    curl
+    iptables
+    lsb-release
+    openssh-client
+    supervisor
+    wget
 
     # SYSTEM UTILS
     less

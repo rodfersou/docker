@@ -1,0 +1,91 @@
+<application>
+  <component name="ActionsLocalSummary">
+    <e n="ConfigureIcs">
+      <i c="1" l="1628305595309" />
+    </e>
+    <e n="EditorBackSpace">
+      <i c="33" l="1628495957608" />
+    </e>
+    <e n="EditorEscape">
+      <i c="4" l="1628229156730" />
+    </e>
+    <e n="EnableDirectoryIconsAction">
+      <i c="1" l="1628301502114" />
+    </e>
+    <e n="EnableFileIconsAction">
+      <i c="1" l="1628301480991" />
+    </e>
+    <e n="EnableUIIconsAction">
+      <i c="1" l="1628301510518" />
+    </e>
+    <e n="Exit">
+      <i c="1" l="1628229242974" />
+    </e>
+    <e n="ExportSettings">
+      <i c="7" l="1628310527931" />
+    </e>
+    <e n="FindUsages">
+      <i c="1" l="1628307181039" />
+    </e>
+    <e n="GotoDeclaration">
+      <i c="5" l="1628307241749" />
+    </e>
+    <e n="GotoImplementation">
+      <i c="1" l="1628307150168" />
+    </e>
+    <e n="HideIgnoredFiles">
+      <i c="3" l="1628306339261" />
+    </e>
+    <e n="ImportSettings">
+      <i c="2" l="1628311625983" />
+    </e>
+    <e n="RenameElement">
+      <i c="1" l="1628495941851" />
+    </e>
+    <e n="Run">
+      <i c="2" l="1628307435641" />
+    </e>
+    <e n="SearchEverywhere">
+      <i c="1" l="1628312482574" />
+    </e>
+    <e n="SelectNextOccurrence">
+      <i c="14" l="1628229155160" />
+    </e>
+    <e n="ShowSettings">
+      <i c="31" l="1628312341290" />
+    </e>
+    <e n="WelcomeScreen.OpenDirectoryProject">
+      <i c="1" l="1628227197805" />
+    </e>
+    <e n="com.intellij.ide.plugins.newui.SelectionBasedPluginModelAction$UninstallAction">
+      <i c="11" l="1628306771441" />
+    </e>
+    <e n="com.intellij.notification.NotificationAction$Simple">
+      <i c="2" l="1628306347941" />
+    </e>
+    <e n="com.intellij.openapi.actionSystem.EmptyAction$MyDelegatingAction">
+      <i c="26" l="1628307114617" />
+    </e>
+    <e n="com.intellij.openapi.fileEditor.impl.tabActions.CloseTab">
+      <i c="20" l="1628496062787" />
+    </e>
+    <e n="com.intellij.openapi.project.DumbAwareAction$SimpleDumbAwareAction">
+      <i c="1" l="1628312485661" />
+    </e>
+    <e n="com.intellij.openapi.updateSettings.impl.UpdateChecker$showNotification$1">
+      <i c="1" l="1628300870380" />
+    </e>
+    <e n="com.intellij.openapi.wm.impl.MoreSquareStripeButton$Companion$createAction$1">
+      <i c="2" l="1628310513168" />
+    </e>
+    <e n="com.intellij.openapi.wm.impl.SquareStripeButton$SquareAnActionButton">
+      <i c="18" l="1628495926660" />
+    </e>
+    <e n="com.intellij.openapi.wm.impl.ToolWindowHeader$HideAction">
+      <i c="3" l="1628307185886" />
+    </e>
+    <e n="com.intellij.space.actions.SpaceMainToolBarAction">
+      <i c="2" l="1628307026798" />
+    </e>
+  </component>
+</application>

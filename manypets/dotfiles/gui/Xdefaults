@@ -1,0 +1,118 @@
+! urxvt
+
+! Appearance
+!  - use a bitmap font
+!URxvt.font:     xft:bitstream vera sans mono:size=9:antialias=true
+!URxvt.boldFont: xft:bitstream vera sans mono:bold:size=9:antialias=true
+!  - use powerline font
+!URxvt*font: xft:Source Code Pro Medium:pixelsize=11:antialias=true:hinting=true
+!URxvt*font: xft:SauceCodePro Nerd Font:pixelsize=11:antialias=true:hinting=true
+!URxvt*font: xft:Hack Nerd Font:pixelsize=11:antialias=true:hinting=true
+!URxvt*font: xft:Inconsolata Nerd Font Mono:pixelsize=12:antialias=true:hinting=true
+URxvt*font: xft:SauceCodePro Nerd Font Mono:pixelsize=12:antialias=true:hinting=true
+!URxvt*font: xft:Source\ Code\ Pro\ Medium:pixelsize=11:antialias=true:hinting=true,xft:Source\ Code\ Pro\ Medium:pixelsize=11:antialias=true:hinting=true
+!URxvt*font: xft:Source Code Pro Medium-10
+!URxvt*font: xft:Source\ Code\ Pro\ Medium:pixelsize=13:antialias=true:hinting=true,xft:Source\ Code\ Pro\ Medium:pixelsize=13:antialias=true:hinting=true
+!URxvt*font: xft:Inconsolata\ for\ Powerline:size=11
+!URxvt*font: xft:DejaVu Sans Mono for Powerline-10
+!URxvt*font: xft:Source\ Code\ Pro\ Medium:pixelsize=16:antialias=true:hinting=true,xft:Source\ Code\ Pro\ Medium:pixelsize=16:antialias=true:hinting=true
+!urxvt*font:        -xos4-terminus-medium-*-*-*-9-*-*-*-*-*-*-*
+!urxvt*boldFont:    -xos4-terminus-bold-*-*-*-9-*-*-*-*-*-*-*
+!URxvt.letterSpace: -1
+URxvt.letterSpace: 0
+!urxvt*font:       xft:Terminus:9
+
+!  - cursor
+urxvt*cursorColor: #DCDCCC
+!  - pseudo transparency
+!urxvt*shading:    50
+!urxvt*transparent:true
+URxvt.scrollBar: false
+ukuake.scrollBar: false
+
+
+! Meta modifier for keybindings
+!URxvt.modifier: super
+
+!! perl extensions
+!URxvt.perl-ext-common:             matcher,clipboard
+URxvt.perl-ext-common:             matcher,fullscreen
+
+! matcher
+URxvt.url-launcher:       google-chrome-stable
+URxvt.keysym.C-Delete:    perl:matcher:last
+URxvt.keysym.M-Delete:    perl:matcher:list
+URxvt.keysym.C-M-Delete:  perl:matcher:select
+URxvt.matcher.button:     1
+URxvt.matcher.pattern.1:  \\B(/\\S+?):(\\d+)(?=:|$)
+!URxvt.matcher.launcher.1: gvim +$2 $1
+URxvt.matcher.launcher.1: code -g $1:$2
+!  File "/home/rodfersou/.projects/collective.cover.p5/src/collective/cover/tests/test_widget_preview.py", line 39, in test_layout_structure
+!    ZopeXMLConfigurationError: File "/home/rodfersou/.projects/migration-plone5/src/kitconcept.migrator/src/kitconcept/migrator/browser/configure.zcml", line 57.4-60.10
+!  File "/home/rodfersou/.projects/migration-plone5/src/plone.staticresources/src/plone/staticresources/static/components/cs-jqtree-contextmenu/node_modules/jqtree/_entries/insert.py", line 44
+URxvt.matcher.pattern.2:  "(/\\S+?)",\\sline\\s(\\d+)\(,\|.\|$\)
+!URxvt.matcher.launcher.2: gvim +$2 $1
+URxvt.matcher.launcher.2: code -g $1:$2
+! > /home/rodfersou/.projects/cache/eggs/transmogrify.dexterity-1.6.3-py2.7.egg/transmogrify/dexterity/schemaupdater.py(169)__iter__()
+URxvt.matcher.pattern.3:  \\ (/\\S+?)\\((\\d+)\\)
+!URxvt.matcher.launcher.3: gvim +$2 $1
+URxvt.matcher.launcher.3: code -g $1:$2
+
+! Fullscreen
+URxvt.keysym.F11: perl:fullscreen:switch
+
+
+! Nastavuje kopirovani
+!URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+!URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+URxvt.keysym.Control-Meta-c: builtin-string:
+URxvt.keysym.Control-Meta-v: builtin-string:
+
+! disable the stupid ctrl+shift 'feature'
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+!!Source http://github.com/altercation/solarized
+
+URxvt.background: #002b36
+/* URxvt.foreground: #657b83 */
+URxvt.foreground: #FFFFFF
+!!URxvt.fading: 40
+URxvt.fadeColor: #002b36
+URxvt.cursorColor: #93a1a1
+URxvt.pointerColorBackground: #586e75
+URxvt.pointerColorForeground: #93a1a1
+
+!! black dark/light
+URxvt.color0: #073642
+URxvt.color8: #002b36
+
+!! red dark/light
+URxvt.color1: #dc322f
+URxvt.color9: #cb4b16
+
+!! green dark/light
+URxvt.color2: #859900
+URxvt.color10: #586e75
+
+!! yellow dark/light
+URxvt.color3: #b58900
+URxvt.color11: #657b83
+
+!! blue dark/light
+URxvt.color4: #268bd2
+URxvt.color12: #839496
+
+!! magenta dark/light
+URxvt.color5: #d33682
+URxvt.color13: #6c71c4
+
+!! cyan dark/light
+URxvt.color6: #2aa198
+URxvt.color14: #93a1a1
+
+!! white dark/light
+URxvt.color7: #eee8d5
+URxvt.color15: #fdf6e3

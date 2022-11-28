@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM rodfersou/docker-base
+FROM rodfersou/base
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG NEBULA_VERSION=v0.1.6

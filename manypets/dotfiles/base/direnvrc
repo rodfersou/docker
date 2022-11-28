@@ -1,0 +1,78 @@
+export CURRENT_DIR=$PWD
+ENV_DIR=$(find_up ".envrc")
+export ENV_DIR=${ENV_DIR%/*}
+
+cd $ENV_DIR
+
+# File: ~/.config/direnv/direnvrc
+#source "$(asdf direnv hook asdf)"
+
+# Uncomment the following line to make direnv silent by default.
+# export DIRENV_LOG_FORMAT=""
+
+#use nix
+#use asdf
+
+# use_nix
+# direnv_load sh -c "nix-shell --run \"DIRENV_DUMP_FILE_PATH=\$DIRENV_DUMP_FILE_PATH $direnv dump\""
+# direnv_load sh -c "nix-shell --pure --run \"DIRENV_DUMP_FILE_PATH=\$DIRENV_DUMP_FILE_PATH $direnv dump\""
+cd $CURRENT_DIR
+
+alias_dir=$ENV_DIR/.direnv/aliases
+rm -rf "$alias_dir"
+
+export_alias() {
+  local name=$1
+  shift
+  local target="$alias_dir/$name"
+  mkdir -p "$alias_dir"
+  PATH_rm "$alias_dir"
+  PATH_add "$alias_dir"
+  echo "#!/bin/bash -e" > "$target"
+
+  # https://stackoverflow.com/a/5947802/2116850
+  BLACK='\033[0;30m'
+  RED='\033[0;31m'
+  GREEN='\033[0;32m'
+  ORANGE='\033[0;33m'
+  BLUE='\033[0;34m'
+  PURPLE='\033[0;35m'
+  CYAN='\033[0;36m'
+  LGRAY='\033[0;37m'
+  DGRAY='\033[1;30m'
+  LRED='\033[1;31m'
+  LGREEN='\033[1;32m'
+  YELLOW='\033[1;33m'
+  LBLUE='\033[1;34m'
+  LPURPLE='\033[1;35m'
+  LCYAN='\033[1;36m'
+  WHITE='\033[1;37m'
+  NC='\033[0m' # No Color
+  echo "printf \"${LPURPLE}\$ \"" >> "$target"
+  printf -v escaped "%q" "$@"
+  echo "echo $escaped | awk '\$1=\$1'" >> "$target"
+  echo "printf \"${NC}\"" >> "$target"
+
+  echo "$@" >> "$target"
+  chmod +x "$target"
+}
+
+layout_poetry() {
+    PYPROJECT_TOML="${PYPROJECT_TOML:-pyproject.toml}"
+    if [[ ! -f "$PYPROJECT_TOML" ]]; then
+        log_status "No pyproject.toml found. Executing \`poetry init\` to create a \`$PYPROJECT_TOML\` first."
+        poetry init
+    fi
+
+    VIRTUAL_ENV=$(poetry env info --path 2>/dev/null ; true)
+
+    if [[ -z $VIRTUAL_ENV || ! -d $VIRTUAL_ENV ]]; then
+        log_status "No virtual environment exists. Executing \`poetry install\` to create one."    
+        poetry install
+        VIRTUAL_ENV=$(poetry env info --path)
+    fi
+
+    PATH_add "$VIRTUAL_ENV/bin"
+    export POETRY_ACTIVE=1
+    export VIRTUAL_ENV
+}

@@ -1,0 +1,3 @@
+DOTFILES_DIRS="$HOME/.dotfiles/crypt $HOME/.dotfiles/gui $HOME/.dotfiles/base"
+SYMLINK_DIRS="ssh backup config\/JetBrains"
+COPY_ALWAYS="aws\/credentials"

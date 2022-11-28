@@ -1,0 +1,23 @@
+<application>
+  <component name="DimensionService">
+    <location key="find.popup.0.0.1280.800" x="413" y="74" />
+    <size key="find.popup.0.0.1280.800" width="641" height="726" />
+  </component>
+  <component name="WindowManager">
+    <frame x="0" y="0" width="1270" height="792" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
+    </layout>
+  </component>
+  <component name="WindowStateApplicationService">
+    <state x="939" y="583" width="300" height="185" key="ProcessPopupWindow" timestamp="1658994914682">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="939" y="583" width="300" height="185" key="ProcessPopupWindow/0.0.1280.800" timestamp="1658994914682" />
+  </component>
+</application>

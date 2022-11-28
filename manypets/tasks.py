@@ -1,6 +1,10 @@
 import inspect
+import os
+import sys
 
 import invoke
+
+sys.path.append("..")
 
 import scripts
 
@@ -13,12 +17,37 @@ for _, task in inspect.getmembers(scripts):
     ns.add_task(task)
 
 
-ns.configure(scripts.get_configuration(__file__))
-
-
 @invoke.task
 def start(c):
-    c.run(f"docker run --rm -it {c['TAG']}")
+    os.system(
+        f"""
+        docker run                                  \
+            --detach-keys="ctrl-s,d"                \
+            --mount source=cache,target=/cache      \
+            --mount source=nix,target=/nix          \
+            --mount source=srv,target=/srv          \
+            --name {c['NAME']}                      \
+            --privileged                            \
+            --rm                                    \
+            -e DISPLAY=host.docker.internal:0       \
+            -e TZ=Europe/London                     \
+            -it                                     \
+            -p 5000-5100:5000-5100                  \
+            -v $HOME:/home/$USER                    \
+            -v $PWD/dotfiles:/home/docker/.dotfiles \
+            -v /tmp/.X11-unix:/tmp/.X11-unix:rw     \
+            -w /home/$USER                          \
+            {c['TAG']}                              \
+        || docker attach                            \
+            {c['NAME']}
+        """
+    )
+
+    # -p 8000:8000                                 \
+    # -p 8888:8888                                 \
 
 
 ns.add_task(start)
+
+
+ns.configure(scripts.get_configuration(__file__))
