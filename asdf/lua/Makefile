@@ -10,19 +10,16 @@ ifeq ($(CURRENT_OS), Darwin)
 	SHELL := env PATH=$(PATH) /bin/bash
 endif
 
-TAG='rodfersou/vim'
-NAME='rodfersou_vim'
+TAG='rodfersou/asdf-rust'
+NAME='rodfersou_asdf_rust'
 
 all: start
 
 build:
 	make clean
-	docker buildx build -t $(TAG) . --progress plain --no-cache
+	docker buildx build -t $(TAG) . --progress plain
 
 start:
-	docker run --rm -it $(TAG)
-
-bash:
 	docker run --rm -it $(TAG) bash
 
 restart:

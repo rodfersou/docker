@@ -32,7 +32,7 @@ PIP
     mario
     mercurial
     mypy
-    pipenv==2022.10.25
+    pipenv==2022.4.8
     plonecli
     poetry
     py-spy

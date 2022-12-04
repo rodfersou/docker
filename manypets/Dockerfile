@@ -43,9 +43,9 @@ COPY --from=rodfersou/asdf --chown=docker:docker /root/.pdbrc.py                
 COPY --from=rodfersou/asdf --chown=docker:docker /pipx                              /pipx
 COPY --from=rodfersou/asdf                       /usr/lib/lib*.so.1.1               /usr/lib
 
-COPY --chown=docker:docker --from=rodfersou/vim /root/.config/nvim/init.vim       /home/docker/.config/nvim/init.vim
-COPY --chown=docker:docker --from=rodfersou/vim /root/.vimrc                      /home/docker/.vimrc
-COPY --chown=docker:docker --from=rodfersou/vim /root/.vim_runtime                /home/docker/.vim_runtime
+COPY --chown=docker:docker --from=rodfersou/awesome_vim /root/.config/nvim/init.vim       /home/docker/.config/nvim/init.vim
+COPY --chown=docker:docker --from=rodfersou/awesome_vim /root/.vimrc                      /home/docker/.vimrc
+COPY --chown=docker:docker --from=rodfersou/awesome_vim /root/.vim_runtime                /home/docker/.vim_runtime
 COPY --chown=docker:docker                      dotfiles                          .dotfiles
 
 USER docker

@@ -36,6 +36,7 @@ def start(c):
             -e TZ=Europe/London                          \
             -it                                          \
             -p 5000-5100:5000-5100                       \
+            -p 8888:8888                                 \
             -v $HOME:/home/$USER                         \
             -v $PWD/dotfiles:/home/docker/.dotfiles      \
             -v /tmp/.X11-unix:/tmp/.X11-unix:rw          \
@@ -47,7 +48,6 @@ def start(c):
     )
 
     # -p 8000:8000                                 \
-    # -p 8888:8888                                 \
 
 
 ns.add_task(start)

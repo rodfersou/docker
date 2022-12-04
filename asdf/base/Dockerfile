@@ -10,6 +10,7 @@ RUN apt update                             \
         ca-certificates                    \
         curl                               \
         git                                \
+        libreadline8                       \
         wget                               \
  && git clone https://github.com/asdf-vm/asdf.git $ASDF_DIR \
  && cd $ASDF_DIR                                            \

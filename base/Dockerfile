@@ -13,6 +13,7 @@ PRE
     gnupg
     locales
     lsb-release
+    libreadline8
 
     # DOCKER IN DOCKER
     ca-certificates
