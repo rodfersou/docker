@@ -1,4 +1,9 @@
+import inspect
 import pathlib
+
+# https://github.com/your-tools/tsrc/pull/373
+if not hasattr(inspect, "getargspec"):
+    inspect.getargspec = inspect.getfullargspec
 
 # from scripts import hotfix  # noqa: F401
 
@@ -20,7 +25,7 @@ def get_configuration(filename: str) -> dict:
     for parent in reversed(path.parents):
         if not next(parent.glob("tasks.py"), None):
             continue
-        parts.append(parent.name.replace(".", "_"))
+        parts.append(parent.name.replace(".", "-"))
     parts = parts[1:]  # skip the first dir
 
     tag = f"rodfersou/{'-'.join(parts)}"

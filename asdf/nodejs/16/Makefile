@@ -10,8 +10,8 @@ ifeq ($(CURRENT_OS), Darwin)
 	SHELL := env PATH=$(PATH) /bin/bash
 endif
 
-TAG='rodfersou/asdf-lua'
-NAME='rodfersou_asdf_lua'
+TAG='rodfersou/asdf-nodejs-16'
+NAME='rodfersou_asdf_nodejs_16'
 
 all: start
 

@@ -22,6 +22,7 @@ PRE
     setuptools
     unidecode
 PIP
+    aws-sam-cli
     black
     cookiecutter
     flake8
@@ -32,6 +33,7 @@ PIP
     mario
     mercurial
     mypy
+    packaging==21.3
     pipenv==2022.4.8
     plonecli
     poetry
