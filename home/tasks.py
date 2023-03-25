@@ -33,7 +33,7 @@ def start(c):
             -e DISPLAY=host.docker.internal:0            \
             -e TZ=Europe/London                          \
             -it                                          \
-            -p 5000-5100:5000-5100                       \
+            -p 5000-5555:5000-5555                       \
             -p 8888:8888                                 \
             -v $HOME:/home/$USER                         \
             -v $PWD/dotfiles:/home/docker/.dotfiles      \

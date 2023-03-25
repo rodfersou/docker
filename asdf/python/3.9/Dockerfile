@@ -39,20 +39,22 @@ PIP
     poetry
     py-spy
     pylint
-    python-lsp-server
+    python-lsp-server[all]
     virtualenv==16.7.9
     yamllint
     youtube-dl
     yq
 PIPX
-    flake8            flake8-respect-noqa
-    mario             mario-addons
+    flake8                 flake8-respect-noqa
+    mario                  mario-addons
     python-lsp-server pyls-isort
-    python-lsp-server pylsp-mypy
-    python-lsp-server pylsp-rope
-    python-lsp-server python-lsp-black
+    python-lsp-server pyls-mypy
+    python-lsp-server pyls-black
 PIPXI
 
+# python-lsp-server
+# python-lsp-server python-lsp-black
+# python-lsp-server pylsp-rope
 
 FROM rodfersou/asdf-python-base
 COPY --from=asdf-python /asdf/installs/python /asdf/installs/python
